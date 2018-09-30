@@ -11,6 +11,6 @@
 <body>
 	<h1>시작 페이지</h1>
 
-	<P>서버 시간 : ${serverTime}.</P>
+	<h1>${list}</h1>
 </body>
 </html>
