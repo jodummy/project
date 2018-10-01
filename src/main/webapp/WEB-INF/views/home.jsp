@@ -8,9 +8,15 @@
 <head>
 <title>Home</title>
 </head>
+
+
+<script type="text/javascript">
+
+	
+	
+</script>
+
 <body>
 	<h1>시작 페이지</h1>
-
-	<h1>${list}</h1>
 </body>
 </html>

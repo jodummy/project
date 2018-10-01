@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.common.www.dao.commonDaoImp;
 import com.common.www.dto.commonDTO;
+import com.common.www.dto.commonDTO2;
 
 @Service
 public class commonServiceImp implements commonService {
@@ -14,8 +15,14 @@ public class commonServiceImp implements commonService {
 	private commonDaoImp dao;
 
 	@Override
-	public List<commonDTO> getstore() {
-		return dao.getstore();
+	public List<commonDTO> getStore() {
+		return dao.getStore();
+	}
+
+	@Override
+	public List<commonDTO2> getItem() {
+
+		return dao.getItem();
 	}
 
 }
