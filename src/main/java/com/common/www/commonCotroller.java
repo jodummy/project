@@ -19,18 +19,18 @@ public class commonCotroller {
 	@Autowired
 	private commonService service;
 
-	@RequestMapping(value = "/test.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/store.do", method = RequestMethod.GET)
 	public String homeMain(Model model) {
 		List<commonDTO> list = service.getStore();
 		model.addAttribute("list", list);
-		return "test";
+		return "store";
 	}
 
-	@RequestMapping(value = "/simple.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/goods.do", method = RequestMethod.GET)
 	public String homeSimple(Model model) {
 		List<commonDTO2> list = service.getItem();
 		model.addAttribute("list", list);
-		return "simple";
+		return "goods";
 	}
 
 }
