@@ -9,12 +9,43 @@
 
 <html>
 <head>
-
-
-<title>상품</title>
 </head>
 <style type="text/css">
+.projectIcon {
+	width: 50px;
+	height: 50px;
+}
+
+.board_title {
+	text-align: left;
+}
+
+#boardTable, th {
+	text-align: center;
+}
+
+#keyWordTextBox {
+	border: 1px solid #b3b3b3;
+}
+
+.center {
+	text-align: center;
+}
+
+.pageArrow {
+	width: 67px;
+}
+
+.pageBlank {
+	
+}
+
+.pageNumbers {
+	text-align: center;
+	width: 200px;
+}
 </style>
+
 
 <script type="text/javascript">
 	//1.모두 체크
@@ -35,40 +66,55 @@
 			}
 		}
 	}
-</script>
-<body>
-	<form action="#" method="post" id='frmPaging' name="frmPaging">
-		<table>
-			<thead>
-				<tr>
-					<th><input id="allCheck" type="checkbox"
-						onclick="allChk(this);" /></th>
-					<th>상품 번호</th>
-					<th>상품 이름</th>
-					<th>가격</th>
-					<th>재고</th>
-					<th>들어온 날짜</th>
-					<th>유통기간</th>
-					<th>팔린 갯수</th>
-					<th>신상</th>
-				</tr>
-			</thead>
-			<c:forEach items="${list }" var="list">
-				<tr>
-					<th><input ﻿ name="RowCheck" type="checkbox"
-						value="${list.goodsnumber}" /></th>
-					<th>${list.goodsnumber }</th>
-					<th>${list.goodsname }</th>
-					<th>${list.price }</th>
-					<th>${list.nowstock }</th>
-					<th>${list.inputgoods }</th>
-					<th>${list.expirationdate }</th>
-					<th>${list.soldnum }</th>
-					<th>${list.newitem }</th>
-				</tr>
-			</c:forEach>
-		</table>
-	</form>
 
+	function insertGoode() {
+		window
+				.open("./insertGoodes.do", "선택",
+						"scrollbars=yes,toolbar=yes,resizable=yes,width=450,height=500,right=150,top=0");
+	}
+</script>
+
+<body>
+	<div class="col-sm-10 text-left">
+		<div class="col-sm-12">
+			<div style="padding-left: 50px;">
+				<h2 id="txttitle">현재 상품</h2>
+
+				<form action="#" method="post" id='frmPaging' name="frmPaging">
+					<table>
+						<thead>
+							<tr>
+								<th><input id="allCheck" type="checkbox"
+									onclick="allChk(this);" /></th>
+								<th>상품 번호</th>
+								<th>상품 이름</th>
+								<th>가격</th>
+								<th>재고</th>
+								<th>들어온 날짜</th>
+								<th>유통기간</th>
+								<th>팔린 갯수</th>
+								<th>신상</th>
+							</tr>
+						</thead>
+						<c:forEach items="${list }" var="list">
+							<tr>
+								<th><input ﻿ name="RowCheck" type="checkbox"
+									value="${list.goodsnumber}" /></th>
+								<th>${list.goodsnumber }</th>
+								<th>${list.goodsname }</th>
+								<th>${list.price }</th>
+								<th>${list.nowstock }</th>
+								<th>${list.inputgoods }</th>
+								<th>${list.expirationdate }</th>
+								<th>${list.soldnum }</th>
+								<th>${list.newitem }</th>
+							</tr>
+						</c:forEach>
+					</table>
+				</form>
+				<input type="button" value="상품 추가" onclick="insertGoode()">
+			</div>
+		</div>
+	</div>
 </body>
 </html>

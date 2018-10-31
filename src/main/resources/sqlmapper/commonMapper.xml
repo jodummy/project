@@ -4,13 +4,17 @@
 
 <!-- 맵핑될 DAO 인터페이스의 Full name 을 줍니다. -->
 <mapper namespace="com.common.www">
+
+
 	<!-- 메소드 이름 가지고 와서 작성 -->
+	<!-- 점포 리스트 출력 db -->
 	<select id="getStore" resultType="com.common.www.dto.commonDTO">
 		SELECT STORECODE , INLOCATION ,
 		TEL , DAILYSALES ,MONTHLYSALES
 		FROM COOSTORE
 	</select>
-
+	
+	<!-- 상품 리스트 출력 db -->
 	<select id="getItem" resultType="com.common.www.dto.commonDTO2">
 		SELECT GOODSNUMBER,
 		GOODSNAME,
@@ -22,4 +26,19 @@
 		NEWITEM
 		FROM COOGOODS
 	</select>
+	
+	<!-- 상품 추가 db  식품()-->
+	<insert id="insertGoodsFood" parameterType="com.common.www.dto.commonDTO2"> 
+	 INSERT INTO coogoods VALUE(GOODSNUMBER,GOODSNAME,PRICE,EXPIRATIONDATE) 
+ 	 VALUES(#{goodsnumber},#{goodsname},#{price},SYSDATE + 5 )
+	</insert>
+	
+	<!-- 상품 추가 db  통조림()-->
+	<insert id="insertGoodsCan" parameterType="com.common.www.dto.commonDTO2"> 
+	 INSERT INTO coogoods VALUE(GOODSNUMBER,GOODSNAME,PRICE,EXPIRATIONDATE) 
+ 	 VALUES(#{goodsnumber},#{goodsname},#{price},SYSDATE + 1000 )
+	</insert>
+	
+	
+	
 </mapper>

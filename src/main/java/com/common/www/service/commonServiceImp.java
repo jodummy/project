@@ -25,4 +25,16 @@ public class commonServiceImp implements commonService {
 		return dao.getItem();
 	}
 
+	@Override
+	public boolean insertGoodsFood(commonDTO2 goodsDto) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean insertGoodsCan(commonDTO2 goodsDto) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
