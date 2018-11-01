@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.common.www.dao.commonDao;
 import com.common.www.dao.commonDaoImp;
 import com.common.www.dto.commonDTO;
 import com.common.www.dto.commonDTO2;
@@ -12,29 +13,40 @@ import com.common.www.dto.commonDTO2;
 @Service
 public class commonServiceImp implements commonService {
 	@Autowired
-	private commonDaoImp dao;
+	private commonDao dao;
 
+//점포 리스트
 	@Override
 	public List<commonDTO> getStore() {
 		return dao.getStore();
 	}
 
+//상품 리스트 
 	@Override
 	public List<commonDTO2> getItem() {
 
 		return dao.getItem();
 	}
 
+//식품 insert
 	@Override
-	public boolean insertGoodsFood(commonDTO2 goodsDto) {
-		// TODO Auto-generated method stub
-		return false;
+	public commonDTO2 insertGoodsFood(commonDTO2 goodsDto) {
+		commonDTO2 result = dao.insertGoodsFood(goodsDto);
+
+		return result;
+	}
+
+//그 이외 먹을 수 있는 음식 insert 
+	@Override
+	public int insertGoodsCan(commonDTO2 goodsDto) {
+
+		return dao.insertGoodsCan(goodsDto);
 	}
 
 	@Override
-	public boolean insertGoodsCan(commonDTO2 goodsDto) {
-		// TODO Auto-generated method stub
-		return false;
+	public int selectTotalPaging() {
+
+		return dao.selectTotalPaging();
 	}
 
 }

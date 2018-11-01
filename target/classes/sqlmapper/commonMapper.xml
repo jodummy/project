@@ -5,6 +5,13 @@
 <!-- 맵핑될 DAO 인터페이스의 Full name 을 줍니다. -->
 <mapper namespace="com.common.www">
 
+	<!-- goods 물품 토탈 출력 -->
+	<select resultType="java.lang.Integer" id="selectTotalPaging">
+		SELECT
+		NVL(COUNT(*),0)FROM COOGOODS
+	</select>
+
+
 
 	<!-- 메소드 이름 가지고 와서 작성 -->
 	<!-- 점포 리스트 출력 db -->
@@ -13,7 +20,7 @@
 		TEL , DAILYSALES ,MONTHLYSALES
 		FROM COOSTORE
 	</select>
-	
+
 	<!-- 상품 리스트 출력 db -->
 	<select id="getItem" resultType="com.common.www.dto.commonDTO2">
 		SELECT GOODSNUMBER,
@@ -26,19 +33,24 @@
 		NEWITEM
 		FROM COOGOODS
 	</select>
-	
-	<!-- 상품 추가 db  식품()-->
-	<insert id="insertGoodsFood" parameterType="com.common.www.dto.commonDTO2"> 
-	 INSERT INTO coogoods VALUE(GOODSNUMBER,GOODSNAME,PRICE,EXPIRATIONDATE) 
- 	 VALUES(#{goodsnumber},#{goodsname},#{price},SYSDATE + 5 )
+
+	<!-- 상품 추가 db 식품() -->
+	<insert id="insertGoodsFood"
+		parameterType="com.common.www.dto.commonDTO2">
+		INSERT INTO COOGOODS
+		VALUE(GOODSNUMBER,GOODSNAME,PRICE,EXPIRATIONDATE)
+		VALUES(#{goodsnumber},#{goodsname},#{price},SYSDATE + 5 )
 	</insert>
-	
-	<!-- 상품 추가 db  통조림()-->
-	<insert id="insertGoodsCan" parameterType="com.common.www.dto.commonDTO2"> 
-	 INSERT INTO coogoods VALUE(GOODSNUMBER,GOODSNAME,PRICE,EXPIRATIONDATE) 
- 	 VALUES(#{goodsnumber},#{goodsname},#{price},SYSDATE + 1000 )
+
+	<!-- 상품 추가 db 통조림() -->
+	<insert id="insertGoodsCan"
+		parameterType="com.common.www.dto.commonDTO2">
+		INSERT INTO COOGOODS
+		VALUE(GOODSNUMBER,GOODSNAME,PRICE,EXPIRATIONDATE)
+		VALUES(#{GOODSNUMBER},#{GOODSNAME},#{PRICE},SYSDATE + 1000 )
 	</insert>
-	
-	
-	
+
+
+
+
 </mapper>

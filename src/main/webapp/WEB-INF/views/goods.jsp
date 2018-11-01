@@ -69,8 +69,12 @@
 
 	function insertGoode() {
 		window
-				.open("./insertGoodes.do", "선택",
+				.open("./insertGoods.do", "선택",
 						"scrollbars=yes,toolbar=yes,resizable=yes,width=450,height=500,right=150,top=0");
+	}
+
+	function deleteGoode() {
+
 	}
 </script>
 
@@ -80,41 +84,62 @@
 			<div style="padding-left: 50px;">
 				<h2 id="txttitle">현재 상품</h2>
 
-				<form action="#" method="post" id='frmPaging' name="frmPaging">
-					<table>
-						<thead>
-							<tr>
-								<th><input id="allCheck" type="checkbox"
-									onclick="allChk(this);" /></th>
-								<th>상품 번호</th>
-								<th>상품 이름</th>
-								<th>가격</th>
-								<th>재고</th>
-								<th>들어온 날짜</th>
-								<th>유통기간</th>
-								<th>팔린 갯수</th>
-								<th>신상</th>
-							</tr>
-						</thead>
-						<c:forEach items="${list }" var="list">
-							<tr>
-								<th><input ﻿ name="RowCheck" type="checkbox"
-									value="${list.goodsnumber}" /></th>
-								<th>${list.goodsnumber }</th>
-								<th>${list.goodsname }</th>
-								<th>${list.price }</th>
-								<th>${list.nowstock }</th>
-								<th>${list.inputgoods }</th>
-								<th>${list.expirationdate }</th>
-								<th>${list.soldnum }</th>
-								<th>${list.newitem }</th>
-							</tr>
-						</c:forEach>
-					</table>
-				</form>
-				<input type="button" value="상품 추가" onclick="insertGoode()">
+
+				<div style="padding-left: 50px;">
+					<h2 id="txttitle">팀원 리스트</h2>
+					<hr>
+					<!-- 한번에 출력할 목록 갯수 -->
+					<div align="right" style="padding: 0px 10px 10px 0px;">
+						<select class='btn btn-primary' id='listCount' name='listCount'
+							onchange='listCnt();'>
+							<option value='5'>5</option>
+							<option value='10'>10</option>
+							<option value='15'>15</option>
+							<option value='20'>20</option>
+						</select>
+					</div>
+
+
+
+					<form action="#" method="post" id='frmPaging' name="frmPaging">
+						<table>
+							<thead>
+								<tr>
+									<th><input id="allCheck" type="checkbox"
+										onclick="allChk(this);" /></th>
+									<th>상품 번호</th>
+									<th>상품 이름</th>
+									<th>가격</th>
+									<th>재고</th>
+									<th>들어온 날짜</th>
+									<th>유통기간</th>
+									<th>팔린 갯수</th>
+									<th>신상</th>
+								</tr>
+							</thead>
+							<c:forEach items="${list }" var="list">
+								<tr>
+									<th><input ﻿ name="RowCheck" type="checkbox"
+										value="${list.goodsnumber}" /></th>
+									<th>${list.goodsnumber }</th>
+									<th>${list.goodsname }</th>
+									<th>${list.price }</th>
+									<th>${list.nowstock }</th>
+									<th>${list.inputgoods }</th>
+									<th>${list.expirationdate }</th>
+									<th>${list.soldnum }</th>
+									<th>${list.newitem }</th>
+								</tr>
+							</c:forEach>
+						</table>
+						<!-- 여기에 넣어주면 되요 paging -->
+
+
+					</form>
+					<input type="button" value="상품 추가" onclick="insertGoode()">
+					<input type="button" value="상품 제거" onclick="deleteGoode()">
+				</div>
 			</div>
 		</div>
-	</div>
 </body>
 </html>
