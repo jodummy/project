@@ -90,6 +90,12 @@
 				.open("./insertGoods.do", "선택",
 						"scrollbars=yes,toolbar=yes,resizable=yes,width=450,height=500,right=150,top=0");
 	}
+
+	function updateGoods(goodsnumber) {
+		window
+				.open("./updateGoods.do?goodsnumber=${goodsnumber}", "선택",
+						"scrollbars=yes,toolbar=yes,resizable=yes,width=450,height=500,right=150,top=0");
+	}
 </script>
 
 <body>
@@ -126,7 +132,7 @@
 								<th>${list.soldnum }</th>
 								<th>${list.newitem }</th>
 								<th><input type="button" value="상품 수정"
-									onclick="modifyGoode()"></th>
+									onclick="updateGoods(${list.goodsnumber })"></th>
 							</tr>
 						</c:forEach>
 					</table>

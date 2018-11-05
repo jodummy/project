@@ -89,4 +89,16 @@ public class commonCotroller {
 		return false;
 	}
 
+	// goodsnumber 값을 가져와 처리한다. hidden으로 값을 숨겨서 값을 넘김다
+	@RequestMapping(value = "/updateGoods.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String updateGoods(Model model, HttpServletRequest req) {
+		return "updateGoods";
+	}
+
+	@RequestMapping(value = "/updateGoodPage.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public boolean updateGoodPage(commonDTO2 goodsDto, HttpServletRequest req) {
+
+		return false;
+	}
+
 }

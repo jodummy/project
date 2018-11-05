@@ -50,7 +50,7 @@
 		VALUES(#{goodsnumber},#{goodsname},#{price},SYSDATE + 1000 )
 	</insert>
 
-	<!-- 상품 삭제 x -->
+	<!-- 상품 삭제 -->
 	<delete id="deleteGoods" parameterType="java.lang.Integer">
 		DELETE COOGOODS WHERE
 		GOODSNUMBER =#{goodsnumber}
@@ -60,8 +60,10 @@
 	<!-- 상품 수정 x -->
 	<update id="updateGoods"
 		parameterType="com.common.www.dto.commonDTO2">
-
-
+		UPDATE COOGOODS SET
+		GOODSNAME = #{goodsname} , PRICE = #{price}
+		WHERE
+		GOODSNUMBER =#{goodsnumber}
 	</update>
 
 

@@ -24,4 +24,8 @@ public interface commonService {
 
 	// 삭제 처리
 	public int deleteGoods(int goodsnumber);
+
+	// 수정 처리
+	public int updateGoods(commonDTO2 goodsDto);
+
 }

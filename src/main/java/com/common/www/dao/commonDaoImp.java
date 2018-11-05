@@ -49,4 +49,10 @@ public class commonDaoImp implements commonDao {
 		return session.delete("com.common.www.deleteGoods", goodsnumber);
 	}
 
+	@Override
+	public int updateGoods(commonDTO2 goodsDto) {
+
+		return session.update("com.common.www.updateGoods", goodsDto);
+	}
+
 }

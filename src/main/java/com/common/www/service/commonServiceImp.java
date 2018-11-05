@@ -52,4 +52,10 @@ public class commonServiceImp implements commonService {
 		return dao.deleteGoods(goodsnumber);
 	}
 
+	@Override
+	public int updateGoods(commonDTO2 goodsDto) {
+
+		return dao.updateGoods(goodsDto);
+	}
+
 }
