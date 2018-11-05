@@ -37,9 +37,9 @@
 	<!-- 상품 추가 db 식품() -->
 	<insert id="insertGoodsFood"
 		parameterType="com.common.www.dto.commonDTO2">
-		INSERT INTO COOGOODS
-		VALUE(GOODSNUMBER,GOODSNAME,PRICE,EXPIRATIONDATE)
-		VALUES(#{goodsnumber},#{goodsname},#{price},SYSDATE + 5 )
+	INSERT INTO COOGOODS
+	VALUE(GOODSNUMBER,GOODSNAME,PRICE,EXPIRATIONDATE)
+	VALUES(#{goodsnumber},#{goodsname},#{price},SYSDATE + 5 )
 	</insert>
 
 	<!-- 상품 추가 db 통조림() -->
@@ -47,10 +47,22 @@
 		parameterType="com.common.www.dto.commonDTO2">
 		INSERT INTO COOGOODS
 		VALUE(GOODSNUMBER,GOODSNAME,PRICE,EXPIRATIONDATE)
-		VALUES(#{GOODSNUMBER},#{GOODSNAME},#{PRICE},SYSDATE + 1000 )
+		VALUES(#{goodsnumber},#{goodsname},#{price},SYSDATE + 1000 )
 	</insert>
 
+	<!-- 상품 삭제 x -->
+	<delete id="deleteGoods" parameterType="java.lang.Integer">
+		DELETE COOGOODS WHERE
+		GOODSNUMBER =#{goodsnumber}
+	</delete>
 
+
+	<!-- 상품 수정 x -->
+	<update id="updateGoods"
+	parameterType="com.common.www.dto.commonDTO2">
+
+
+	</update>
 
 
 </mapper>

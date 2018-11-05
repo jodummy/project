@@ -12,7 +12,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.spring
 		 <!-- 데이터베이스 연결 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-		<property name="url" value="jdbc:oracle:thin:@localhost:1521:system"/> 
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl"/> 
 		<property name="username" value="coogy" />
 		<property name="password" value="coogy" />
 <!-- 		<property name="url" value="jdbc:log4jdbc:oracle:thin:@192.168.0.123:1521:ORCL"/> 

@@ -1,6 +1,7 @@
 package com.common.www.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.common.www.dto.commonDTO;
 import com.common.www.dto.commonDTO2;
@@ -12,11 +13,15 @@ public interface commonDao {
 	// 상품 리스트
 	public List<commonDTO2> getItem();
 
-	// 상품 식품 insert
+	// 상품 넣기
 	public commonDTO2 insertGoodsFood(commonDTO2 goodsDto);
 
-	// 그외 식품 리스트
+	// 상품 넣기 유통기한이 긴
 	public int insertGoodsCan(commonDTO2 goodsDto);
 
+	// 페이징 처리
 	public int selectTotalPaging();
+
+	// 상품 삭제
+	public int deleteGoods(int goodsnumber);
 }

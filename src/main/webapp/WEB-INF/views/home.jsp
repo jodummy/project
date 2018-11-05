@@ -11,12 +11,12 @@
 
 
 <script type="text/javascript">
-
-	
 	
 </script>
 
 <body>
 	<h1>편의점 물류관리 시스템입니디.</h1>
+
+	<a href="goods.do">상품 리스트 </a>
 </body>
 </html>

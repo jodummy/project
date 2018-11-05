@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.common.www.dto.PagingDto;
@@ -33,9 +34,7 @@ public class commonCotroller {
 
 	@RequestMapping(value = "/goods.do", method = RequestMethod.GET)
 	public String homeSimple(Model model, PagingDto pagintDto) {
-		pagintDto.setTotal(service.selectTotalPaging());
-		// paging 넣어야 한다. 그러려면 쿼리 select 부분을 고쳐여 하는데 parameter 부분에 값을 넣어줘야 한다.
-		// pagingDto넣어서 start값과 last값을 설정해 준다.
+//		pagintDto.setTotal(service.selectTotalPaging());
 		List<commonDTO2> list = service.getItem();
 		model.addAttribute("list", list);
 		return "goods";
@@ -47,19 +46,47 @@ public class commonCotroller {
 	}
 
 	@RequestMapping(value = "/insertGoodsPage.do", method = { RequestMethod.GET, RequestMethod.POST })
-	@ResponseBody
-	public boolean insertUserPage(Model model, commonDTO2 goodsDto, HttpServletRequest req) {
-		boolean isc = false;
-		Map<String, Boolean> map = new HashMap<String, Boolean>();
+	public @ResponseBody boolean insertUserPage(Model model, commonDTO2 goodsDto, HttpServletRequest req) {
+
 		String goodsnumber = req.getParameter("goodsnumber");
 		String goodsname = req.getParameter("goodsname");
 		String price = req.getParameter("price");
-		goodsDto.setGoodsnumber(Integer.parseInt(goodsnumber));
-		goodsDto.setGoodsname(goodsname);
-		goodsDto.setPrice(Integer.parseInt(price));
-		service.insertGoodsFood(goodsDto);
-		return isc;
 
+		try {
+			goodsDto.setGoodsnumber(Integer.parseInt(goodsnumber));
+			goodsDto.setGoodsname(goodsname);
+			goodsDto.setPrice(Integer.parseInt(price));
+			service.insertGoodsFood(goodsDto);
+			return true;
+		} catch (Exception e) {
+			e.getMessage();
+		}
+
+		return false;
+
+	}
+
+	@RequestMapping(value = "/deleteGoodsPage.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody boolean deleteGoodsPage(@RequestParam(value = "checkArray[]") List<String> arrayParams,
+			@RequestParam(value = "goodsnumber") String value) {
+		String goodsnumber = value;
+		List<String> arr = arrayParams;
+
+		System.out.println(goodsnumber);
+		System.out.println(arr.toString());
+
+		try {
+			if (goodsnumber != null && arr.size() < 2)
+				service.deleteGoods(Integer.parseInt(goodsnumber));
+			else
+				for (int i = 0; i < arr.size(); i++)
+					service.deleteGoods(Integer.parseInt(arr.get(i)));
+
+			return true;
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return false;
 	}
 
 }
