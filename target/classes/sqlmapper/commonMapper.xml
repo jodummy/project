@@ -37,9 +37,9 @@
 	<!-- 상품 추가 db 식품() -->
 	<insert id="insertGoodsFood"
 		parameterType="com.common.www.dto.commonDTO2">
-	INSERT INTO COOGOODS
-	VALUE(GOODSNUMBER,GOODSNAME,PRICE,EXPIRATIONDATE)
-	VALUES(#{goodsnumber},#{goodsname},#{price},SYSDATE + 5 )
+		INSERT INTO COOGOODS
+		VALUE(GOODSNUMBER,GOODSNAME,PRICE,EXPIRATIONDATE)
+		VALUES(#{goodsnumber},#{goodsname},#{price},SYSDATE + 5 )
 	</insert>
 
 	<!-- 상품 추가 db 통조림() -->
@@ -59,7 +59,7 @@
 
 	<!-- 상품 수정 x -->
 	<update id="updateGoods"
-	parameterType="com.common.www.dto.commonDTO2">
+		parameterType="com.common.www.dto.commonDTO2">
 
 
 	</update>
