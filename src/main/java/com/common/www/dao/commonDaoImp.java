@@ -55,4 +55,9 @@ public class commonDaoImp implements commonDao {
 		return session.update("com.common.www.updateGoods", goodsDto);
 	}
 
+	@Override
+	public commonDTO2 getItemOne(int goodsnumber) {
+		return session.selectOne("com.common.www.getItemOne", goodsnumber);
+	}
+
 }

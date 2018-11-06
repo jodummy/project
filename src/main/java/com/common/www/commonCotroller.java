@@ -90,8 +90,11 @@ public class commonCotroller {
 	}
 
 	// goodsnumber 값을 가져와 처리한다. hidden으로 값을 숨겨서 값을 넘김다
+	// 페이지 구현 하지 않음 페이지 구현 해줘
 	@RequestMapping(value = "/updateGoods.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String updateGoods(Model model, HttpServletRequest req) {
+	public String updateGoods(Model model, int goodsnumber) {
+		System.err.println(goodsnumber);
+		commonDTO2 goodsDto = service.getItemOne(goodsnumber);
 		return "updateGoods";
 	}
 

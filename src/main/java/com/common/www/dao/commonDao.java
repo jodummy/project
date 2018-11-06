@@ -27,4 +27,7 @@ public interface commonDao {
 
 	// 상품 수정 처리
 	public int updateGoods(commonDTO2 goodsDto);
+
+	// 상품 하나 조회
+	public commonDTO2 getItemOne(int goodsnumber);
 }

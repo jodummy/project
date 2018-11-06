@@ -10,6 +10,9 @@ public interface commonService {
 	// 점포 리스트
 	public List<commonDTO> getStore();
 
+	// 상품 하나 조회
+	public commonDTO2 getItemOne(int goodsnumber);
+
 	// 상품 리스트
 	public List<commonDTO2> getItem();
 

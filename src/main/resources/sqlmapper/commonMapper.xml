@@ -34,6 +34,24 @@
 		FROM COOGOODS
 	</select>
 
+	<!-- select one goods -->
+	<select id="getItemOne"
+		resultType="com.common.www.dto.commonDTO2"
+		parameterType="java.lang.Integer">
+		SELECT
+		GOODSNUMBER,
+		GOODSNAME,
+		PRICE,
+		NOWSTOCK,
+		INPUTGOODS,
+		EXPIRATIONDATE,
+		SOLDNUM,
+		NEWITEM
+		FROM COOGOODS
+		WHERE GOODSNUMBER
+		=#{goodsnumber}
+	</select>
+
 	<!-- 상품 추가 db 식품() -->
 	<insert id="insertGoodsFood"
 		parameterType="com.common.www.dto.commonDTO2">
@@ -61,10 +79,12 @@
 	<update id="updateGoods"
 		parameterType="com.common.www.dto.commonDTO2">
 		UPDATE COOGOODS SET
-		GOODSNAME = #{goodsname} , PRICE = #{price}
+		GOODSNAME = #{goodsname} , PRICE =
+		#{price}
 		WHERE
 		GOODSNUMBER =#{goodsnumber}
 	</update>
+
 
 
 </mapper>

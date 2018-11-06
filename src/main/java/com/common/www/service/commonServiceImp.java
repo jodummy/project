@@ -58,4 +58,9 @@ public class commonServiceImp implements commonService {
 		return dao.updateGoods(goodsDto);
 	}
 
+	@Override
+	public commonDTO2 getItemOne(int goodsnumber) {
+		return dao.getItemOne(goodsnumber);
+	}
+
 }
