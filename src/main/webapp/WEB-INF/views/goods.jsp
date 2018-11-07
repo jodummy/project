@@ -34,7 +34,7 @@
 
 	//값이 넘어가지 않는다. 이걸 처리해줘 controller에서 값을 받아주지 않는다
 
-	function deleteGoode() {
+	function deleteGoods() {
 
 		// 		if ($(":checkbox[name='chkbox']:checked").length == 0) {
 		// 			alert("삭제할 항목을 하나이상 체크해주세요.");
@@ -85,15 +85,14 @@
 	}
 
 	//insert
-	function insertGoode() {
+	function insertGoods() {
 		window
 				.open("./insertGoods.do", "선택",
 						"scrollbars=yes,toolbar=yes,resizable=yes,width=450,height=500,right=150,top=0");
 	}
-
-	function updateGoods(goodsnumber) {
-		window
-				.open("./updateGoods.do?goodsnumber=${goodsnumber}", "선택",
+	
+	function detailGoods(goodsnumber) {
+		window.open("./detailGoods.do?&goodsnumber=" + goodsnumber, "선택",
 						"scrollbars=yes,toolbar=yes,resizable=yes,width=450,height=500,right=150,top=0");
 	}
 </script>
@@ -131,13 +130,13 @@
 								<th>${list.expirationdate }</th>
 								<th>${list.soldnum }</th>
 								<th>${list.newitem }</th>
-								<th><input type="button" value="상품 수정"
-									onclick="updateGoods(${list.goodsnumber })"></th>
+								<th><input type="button" value="상품 상세"
+									onclick="detailGoods(${list.goodsnumber })"></th>
 							</tr>
 						</c:forEach>
 					</table>
-					<input type="button" value="상품 추가" onclick="insertGoode()">
-					<input type="button" value="상품 제거" onclick="deleteGoode()">
+					<input type="button" value="상품 추가" onclick="insertGoods()">
+					<input type="button" value="상품 제거" onclick="deleteGoods()">
 				</form>
 
 			</div>

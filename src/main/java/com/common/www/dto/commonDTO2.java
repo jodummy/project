@@ -12,6 +12,33 @@ public class commonDTO2 {
 	private Date expirationdate;
 	private int soldnum;
 	private int newitem;
+	private int calorie;
+	private int rankgoods;
+	private String goodsinfo;
+
+	public int getCalorie() {
+		return calorie;
+	}
+
+	public void setCalorie(int calorie) {
+		this.calorie = calorie;
+	}
+
+	public int getRankgoods() {
+		return rankgoods;
+	}
+
+	public void setRankgoods(int rankgoods) {
+		this.rankgoods = rankgoods;
+	}
+
+	public String getGoodsinfo() {
+		return goodsinfo;
+	}
+
+	public void setGoodsinfo(String goodsinfo) {
+		this.goodsinfo = goodsinfo;
+	}
 
 	public int getGoodsnumber() {
 		return goodsnumber;
@@ -81,7 +108,8 @@ public class commonDTO2 {
 	public String toString() {
 		return "commonDTO2 [goodsnumber=" + goodsnumber + ", goodsname=" + goodsname + ", price=" + price
 				+ ", nowstock=" + nowstock + ", inputgoods=" + inputgoods + ", expirationdate=" + expirationdate
-				+ ", soldnum=" + soldnum + ", newitem=" + newitem + "]";
+				+ ", soldnum=" + soldnum + ", newitem=" + newitem + ", calorie=" + calorie + ", rankgoods=" + rankgoods
+				+ ", goodsinfo=" + goodsinfo + "]";
 	}
 
 }
