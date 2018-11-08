@@ -1,9 +1,11 @@
 package com.common.www;
 
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
@@ -97,13 +99,62 @@ public class commonCotroller {
 		model.addAttribute("dto", goodsDto);
 		return "detailGoods";
 	}
-	
-	//수정 부분 modify 쿼리 부분이랑 수정 해야함
-//	@RequestMapping(value = "/modifyGoods.do", method = { RequestMethod.GET, RequestMethod.POST })
-//	public String modifyGoods(Model model, String goodsnumber) {
-//		commonDTO2 goodsDto = service.getItemOne(Integer.parseInt(goodsnumber));
-//		model.addAttribute("dto", goodsDto);
-//		return "modifyGoods";
-//	}
+
+	// 수정 부분 modify 쿼리 부분이랑 수정 해야함
+	@RequestMapping(value = "/modifyGoods.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String modifyGoods(Model model, String goodsnumber) {
+		commonDTO2 goodsDto = service.getItemOne(Integer.parseInt(goodsnumber));
+		model.addAttribute("dto", goodsDto);
+		return "modifyGoods";
+	}
+
+	// modyGoodsPage
+	@RequestMapping(value = "/modifyGoodspage.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody boolean modifyGoodspage(Model model, commonDTO2 goodsDto, HttpServletRequest req)
+			throws ParseException {
+		String goodsname = req.getParameter("goodsname");
+		String price = req.getParameter("price");
+		String nowstock = req.getParameter("nowstock");
+
+		// 날짜 오류 잡아야지
+//		Date inputgoods = req.getParameter("inputgoods");
+//		Date expirationdate = req.getParameter("expirationdate");
+
+		String soldnum = req.getParameter("soldnum");
+		String calorie = req.getParameter("calorie");
+		String goodsinfo = req.getParameter("goodsinfo");
+
+//		System.out.println(req.getParameter("inputgoods"));
+//		System.out.println(req.getParameter("expirationdate"));
+//		System.out.println(transFormat.parse(inputgoods));
+//		System.out.println(transFormat.parse(expirationdate));
+
+		try {
+			goodsDto.setGoodsname(goodsname);
+
+			goodsDto.setPrice(Integer.parseInt(price));
+
+			goodsDto.setNowstock(Integer.parseInt(nowstock));
+
+			goodsDto.setSoldnum(Integer.parseInt(soldnum));
+
+			goodsDto.setCalorie(Integer.parseInt(calorie));
+
+			goodsDto.setGoodsinfo(goodsinfo);
+
+			service.updateGoods(goodsDto);
+
+//			goodsDto.setInputgoods(inputgoods);
+
+//			goodsDto.setExpirationdate(expirationdate);
+			System.out.println("성공인거 같은데");
+			return true;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		System.err.println("실패인거 같은데");
+
+		return false;
+	}
 
 }

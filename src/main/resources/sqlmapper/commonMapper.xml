@@ -50,7 +50,8 @@
 		CALORIE,
 		RANKGOODS,
 		GOODSINFO
-		FROM COOGOODS
+		FROM
+		COOGOODS
 		WHERE GOODSNUMBER
 		=#{goodsnumber}
 	</select>
@@ -83,7 +84,9 @@
 		parameterType="com.common.www.dto.commonDTO2">
 		UPDATE COOGOODS SET
 		GOODSNAME = #{goodsname} , PRICE =
-		#{price}
+		#{price} ,NOWSTOCK = #{nowstock}, INPUTGOODS =#{inputgoods}
+		,EXPIRATIONDATE =#{expirationdate} ,SOLDNUM =#{soldnum} , CALORIE
+		=#{calorie} , GOODSINFO =#{goodsinfo}
 		WHERE
 		GOODSNUMBER =#{goodsnumber}
 	</update>

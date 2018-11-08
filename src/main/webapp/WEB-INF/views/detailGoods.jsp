@@ -14,9 +14,8 @@
 </head>
 <script type="text/javascript">
 	function modifyGoods(goodsnumber) {
-		window
-				.open("./modifyGoods.do?&goodsnumber=" + goodsnumber, "선택",
-						"scrollbars=yes,toolbar=yes,resizable=yes,width=450,height=500,right=150,top=0");
+		window.open("./modifyGoods.do?&goodsnumber=" + goodsnumber, "선택",
+						"scrollbars=yes,toolbar=yes,resizable=yes,width=1000,height=600,right=700,top=0");
 	}
 </script>
 <body>

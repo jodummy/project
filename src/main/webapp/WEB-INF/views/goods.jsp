@@ -93,7 +93,7 @@
 	
 	function detailGoods(goodsnumber) {
 		window.open("./detailGoods.do?&goodsnumber=" + goodsnumber, "선택",
-						"scrollbars=yes,toolbar=yes,resizable=yes,width=450,height=500,right=150,top=0");
+				"scrollbars=yes,toolbar=yes,resizable=yes,width=800,height=500,right=600,top=0");
 	}
 </script>
 
