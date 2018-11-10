@@ -25,10 +25,16 @@ public interface commonService {
 	// 페이징 처리
 	public int selectTotalPaging();
 
-	// 삭제 처리
+	// 상품 삭제 처리
 	public int deleteGoods(int goodsnumber);
+
+	// 상점 삭제
+	public int deleteStore(String storecode);
 
 	// 수정 처리
 	public int updateGoods(commonDTO2 goodsDto);
+
+	// 상점 추가
+	public commonDTO insertStore(commonDTO storeDto);
 
 }

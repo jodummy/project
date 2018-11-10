@@ -34,6 +34,30 @@ public class commonCotroller {
 		return "store";
 	}
 
+	@RequestMapping(value = "/insertStore.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String insertStore(Model model) {
+		return "insertStore";
+	}
+
+	@RequestMapping(value = "/insertStorePage.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody boolean insertStorePage(Model model, commonDTO storeDto, HttpServletRequest req) {
+
+		String storecode = req.getParameter("storecode");
+		String location = req.getParameter("location");
+		String tel = req.getParameter("tel");
+		try {
+			storeDto.setStorecode(storecode);
+			storeDto.setLocation(location);
+			storeDto.setTel(tel);
+			service.insertStore(storeDto);
+			return true;
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return false;
+
+	}
+
 	@RequestMapping(value = "/goods.do", method = RequestMethod.GET)
 	public String homeSimple(Model model, PagingDto pagintDto) {
 //		pagintDto.setTotal(service.selectTotalPaging());
@@ -91,8 +115,30 @@ public class commonCotroller {
 		return false;
 	}
 
-	// goodsnumber 값을 가져와 처리한다. hidden으로 값을 숨겨서 값을 넘김다
-	// 페이지 구현 하지 않음 페이지 구현 해줘
+	@RequestMapping(value = "/deleteStorePage.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody boolean deleteStorePage(@RequestParam(value = "checkArray[]") List<String> arrayParams,
+			@RequestParam(value = "storecode") String value) {
+		String storecode = value;
+		List<String> arr = arrayParams;
+
+		System.out.println(storecode);
+		System.out.println(arr.toString());
+
+		try {
+			if (storecode != null && arr.size() < 2) {
+				service.deleteStore(storecode);
+			} else {
+				for (int i = 0; i < arr.size(); i++) {
+					service.deleteStore(arr.get(i));
+				}
+			}
+			return true;
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return false;
+	}
+
 	@RequestMapping(value = "/detailGoods.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String detailGoods(Model model, String goodsnumber) {
 		commonDTO2 goodsDto = service.getItemOne(Integer.parseInt(goodsnumber));
@@ -100,7 +146,6 @@ public class commonCotroller {
 		return "detailGoods";
 	}
 
-	// 수정 부분 modify 쿼리 부분이랑 수정 해야함
 	@RequestMapping(value = "/modifyGoods.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String modifyGoods(Model model, String goodsnumber) {
 		commonDTO2 goodsDto = service.getItemOne(Integer.parseInt(goodsnumber));

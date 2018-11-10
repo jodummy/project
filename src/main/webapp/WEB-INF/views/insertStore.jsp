@@ -6,52 +6,46 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
-
-
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상품 추가 </title>
+<title>상점 추가</title>
 </head>
-
 <body>
-	<form id="ff" action="insertGoodsPage.do" method="post">
+	<form id="ff" action="insertStorePage.do" method="post">
 		<table class="table table-bordered table-hover">
 			<tr>
-				<td>goodsnumber</td>
-				<td><input type="text" name="goodsnumber" id="goodsnumber"
+				<td>storecode</td>
+				<td><input type="text" name="storecode" id="storecode"
 					required="required"></td>
 			</tr>
 			<tr>
-				<td>goodsname</td>
-				<td><input type="text" name="goodsname" id="goodsname"
-					required="required"> <input type="button"
-					onclick="validityCheck()" value="중복체크"></td>
+				<td>location</td>
+				<td><input type="text" name="location" id="location"
+					required="required"></td>
 			</tr>
 			<tr>
-				<td>price</td>
-				<td><input type="text" name="price" required="required"></td>
+				<td>tel</td>
+				<td><input type="text" name="tel" id="tel" required="required"></td>
 			</tr>
 			<tr>
 				<td align="center" colspan="3"><input type="button"
-					value="상품 추가" onclick="succesInsert()"> <input type="reset"
+					value="상점 추가" onclick="succesInsert()"> <input type="reset"
 					value="다시쓰기"></td>
 			</tr>
 		</table>
 	</form>
 </body>
-
 <script type="text/javascript">
 	function succesInsert() {
 		var goodsForm = $("#ff").serialize();
 		$.ajax({
 			type : "post",
-			url : "insertGoodsPage.do",
+			url : "insertStorePage.do",
 			data : goodsForm,
 			success : function(msg) {
-				opener.location.href = "goods.do";
+				opener.location.href = "store.do";
 				window.close();
 			},
 			error : function(textStatus, errorThrown) {
@@ -60,5 +54,4 @@
 		});
 	}
 </script>
-
 </html>

@@ -30,4 +30,10 @@ public interface commonDao {
 
 	// 상품 하나 조회
 	public commonDTO2 getItemOne(int goodsnumber);
+
+	// 상점 추가
+	public commonDTO insertStore(commonDTO storeDto);
+
+	// 상점 삭제
+	public int deleteStore(String storecode);
 }

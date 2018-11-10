@@ -6,14 +6,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-
-<!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>상점</title>
 </head>
+
 <script type="text/javascript">
 	//1.모두 체크
 	function allChk(obj) {
@@ -34,42 +32,45 @@
 		}
 	}
 
-	//store 맞춰서 바꿔줘
-	// 	function deleteGoods() {
-	// 		var checkboxValues = [];
-	// 		$("input[name='chkbox']:checked").each(function(i) {
-	// 			checkboxValues.push($(this).val());
-	// 		});
 
-	// 		var allData = {
-	// 			"goodsnumber" : $(":checkbox[name='chkbox']:checked").val(),
-	// 			"checkArray" : checkboxValues
-	// 		};
+		function deleteStore() {
+			var checkboxValues = [];
+			$("input[name='chkbox']:checked").each(function(i) {
+				checkboxValues.push($(this).val());
+			});
 
-	// 		$.ajax({
-	// 			url : "deleteGoodsPage.do",
-	// 			type : 'GET',
-	// 			data : allData,
-	// 			success : function(data) {
-	// 				location.reload();
-	// 			},
-	// 			error : function(jqXHR, textStatus, errorThrown) {
-	// 				alert("에러 발생~~ \n" + textStatus + " : " + errorThrown);
-	// 			}
-	// 		});
+			var allData = {
+				"storecode" : $(":checkbox[name='chkbox']:checked").val(),
+				"checkArray" : checkboxValues
+			};
 
-	// 	}
+			$.ajax({
+				url : "deleteStorePage.do",
+				type : 'GET',
+				data : allData,
+				success : function(data) {
+					location.reload();
+				},
+				error : function(jqXHR, textStatus, errorThrown) {
+					if(errorThrown == 'Bad Request')
+						alert('번호를 눌러주세요');
+					else
+						alert("에러 발생~~ \n" + textStatus + " : " + errorThrown);
+				}
+			});
 
-	// 	//insert
-	// 	function insertGoods() {
+		}
+
+		//insert
+		function insertStore() {
+			window
+					.open("./insertStore.do", "선택",
+							"scrollbars=yes,toolbar=yes,resizable=yes,width=450,height=500,right=150,top=0");
+		}
+
+	// 	function detailStore(storecode) {
 	// 		window
-	// 				.open("./insertGoods.do", "선택",
-	// 						"scrollbars=yes,toolbar=yes,resizable=yes,width=450,height=500,right=150,top=0");
-	// 	}
-
-	// 	function detailGoods(goodsnumber) {
-	// 		window
-	// 				.open("./detailGoods.do?&goodsnumber=" + goodsnumber, "선택",
+	// 				.open("./detailStore.do?&storecode=" + storecode, "선택",
 	// 						"scrollbars=yes,toolbar=yes,resizable=yes,width=800,height=500,right=600,top=0");
 	// 	}
 </script>
@@ -78,7 +79,7 @@
 		<div class="col-sm-12">
 			<div style="padding-left: 50px;">
 				<h2 id="txttitle">현재 상점</h2>
-				<form action="deleteSTorePage.do" method="post" id="ff">
+				<form action="deleteStorePage.do" method="post" id="ff">
 					<table>
 						<thead>
 							<tr>
@@ -99,7 +100,7 @@
 								<th>${list.tel }</th>
 								<th>${list.income }</th>
 								<th><input type="button" value="상품 상세"
-									onclick="detailGoods(${list.storecode })"></th>
+									onclick="detailStore(${list.storecode })"></th>
 							</tr>
 						</c:forEach>
 					</table>

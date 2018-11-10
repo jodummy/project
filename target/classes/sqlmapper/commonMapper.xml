@@ -11,6 +11,8 @@
 		NVL(COUNT(*),0)FROM COOGOODS
 	</select>
 
+
+
 	<!-- 메소드 이름 가지고 와서 작성 -->
 	<!-- 점포 리스트 출력 db -->
 	<select id="getStore" resultType="com.common.www.dto.commonDTO">
@@ -54,6 +56,16 @@
 		=#{goodsnumber}
 	</select>
 
+	<!-- 상점 추가 -->
+	<insert id="insertStore"
+		parameterType="com.common.www.dto.commonDTO">
+
+		INSERT INTO COOSTORE
+		VALUE(STORECODE,TEL,LOCATION)
+		VALUES(#{storecode} , #{tel} ,#{location})
+	</insert>
+
+
 	<!-- 상품 추가 db 식품() -->
 	<insert id="insertGoodsFood"
 		parameterType="com.common.www.dto.commonDTO2">
@@ -74,6 +86,12 @@
 	<delete id="deleteGoods" parameterType="java.lang.Integer">
 		DELETE COOGOODS WHERE
 		GOODSNUMBER =#{goodsnumber}
+	</delete>
+
+	<!-- 상점 삭제 -->
+	<delete id="deleteStore" parameterType="String">
+		DELETE COOSTORE WHERE
+		STORECODE =#{storecode}
 	</delete>
 
 
