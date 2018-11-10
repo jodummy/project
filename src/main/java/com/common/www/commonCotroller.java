@@ -115,14 +115,13 @@ public class commonCotroller {
 		String goodsname = req.getParameter("goodsname");
 		String price = req.getParameter("price");
 		String nowstock = req.getParameter("nowstock");
+		String soldnum = req.getParameter("soldnum");
+		String calorie = req.getParameter("calorie");
+		String goodsinfo = req.getParameter("goodsinfo");
 
 		// 날짜 오류 잡아야지
 //		Date inputgoods = req.getParameter("inputgoods");
 //		Date expirationdate = req.getParameter("expirationdate");
-
-		String soldnum = req.getParameter("soldnum");
-		String calorie = req.getParameter("calorie");
-		String goodsinfo = req.getParameter("goodsinfo");
 
 //		System.out.println(req.getParameter("inputgoods"));
 //		System.out.println(req.getParameter("expirationdate"));

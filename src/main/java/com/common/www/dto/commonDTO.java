@@ -3,10 +3,9 @@ package com.common.www.dto;
 public class commonDTO {
 
 	private String storecode;
-	private String inlocation;
+	private String location;
 	private String tel;
-	private int daylysales;
-	private int monthyslaes;
+	private int income;
 
 	public String getStorecode() {
 		return storecode;
@@ -16,12 +15,12 @@ public class commonDTO {
 		this.storecode = storecode;
 	}
 
-	public String getInlocation() {
-		return inlocation;
+	public String getLocation() {
+		return location;
 	}
 
-	public void setInlocation(String inlocation) {
-		this.inlocation = inlocation;
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 	public String getTel() {
@@ -32,26 +31,20 @@ public class commonDTO {
 		this.tel = tel;
 	}
 
-	public int getDaylysales() {
-		return daylysales;
+	public int getIncome() {
+		return income;
 	}
 
-	public void setDaylysales(int daylysales) {
-		this.daylysales = daylysales;
-	}
-
-	public int getMonthyslaes() {
-		return monthyslaes;
-	}
-
-	public void setMonthyslaes(int monthyslaes) {
-		this.monthyslaes = monthyslaes;
+	public void setIncome(int income) {
+		this.income = income;
 	}
 
 	@Override
 	public String toString() {
-		return "commonDTO [storecode=" + storecode + ", inlocation=" + inlocation + ", tel=" + tel + ", daylysales="
-				+ daylysales + ", monthyslaes=" + monthyslaes + "]";
+		return "commonDTO [storecode=" + storecode + ", location=" + location + ", tel=" + tel + ", income=" + income
+				+ ", getStorecode()=" + getStorecode() + ", getLocation()=" + getLocation() + ", getTel()=" + getTel()
+				+ ", getIncome()=" + getIncome() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+				+ ", toString()=" + super.toString() + "]";
 	}
 
 }

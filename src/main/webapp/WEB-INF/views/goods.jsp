@@ -32,33 +32,9 @@
 		}
 	}
 
-	//값이 넘어가지 않는다. 이걸 처리해줘 controller에서 값을 받아주지 않는다
+	
 
 	function deleteGoods() {
-
-		// 		if ($(":checkbox[name='chkbox']:checked").length == 0) {
-		// 			alert("삭제할 항목을 하나이상 체크해주세요.");
-		// 			return;
-		// 		} else if ($(":checkbox[name='chkbox']:checked").length > 1) {
-		// 			alert("다중 삭제.");
-		// 			return;
-		// 		}
-		// 		alert($(":checkbox[name='chkbox']:checked").val());
-		// 		// 		var allData = { "userId": userId, "checkArray": checkboxValues };
-		// 		var gData = {
-		// 			"userId" : userId
-		// 		};
-		// 		$.ajax({
-		// 			type : "POST",
-		// 			url : "deleteGoodsPage.do",
-		// 			data : $(":checkbox[name='chkbox']:checked").val(),
-		// 			success : function(msg) {
-		// 				alert("완료");
-		// 			},
-		// 			error : function(textStatus, errorThrown) {
-		// 				alert("문제");
-		// 			}
-		// 		});
 
 		var checkboxValues = [];
 		$("input[name='chkbox']:checked").each(function(i) {

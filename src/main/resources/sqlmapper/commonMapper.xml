@@ -11,13 +11,11 @@
 		NVL(COUNT(*),0)FROM COOGOODS
 	</select>
 
-
-
 	<!-- 메소드 이름 가지고 와서 작성 -->
 	<!-- 점포 리스트 출력 db -->
 	<select id="getStore" resultType="com.common.www.dto.commonDTO">
-		SELECT STORECODE , INLOCATION ,
-		TEL , DAILYSALES ,MONTHLYSALES
+		SELECT STORECODE , TEL ,
+		LOCATION , INCOME
 		FROM COOSTORE
 	</select>
 
