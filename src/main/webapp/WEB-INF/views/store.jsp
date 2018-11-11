@@ -68,11 +68,10 @@
 							"scrollbars=yes,toolbar=yes,resizable=yes,width=450,height=500,right=150,top=0");
 		}
 
-	// 	function detailStore(storecode) {
-	// 		window
-	// 				.open("./detailStore.do?&storecode=" + storecode, "선택",
-	// 						"scrollbars=yes,toolbar=yes,resizable=yes,width=800,height=500,right=600,top=0");
-	// 	}
+		function detailStore(storecode) {
+			window.open("./detailStore.do?&storecode=" + storecode, "선택",
+							"scrollbars=yes,toolbar=yes,resizable=yes,width=800,height=500,right=600,top=0");
+		}
 </script>
 <body>
 	<div class="col-sm-10 text-left">
@@ -99,8 +98,8 @@
 								<th>${list.location }</th>
 								<th>${list.tel }</th>
 								<th>${list.income }</th>
-								<th><input type="button" value="상품 상세"
-									onclick="detailStore(${list.storecode })"></th>
+								<th><input type="button" value="상점 상세"
+									onclick="detailStore('${list.storecode }')"></th>
 							</tr>
 						</c:forEach>
 					</table>

@@ -10,6 +10,7 @@ import com.common.www.dao.commonDao;
 import com.common.www.dao.commonDaoImp;
 import com.common.www.dto.commonDTO;
 import com.common.www.dto.commonDTO2;
+import com.common.www.dto.commonDTO3;
 
 @Service
 public class commonServiceImp implements commonService {
@@ -81,6 +82,20 @@ public class commonServiceImp implements commonService {
 	@Override
 	public commonDTO insertStore(commonDTO storeDto) {
 		return dao.insertStore(storeDto);
+	}
+
+	// 상점 detail
+	@Override
+	public commonDTO getStoreOne(String storecode) {
+
+		return dao.getStoreOne(storecode);
+	}
+
+	// 사원 출력
+	@Override
+	public List<commonDTO3> getEmployee(String storecode) {
+
+		return dao.getEmployee(storecode);
 	}
 
 }

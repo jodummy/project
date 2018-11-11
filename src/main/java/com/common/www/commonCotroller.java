@@ -19,6 +19,7 @@ import com.common.www.dto.PagingDto;
 //////
 import com.common.www.dto.commonDTO;
 import com.common.www.dto.commonDTO2;
+import com.common.www.dto.commonDTO3;
 import com.common.www.service.commonService;
 
 @Controller
@@ -35,12 +36,12 @@ public class commonCotroller {
 	}
 
 	@RequestMapping(value = "/insertStore.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String insertStore(Model model) {
+	public String insertStore() {
 		return "insertStore";
 	}
 
 	@RequestMapping(value = "/insertStorePage.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody boolean insertStorePage(Model model, commonDTO storeDto, HttpServletRequest req) {
+	public @ResponseBody boolean insertStorePage(commonDTO storeDto, HttpServletRequest req) {
 
 		String storecode = req.getParameter("storecode");
 		String location = req.getParameter("location");
@@ -67,12 +68,12 @@ public class commonCotroller {
 	}
 
 	@RequestMapping(value = "/insertGoods.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String insertGoods(Model model) {
+	public String insertGoods() {
 		return "insertGoods";
 	}
 
 	@RequestMapping(value = "/insertGoodsPage.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody boolean insertUserPage(Model model, commonDTO2 goodsDto, HttpServletRequest req) {
+	public @ResponseBody boolean insertUserPage(commonDTO2 goodsDto, HttpServletRequest req) {
 
 		String goodsnumber = req.getParameter("goodsnumber");
 		String goodsname = req.getParameter("goodsname");
@@ -146,6 +147,17 @@ public class commonCotroller {
 		return "detailGoods";
 	}
 
+	@RequestMapping(value = "/detailStore.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String detailStore(Model model, String storecode) {
+		commonDTO StoreDto = service.getStoreOne(storecode);
+		model.addAttribute("dto", StoreDto);
+
+		List<commonDTO3> employeeDto = service.getEmployee(storecode);
+		model.addAttribute("dto2", employeeDto);
+
+		return "detailStore";
+	}
+
 	@RequestMapping(value = "/modifyGoods.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String modifyGoods(Model model, String goodsnumber) {
 		commonDTO2 goodsDto = service.getItemOne(Integer.parseInt(goodsnumber));
@@ -155,8 +167,7 @@ public class commonCotroller {
 
 	// modyGoodsPage
 	@RequestMapping(value = "/modifyGoodspage.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody boolean modifyGoodspage(Model model, commonDTO2 goodsDto, HttpServletRequest req)
-			throws ParseException {
+	public @ResponseBody boolean modifyGoodspage(commonDTO2 goodsDto, HttpServletRequest req) {
 		String goodsname = req.getParameter("goodsname");
 		String price = req.getParameter("price");
 		String nowstock = req.getParameter("nowstock");
@@ -165,39 +176,23 @@ public class commonCotroller {
 		String goodsinfo = req.getParameter("goodsinfo");
 
 		// 날짜 오류 잡아야지
-//		Date inputgoods = req.getParameter("inputgoods");
-//		Date expirationdate = req.getParameter("expirationdate");
-
-//		System.out.println(req.getParameter("inputgoods"));
-//		System.out.println(req.getParameter("expirationdate"));
-//		System.out.println(transFormat.parse(inputgoods));
-//		System.out.println(transFormat.parse(expirationdate));
+		String inputgoods = req.getParameter("inputgoods");
+		String expirationdate = req.getParameter("expirationdate");
 
 		try {
 			goodsDto.setGoodsname(goodsname);
-
 			goodsDto.setPrice(Integer.parseInt(price));
-
 			goodsDto.setNowstock(Integer.parseInt(nowstock));
-
 			goodsDto.setSoldnum(Integer.parseInt(soldnum));
-
 			goodsDto.setCalorie(Integer.parseInt(calorie));
-
 			goodsDto.setGoodsinfo(goodsinfo);
-
+			goodsDto.setInputgoods(inputgoods);
+			goodsDto.setExpirationdate(expirationdate);
 			service.updateGoods(goodsDto);
-
-//			goodsDto.setInputgoods(inputgoods);
-
-//			goodsDto.setExpirationdate(expirationdate);
-			System.out.println("성공인거 같은데");
 			return true;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		System.err.println("실패인거 같은데");
-
 		return false;
 	}
 

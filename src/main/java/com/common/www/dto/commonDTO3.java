@@ -4,10 +4,9 @@ package com.common.www.dto;
 public class commonDTO3 {
 
 	private String storecode;
-	private String employeename;
-	private String employeetel;
-	private int authority;
-	private int worksequence;
+	private String manager;
+	private String phone;
+	private int seqtime;
 
 	public String getStorecode() {
 		return storecode;
@@ -17,42 +16,33 @@ public class commonDTO3 {
 		this.storecode = storecode;
 	}
 
-	public String getEmployeename() {
-		return employeename;
+	public String getManager() {
+		return manager;
 	}
 
-	public void setEmployeename(String employeename) {
-		this.employeename = employeename;
+	public void setManager(String manager) {
+		this.manager = manager;
 	}
 
-	public String getEmployeetel() {
-		return employeetel;
+	public String getPhone() {
+		return phone;
 	}
 
-	public void setEmployeetel(String employeetel) {
-		this.employeetel = employeetel;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
-	public int getAuthority() {
-		return authority;
+	public int getSeqtime() {
+		return seqtime;
 	}
 
-	public void setAuthority(int authority) {
-		this.authority = authority;
-	}
-
-	public int getWorksequence() {
-		return worksequence;
-	}
-
-	public void setWorksequence(int worksequence) {
-		this.worksequence = worksequence;
+	public void setSeqtime(int seqtime) {
+		this.seqtime = seqtime;
 	}
 
 	@Override
 	public String toString() {
-		return "commonDTO3 [storecode=" + storecode + ", employeename=" + employeename + ", employeetel=" + employeetel
-				+ ", authority=" + authority + ", worksequence=" + worksequence + "]";
+		return "commonDTO3 [storecode=" + storecode + ", manager=" + manager + ", phone=" + phone + ", seqtime="
+				+ seqtime + "]";
 	}
-
 }

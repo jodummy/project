@@ -11,8 +11,6 @@
 		NVL(COUNT(*),0)FROM COOGOODS
 	</select>
 
-
-
 	<!-- 메소드 이름 가지고 와서 작성 -->
 	<!-- 점포 리스트 출력 db -->
 	<select id="getStore" resultType="com.common.www.dto.commonDTO">
@@ -56,10 +54,31 @@
 		=#{goodsnumber}
 	</select>
 
+	<select id="getStoreOne"
+		resultType="com.common.www.dto.commonDTO" parameterType="String">
+		SELECT
+		STORECODE ,
+		LOCATION ,
+		TEL ,
+		INCOME
+		FROM COOSTORE
+		WHERE STORECODE =
+		#{storecode}
+	</select>
+
+	<!-- 사원 상점별 조회 -->
+	<select id="getEmployee"
+		resultType="com.common.www.dto.commonDTO3" parameterType="String">
+		SELECT
+		STORECODE , MANAGER , PHONE , SEQTIME
+		FROM COOEMPLOYEE
+		WHERE STORECODE =
+		#{storecode}
+	</select>
+
 	<!-- 상점 추가 -->
 	<insert id="insertStore"
 		parameterType="com.common.www.dto.commonDTO">
-
 		INSERT INTO COOSTORE
 		VALUE(STORECODE,TEL,LOCATION)
 		VALUES(#{storecode} , #{tel} ,#{location})
@@ -100,9 +119,13 @@
 		parameterType="com.common.www.dto.commonDTO2">
 		UPDATE COOGOODS SET
 		GOODSNAME = #{goodsname} , PRICE =
-		#{price} ,NOWSTOCK = #{nowstock}, INPUTGOODS =#{inputgoods}
-		,EXPIRATIONDATE =#{expirationdate} ,SOLDNUM =#{soldnum} , CALORIE
-		=#{calorie} , GOODSINFO =#{goodsinfo}
+		#{price} ,NOWSTOCK = #{nowstock}, INPUTGOODS =TO_DATE( #{inputgoods},
+		'mm/dd/yyyy')
+		,EXPIRATIONDATE =TO_DATE( #{expirationdate},
+		'mm/dd/yyyy')
+		,SOLDNUM =#{soldnum} , CALORIE
+		=#{calorie} , GOODSINFO
+		=#{goodsinfo}
 		WHERE
 		GOODSNUMBER =#{goodsnumber}
 	</update>

@@ -5,12 +5,21 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
+<!-- 이건 스타일이야 건들지말고 -->
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+
+<!-- jquery -->
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>modifyGoods</title>
 </head>
 <script type="text/javascript">
 	function succesInsert() {
@@ -28,10 +37,17 @@
 			}
 		});
 	}
+
+	$(function() {
+		$("#inputgoods").datepicker();
+	});
+	$(function() {
+		$("#expirationdate").datepicker();
+	});
 </script>
 <body>
 	<form action="./modyGoodsPage.do" method="post" id="ff">
-		<input type="hidden" name="" value="${dto.goodsnumber}">
+		<input type="hidden" name="goodsnumber" value="${dto.goodsnumber}">
 		<table class="table table-bordered table-hover">
 			<tr>
 				<td>상품 이름</td>
@@ -53,13 +69,13 @@
 			</tr>
 			<tr>
 				<td>출입 날짜</td>
-				<td><input type="date" id="doc_InputDate" name="inputgoods"
+				<td><input type="text" id="inputgoods" name="inputgoods"
 					value="${dto.inputgoods}"></td>
 			</tr>
 			<tr>
 				<td>유통기한</td>
-				<td><input type="date" id="doc_OutDate" name="expirationdate"
-					value="${dto.expirationdate}"></td>
+				<td><input type="text" id="expirationdate"
+					name="expirationdate" value="${dto.expirationdate}"></td>
 			</tr>
 			<tr>
 				<td>칼로리</td>

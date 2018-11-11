@@ -8,37 +8,13 @@ public class commonDTO2 {
 	private String goodsname;
 	private int price;
 	private int nowstock;
-	private Date inputgoods;
-	private Date expirationdate;
+	private String inputgoods;
+	private String expirationdate;
 	private int soldnum;
 	private int newitem;
 	private int calorie;
 	private int rankgoods;
 	private String goodsinfo;
-
-	public int getCalorie() {
-		return calorie;
-	}
-
-	public void setCalorie(int calorie) {
-		this.calorie = calorie;
-	}
-
-	public int getRankgoods() {
-		return rankgoods;
-	}
-
-	public void setRankgoods(int rankgoods) {
-		this.rankgoods = rankgoods;
-	}
-
-	public String getGoodsinfo() {
-		return goodsinfo;
-	}
-
-	public void setGoodsinfo(String goodsinfo) {
-		this.goodsinfo = goodsinfo;
-	}
 
 	public int getGoodsnumber() {
 		return goodsnumber;
@@ -72,19 +48,19 @@ public class commonDTO2 {
 		this.nowstock = nowstock;
 	}
 
-	public Date getInputgoods() {
+	public String getInputgoods() {
 		return inputgoods;
 	}
 
-	public void setInputgoods(Date inputgoods) {
+	public void setInputgoods(String inputgoods) {
 		this.inputgoods = inputgoods;
 	}
 
-	public Date getExpirationdate() {
+	public String getExpirationdate() {
 		return expirationdate;
 	}
 
-	public void setExpirationdate(Date expirationdate) {
+	public void setExpirationdate(String expirationdate) {
 		this.expirationdate = expirationdate;
 	}
 
@@ -102,6 +78,30 @@ public class commonDTO2 {
 
 	public void setNewitem(int newitem) {
 		this.newitem = newitem;
+	}
+
+	public int getCalorie() {
+		return calorie;
+	}
+
+	public void setCalorie(int calorie) {
+		this.calorie = calorie;
+	}
+
+	public int getRankgoods() {
+		return rankgoods;
+	}
+
+	public void setRankgoods(int rankgoods) {
+		this.rankgoods = rankgoods;
+	}
+
+	public String getGoodsinfo() {
+		return goodsinfo;
+	}
+
+	public void setGoodsinfo(String goodsinfo) {
+		this.goodsinfo = goodsinfo;
 	}
 
 	@Override
