@@ -64,6 +64,7 @@ public class commonCotroller {
 //		pagintDto.setTotal(service.selectTotalPaging());
 		List<commonDTO2> list = service.getItem();
 		model.addAttribute("list", list);
+
 		return "goods";
 	}
 
@@ -172,7 +173,7 @@ public class commonCotroller {
 		return "modifyStore";
 	}
 
-	// modyGoodsPage
+	// modifyGoodspage
 	@RequestMapping(value = "/modifyGoodspage.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody boolean modifyGoodspage(commonDTO2 goodsDto, HttpServletRequest req) {
 		String goodsname = req.getParameter("goodsname");
@@ -195,7 +196,9 @@ public class commonCotroller {
 			goodsDto.setGoodsinfo(goodsinfo);
 			goodsDto.setInputgoods(inputgoods);
 			goodsDto.setExpirationdate(expirationdate);
+
 			service.updateGoods(goodsDto);
+
 			return true;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

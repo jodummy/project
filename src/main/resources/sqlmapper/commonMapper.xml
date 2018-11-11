@@ -25,8 +25,8 @@
 		GOODSNAME,
 		PRICE,
 		NOWSTOCK,
-		INPUTGOODS,
-		EXPIRATIONDATE,
+		TO_CHAR( INPUTGOODS , 'MM/DD/YYYY') AS INPUTGOODS ,
+		TO_CHAR( EXPIRATIONDATE , 'MM/DD/YYYY') AS EXPIRATIONDATE,
 		SOLDNUM,
 		NEWITEM
 		FROM COOGOODS
@@ -41,8 +41,8 @@
 		GOODSNAME,
 		PRICE,
 		NOWSTOCK,
-		INPUTGOODS,
-		EXPIRATIONDATE,
+		TO_CHAR( INPUTGOODS , 'MM/DD/YYYY') AS INPUTGOODS ,
+		TO_CHAR( EXPIRATIONDATE ,'MM/DD/YYYY') AS EXPIRATIONDATE,
 		SOLDNUM,
 		NEWITEM,
 		CALORIE,
@@ -50,7 +50,8 @@
 		GOODSINFO
 		FROM
 		COOGOODS
-		WHERE GOODSNUMBER
+		WHERE
+		GOODSNUMBER
 		=#{goodsnumber}
 	</select>
 
@@ -116,14 +117,16 @@
 
 
 	<!-- 상품 수정 x -->
+	<!-- TO_CHAR(TO_DATE(expirationdate,'yyyy-mm-dd hh24:mi:ss'),'yyyy-mm-dd 
+		hh24:mi:ss') -->
 	<update id="updateGoods"
 		parameterType="com.common.www.dto.commonDTO2">
 		UPDATE COOGOODS SET
 		GOODSNAME = #{goodsname} , PRICE =
 		#{price} ,NOWSTOCK = #{nowstock}, INPUTGOODS =TO_DATE( #{inputgoods},
-		'mm/dd/yyyy')
+		'MM/DD/YYYY')
 		,EXPIRATIONDATE =TO_DATE( #{expirationdate},
-		'mm/dd/yyyy')
+		'MM/DD/YYYY')
 		,SOLDNUM =#{soldnum} , CALORIE
 		=#{calorie} , GOODSINFO
 		=#{goodsinfo}

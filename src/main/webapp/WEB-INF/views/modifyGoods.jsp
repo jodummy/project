@@ -16,20 +16,21 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <!DOCTYPE html>
+
 <html>
 <head>
 <meta charset="UTF-8">
 <title>modifyGoods</title>
 </head>
 <script type="text/javascript">
-	function succesInsert() {
+	function succesUpdate() {
 		var goodsForm = $("#ff").serialize();
 		$.ajax({
 			type : "post",
-			url : "./modifyGoodspage.do",
+			url : "modifyGoodspage.do",
 			data : goodsForm,
 			success : function(msg) {
-				opener.location.href = "./goods.do";
+				opener.location.href = "goods.do";
 				window.close();
 			},
 			error : function(textStatus, errorThrown) {
@@ -46,7 +47,7 @@
 	});
 </script>
 <body>
-	<form action="./modyGoodsPage.do" method="post" id="ff">
+	<form action="modifyGoodspage.do" method="post" id="ff">
 		<input type="hidden" name="goodsnumber" value="${dto.goodsnumber}">
 		<table class="table table-bordered table-hover">
 			<tr>
@@ -90,7 +91,7 @@
 			<tr>
 
 				<td align="center" colspan="3"><input type="button"
-					value="수정이 완료" onclick="succesInsert()" class="btn btn-default">
+					value="수정이 완료" onclick="succesUpdate()" class="btn btn-default">
 					<input type="reset" value="다시쓰기" class="btn btn-default"></td>
 			</tr>
 
@@ -98,4 +99,5 @@
 	</form>
 
 </body>
+
 </html>

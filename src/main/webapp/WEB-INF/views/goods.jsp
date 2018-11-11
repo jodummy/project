@@ -11,7 +11,6 @@
 <html>
 <head>
 </head>
-
 <script type="text/javascript">
 	//1.모두 체크
 	function allChk(obj) {

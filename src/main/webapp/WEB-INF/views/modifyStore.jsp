@@ -15,7 +15,7 @@
 <title>modifyStore</title>
 </head>
 <script type="text/javascript">
-	function succesInsert() {
+	function succesUpdate() {
 		var storeForm = $("#ff").serialize();
 		$.ajax({
 			type : "post",
@@ -50,7 +50,7 @@
 			</tr>
 			<tr>
 				<td align="center" colspan="3"><input type="button"
-					value="수정이 완료" onclick="succesInsert()" class="btn btn-default">
+					value="수정이 완료" onclick="succesUpdate()" class="btn btn-default">
 					<input type="reset" value="다시쓰기" class="btn btn-default"></td>
 			</tr>
 		</table>

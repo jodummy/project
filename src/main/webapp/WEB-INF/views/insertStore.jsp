@@ -7,11 +7,29 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <!DOCTYPE html>
+
 <html>
 <head>
 <meta charset="UTF-8">
 <title>상점 추가</title>
 </head>
+<script type="text/javascript">
+	function succesInsert() {
+		var goodsForm = $("#ff").serialize();
+		$.ajax({
+			type : "post",
+			url : "insertStorePage.do",
+			data : goodsForm,
+			success : function(msg) {
+				opener.location.href = "store.do";
+				window.close();
+			},
+			error : function(textStatus, errorThrown) {
+				alert("중복 문제");
+			}
+		});
+	}
+</script>
 <body>
 	<form id="ff" action="insertStorePage.do" method="post">
 		<table class="table table-bordered table-hover">
@@ -37,21 +55,5 @@
 		</table>
 	</form>
 </body>
-<script type="text/javascript">
-	function succesInsert() {
-		var goodsForm = $("#ff").serialize();
-		$.ajax({
-			type : "post",
-			url : "insertStorePage.do",
-			data : goodsForm,
-			success : function(msg) {
-				opener.location.href = "store.do";
-				window.close();
-			},
-			error : function(textStatus, errorThrown) {
-				alert("중복 문제");
-			}
-		});
-	}
-</script>
+
 </html>

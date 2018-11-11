@@ -8,13 +8,28 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-
-
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상품 추가 </title>
+<title>상품 추가</title>
 </head>
+<script type="text/javascript">
+	function succesInsert() {
+		var goodsForm = $("#ff").serialize();
+		$.ajax({
+			type : "post",
+			url : "insertGoodsPage.do",
+			data : goodsForm,
+			success : function(msg) {
+				opener.location.href = "goods.do";
+				window.close();
+			},
+			error : function(textStatus, errorThrown) {
+				alert("중복 문제");
+			}
+		});
+	}
+</script>
 
 <body>
 	<form id="ff" action="insertGoodsPage.do" method="post">
@@ -43,22 +58,6 @@
 	</form>
 </body>
 
-<script type="text/javascript">
-	function succesInsert() {
-		var goodsForm = $("#ff").serialize();
-		$.ajax({
-			type : "post",
-			url : "insertGoodsPage.do",
-			data : goodsForm,
-			success : function(msg) {
-				opener.location.href = "goods.do";
-				window.close();
-			},
-			error : function(textStatus, errorThrown) {
-				alert("중복 문제");
-			}
-		});
-	}
-</script>
+
 
 </html>
