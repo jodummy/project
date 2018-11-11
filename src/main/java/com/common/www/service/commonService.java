@@ -44,4 +44,7 @@ public interface commonService {
 	// 사원 리스트
 	public List<commonDTO3> getEmployee(String storecode);
 
+	// 상점 수정
+	public int updateStore(commonDTO storeDto);
+
 }

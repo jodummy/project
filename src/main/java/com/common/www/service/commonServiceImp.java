@@ -98,4 +98,10 @@ public class commonServiceImp implements commonService {
 		return dao.getEmployee(storecode);
 	}
 
+	// 상점 수정
+	@Override
+	public int updateStore(commonDTO storeDto) {
+		return dao.updateStore(storeDto);
+	}
+
 }

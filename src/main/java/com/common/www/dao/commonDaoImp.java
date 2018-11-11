@@ -95,4 +95,10 @@ public class commonDaoImp implements commonDao {
 		return session.selectList("com.common.www.getEmployee", storecode);
 	}
 
+	@Override
+	public int updateStore(commonDTO storeDto) {
+
+		return session.update("com.common.www.updateStore", storeDto);
+	}
+
 }

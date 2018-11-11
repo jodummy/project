@@ -67,7 +67,7 @@
 </script>
 <body>
 	<h1>상점</h1>
-	<table>ㄴㄴ
+	<table>
 		<tr>
 			<td>위치</td>
 			<td>${dto.location}</td>

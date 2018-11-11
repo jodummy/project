@@ -43,4 +43,8 @@ public interface commonDao {
 
 	// 사원 출력
 	public List<commonDTO3> getEmployee(String storecode);
+
+	// 상점 수정
+	public int updateStore(commonDTO storeDto);
+
 }

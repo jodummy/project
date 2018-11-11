@@ -54,6 +54,7 @@
 		=#{goodsnumber}
 	</select>
 
+	<!-- 상점 하나 조회 -->
 	<select id="getStoreOne"
 		resultType="com.common.www.dto.commonDTO" parameterType="String">
 		SELECT
@@ -128,6 +129,14 @@
 		=#{goodsinfo}
 		WHERE
 		GOODSNUMBER =#{goodsnumber}
+	</update>
+
+	<update id="updateStore"
+		parameterType="com.common.www.dto.commonDTO">
+		UPDATE COOSTORE SET LOCATION = #{location} ,TEL
+		= #{tel}
+		WHERE
+		STORECODE =#{storecode}
 	</update>
 
 

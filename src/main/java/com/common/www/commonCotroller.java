@@ -165,6 +165,13 @@ public class commonCotroller {
 		return "modifyGoods";
 	}
 
+	@RequestMapping(value = "/modifyStore.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String modifyStore(Model model, String storecode) {
+		commonDTO storeDto = service.getStoreOne(storecode);
+		model.addAttribute("dto", storeDto);
+		return "modifyStore";
+	}
+
 	// modyGoodsPage
 	@RequestMapping(value = "/modifyGoodspage.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody boolean modifyGoodspage(commonDTO2 goodsDto, HttpServletRequest req) {
@@ -193,6 +200,28 @@ public class commonCotroller {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+		return false;
+	}
+
+	// 여기 하던주 수정해줘
+	@RequestMapping(value = "/modyStorePage.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody boolean modyStorePage(commonDTO storeDto, HttpServletRequest req) {
+		String location = req.getParameter("location");
+		String tel = req.getParameter("tel");
+		String income = req.getParameter("income");
+		String storecode = req.getParameter("storecode");
+
+		try {
+			storeDto.setIncome(Integer.parseInt(income));
+			storeDto.setLocation(location);
+			storeDto.setStorecode(storecode);
+			storeDto.setTel(tel);
+			service.updateStore(storeDto);
+			return true;
+		} catch (Exception e) {
+			e.getMessage();
+		}
+
 		return false;
 	}
 
