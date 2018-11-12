@@ -78,7 +78,7 @@
 		</tr>
 		<tr>
 			<td>수입</td>
-			<td>${dto.income}</td>
+			<td>${dto.inCome}</td>
 		</tr>
 	</table>
 	<form action="./store.do" method="post" id="ff">

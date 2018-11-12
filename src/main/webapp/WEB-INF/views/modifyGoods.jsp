@@ -23,7 +23,6 @@
 <title>modifyGoods</title>
 </head>
 <script type="text/javascript">
-
 	function succesUpdate() {
 		var goodsForm = $("#ff").serialize();
 		$.ajax({
@@ -31,6 +30,7 @@
 			url : "modifyGoodspage.do",
 			data : goodsForm,
 			success : function(msg) {
+				alert(opener.location.href);
 				opener.location.href = "goods.do";
 				window.close();
 			},
@@ -76,8 +76,8 @@
 			</tr>
 			<tr>
 				<td>유통기한</td>
-				<td><input type="text" id="outputgoods"
-					name="outputgoods" value="${dto.outputgoods}"></td>
+				<td><input type="text" id="outputgoods" name="outputgoods"
+					value="${dto.outputgoods}"></td>
 			</tr>
 			<tr>
 				<td>칼로리</td>

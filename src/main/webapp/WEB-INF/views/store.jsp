@@ -97,7 +97,7 @@
 								<th>${list.storeCode }</th>
 								<th>${list.location }</th>
 								<th>${list.tel }</th>
-								<th>${list.income }</th>
+								<th>${list.inCome }</th>
 								<th><input type="button" value="상점 상세"
 									onclick="detailStore('${list.storeCode }')"></th>
 							</tr>

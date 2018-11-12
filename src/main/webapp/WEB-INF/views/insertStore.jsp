@@ -21,6 +21,7 @@
 			url : "insertStorePage.do",
 			data : goodsForm,
 			success : function(msg) {
+				alert(opener.location.href);
 				opener.location.href = "store.do";
 				window.close();
 			},

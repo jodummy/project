@@ -46,7 +46,7 @@
 			</tr>
 			<tr>
 				<td>수입</td>
-				<td><input type="text" value="${dto.income}" name="income"></td>
+				<td><input type="text" value="${dto.inCome}" name="income"></td>
 			</tr>
 			<tr>
 				<td align="center" colspan="3"><input type="button"
