@@ -13,10 +13,10 @@
 <title>Insert title here</title>
 </head>
 <script type="text/javascript">
-	function modifyStore(storecode) {
+	function modifyStore(storeCode) {
 		window
 				.open(
-						"./modifyStore.do?&storecode=" + storecode,
+						"./modifyStore.do?&storeCode=" + storeCode,
 						"선택",
 						"scrollbars=yes,toolbar=yes,resizable=yes,width=1000,height=600,right=700,top=0");
 	}
@@ -82,10 +82,10 @@
 		</tr>
 	</table>
 	<form action="./store.do" method="post" id="ff">
-		<input type="hidden" value="${dto.storecode}" name='storecode'>
+		<input type="hidden" value="${dto.storeCode}" name='storeCode'>
 		<div colspan="3">
 			<input type="button" value="수정"
-				onclick="modifyStore('${dto.storecode}')" class="btn btn-default">
+				onclick="modifyStore('${dto.storeCode}')" class="btn btn-default">
 		</div>
 	</form>
 

@@ -3,25 +3,25 @@ package com.common.www.service;
 import java.util.List;
 import java.util.Map;
 
-import com.common.www.dto.commonDTO;
-import com.common.www.dto.commonDTO2;
+import com.common.www.dto.storeDTO;
+import com.common.www.dto.goodsDTO;
 import com.common.www.dto.commonDTO3;
 
 public interface commonService {
 	// 점포 리스트
-	public List<commonDTO> getStore();
+	public List<storeDTO> getStore();
 
 	// 상품 하나 조회
-	public commonDTO2 getItemOne(int goodsnumber);
+	public goodsDTO getItemOne(int goodsnumber);
 
 	// 상품 리스트
-	public List<commonDTO2> getItem();
+	public List<goodsDTO> getItem();
 
 	// 상품 추가
-	public commonDTO2 insertGoodsFood(commonDTO2 goodsDto);
+	public goodsDTO insertGoodsFood(goodsDTO goodsDto);
 
 	// 유통기한이 긴
-	public int insertGoodsCan(commonDTO2 goodsDto);
+	public int insertGoodsCan(goodsDTO goodsDto);
 
 	// 페이징 처리
 	public int selectTotalPaging();
@@ -30,21 +30,21 @@ public interface commonService {
 	public int deleteGoods(int goodsnumber);
 
 	// 상점 삭제
-	public int deleteStore(String storecode);
+	public int deleteStore(String storeCode);
 
 	// 수정 처리
-	public int updateGoods(commonDTO2 goodsDto);
+	public int updateGoods(goodsDTO goodsDto);
 
 	// 상점 추가
-	public commonDTO insertStore(commonDTO storeDto);
+	public storeDTO insertStore(storeDTO storeDto);
 
 	// 상점 detail
-	public commonDTO getStoreOne(String storecode);
+	public storeDTO getStoreOne(String storeCode);
 
 	// 사원 리스트
-	public List<commonDTO3> getEmployee(String storecode);
+	public List<commonDTO3> getEmployee(String storeCode);
 
 	// 상점 수정
-	public int updateStore(commonDTO storeDto);
+	public int updateStore(storeDTO storeDto);
 
 }

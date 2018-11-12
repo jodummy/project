@@ -23,6 +23,7 @@
 <title>modifyGoods</title>
 </head>
 <script type="text/javascript">
+
 	function succesUpdate() {
 		var goodsForm = $("#ff").serialize();
 		$.ajax({
@@ -43,7 +44,7 @@
 		$("#inputgoods").datepicker();
 	});
 	$(function() {
-		$("#expirationdate").datepicker();
+		$("#outputgoods").datepicker();
 	});
 </script>
 <body>
@@ -75,8 +76,8 @@
 			</tr>
 			<tr>
 				<td>유통기한</td>
-				<td><input type="text" id="expirationdate"
-					name="expirationdate" value="${dto.expirationdate}"></td>
+				<td><input type="text" id="outputgoods"
+					name="outputgoods" value="${dto.outputgoods}"></td>
 			</tr>
 			<tr>
 				<td>칼로리</td>

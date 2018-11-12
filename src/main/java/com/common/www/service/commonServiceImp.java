@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.common.www.dao.commonDao;
 import com.common.www.dao.commonDaoImp;
-import com.common.www.dto.commonDTO;
-import com.common.www.dto.commonDTO2;
+import com.common.www.dto.storeDTO;
+import com.common.www.dto.goodsDTO;
 import com.common.www.dto.commonDTO3;
 
 @Service
@@ -19,28 +19,28 @@ public class commonServiceImp implements commonService {
 
 	// 점포 리스트
 	@Override
-	public List<commonDTO> getStore() {
+	public List<storeDTO> getStore() {
 		return dao.getStore();
 	}
 
 	// 상품 리스트
 	@Override
-	public List<commonDTO2> getItem() {
+	public List<goodsDTO> getItem() {
 
 		return dao.getItem();
 	}
 
 	// 상품 추가
 	@Override
-	public commonDTO2 insertGoodsFood(commonDTO2 goodsDto) {
-		commonDTO2 result = dao.insertGoodsFood(goodsDto);
+	public goodsDTO insertGoodsFood(goodsDTO goodsDto) {
+		goodsDTO result = dao.insertGoodsFood(goodsDto);
 
 		return result;
 	}
 
 	// 유통기한이 긴
 	@Override
-	public int insertGoodsCan(commonDTO2 goodsDto) {
+	public int insertGoodsCan(goodsDTO goodsDto) {
 
 		return dao.insertGoodsCan(goodsDto);
 	}
@@ -61,46 +61,46 @@ public class commonServiceImp implements commonService {
 
 	// 상점 삭제
 	@Override
-	public int deleteStore(String storecode) {
-		return dao.deleteStore(storecode);
+	public int deleteStore(String storeCode) {
+		return dao.deleteStore(storeCode);
 	}
 
 	// 수정 처리
 	@Override
-	public int updateGoods(commonDTO2 goodsDto) {
+	public int updateGoods(goodsDTO goodsDto) {
 
 		return dao.updateGoods(goodsDto);
 	}
 
 	// 상품 하나 조회
 	@Override
-	public commonDTO2 getItemOne(int goodsnumber) {
+	public goodsDTO getItemOne(int goodsnumber) {
 		return dao.getItemOne(goodsnumber);
 	}
 
 	// 상점 추가
 	@Override
-	public commonDTO insertStore(commonDTO storeDto) {
+	public storeDTO insertStore(storeDTO storeDto) {
 		return dao.insertStore(storeDto);
 	}
 
 	// 상점 detail
 	@Override
-	public commonDTO getStoreOne(String storecode) {
+	public storeDTO getStoreOne(String storeCode) {
 
-		return dao.getStoreOne(storecode);
+		return dao.getStoreOne(storeCode);
 	}
 
 	// 사원 출력
 	@Override
-	public List<commonDTO3> getEmployee(String storecode) {
+	public List<commonDTO3> getEmployee(String storeCode) {
 
-		return dao.getEmployee(storecode);
+		return dao.getEmployee(storeCode);
 	}
 
 	// 상점 수정
 	@Override
-	public int updateStore(commonDTO storeDto) {
+	public int updateStore(storeDTO storeDto) {
 		return dao.updateStore(storeDto);
 	}
 

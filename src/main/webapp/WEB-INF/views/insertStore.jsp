@@ -34,8 +34,8 @@
 	<form id="ff" action="insertStorePage.do" method="post">
 		<table class="table table-bordered table-hover">
 			<tr>
-				<td>storecode</td>
-				<td><input type="text" name="storecode" id="storecode"
+				<td>storeCode</td>
+				<td><input type="text" name="storeCode" id="storeCode"
 					required="required"></td>
 			</tr>
 			<tr>

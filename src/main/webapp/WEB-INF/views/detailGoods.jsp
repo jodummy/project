@@ -38,7 +38,7 @@
 		</tr>
 		<tr>
 			<td>유통 기한</td>
-			<td>${dto.expirationdate}</td>
+			<td>${dto.outputgoods}</td>
 		</tr>
 		<tr>
 			<td>팔린 현황</td>

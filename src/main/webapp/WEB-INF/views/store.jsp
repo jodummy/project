@@ -40,7 +40,7 @@
 			});
 
 			var allData = {
-				"storecode" : $(":checkbox[name='chkbox']:checked").val(),
+				"storeCode" : $(":checkbox[name='chkbox']:checked").val(),
 				"checkArray" : checkboxValues
 			};
 
@@ -68,8 +68,8 @@
 							"scrollbars=yes,toolbar=yes,resizable=yes,width=450,height=500,right=150,top=0");
 		}
 
-		function detailStore(storecode) {
-			window.open("./detailStore.do?&storecode=" + storecode, "선택",
+		function detailStore(storeCode) {
+			window.open("./detailStore.do?&storeCode=" + storeCode, "선택",
 							"scrollbars=yes,toolbar=yes,resizable=yes,width=800,height=500,right=600,top=0");
 		}
 </script>
@@ -93,13 +93,13 @@
 						<c:forEach items="${list }" var="list">
 							<tr>
 								<th><input name="chkbox" type="checkbox" id="chkList"
-									value="${list.storecode }" required="required" /></th>
-								<th>${list.storecode }</th>
+									value="${list.storeCode }" required="required" /></th>
+								<th>${list.storeCode }</th>
 								<th>${list.location }</th>
 								<th>${list.tel }</th>
 								<th>${list.income }</th>
 								<th><input type="button" value="상점 상세"
-									onclick="detailStore('${list.storecode }')"></th>
+									onclick="detailStore('${list.storeCode }')"></th>
 							</tr>
 						</c:forEach>
 					</table>

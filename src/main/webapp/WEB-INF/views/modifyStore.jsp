@@ -34,7 +34,7 @@
 <body>
 
 	<form action="./modyStorePage.do" method="post" id="ff">
-		<input type="hidden" name="storecode" value="${dto.storecode}">
+		<input type="hidden" name="storeCode" value="${dto.storeCode}">
 		<table class="table table-bordered table-hover">
 			<tr>
 				<td>위치</td>

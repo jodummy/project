@@ -2,14 +2,14 @@ package com.common.www.dto;
 
 import java.sql.Date;
 
-public class commonDTO2 {
+public class goodsDTO {
 
 	private int goodsnumber;
 	private String goodsname;
 	private int price;
 	private int nowstock;
 	private String inputgoods;
-	private String expirationdate;
+	private String outputgoods;
 	private int soldnum;
 	private int newitem;
 	private int calorie;
@@ -56,12 +56,12 @@ public class commonDTO2 {
 		this.inputgoods = inputgoods;
 	}
 
-	public String getExpirationdate() {
-		return expirationdate;
+	public String getOutputgoods() {
+		return outputgoods;
 	}
 
-	public void setExpirationdate(String expirationdate) {
-		this.expirationdate = expirationdate;
+	public void setOutputgoods(String outputgoods) {
+		this.outputgoods = outputgoods;
 	}
 
 	public int getSoldnum() {
@@ -107,7 +107,7 @@ public class commonDTO2 {
 	@Override
 	public String toString() {
 		return "commonDTO2 [goodsnumber=" + goodsnumber + ", goodsname=" + goodsname + ", price=" + price
-				+ ", nowstock=" + nowstock + ", inputgoods=" + inputgoods + ", expirationdate=" + expirationdate
+				+ ", nowstock=" + nowstock + ", inputgoods=" + inputgoods + ", outputgoods=" + outputgoods
 				+ ", soldnum=" + soldnum + ", newitem=" + newitem + ", calorie=" + calorie + ", rankgoods=" + rankgoods
 				+ ", goodsinfo=" + goodsinfo + "]";
 	}

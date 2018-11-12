@@ -102,7 +102,7 @@
 								<th>${list.price }</th>
 								<th>${list.nowstock }</th>
 								<th>${list.inputgoods }</th>
-								<th>${list.expirationdate }</th>
+								<th>${list.outputgoods }</th>
 								<th>${list.soldnum }</th>
 								<th>${list.newitem }</th>
 								<th><input type="button" value="상품 상세"

@@ -8,48 +8,49 @@
 	<!-- goods 물품 토탈 출력 -->
 	<select resultType="java.lang.Integer" id="selectTotalPaging">
 		SELECT
-		NVL(COUNT(*),0)FROM COOGOODS
+		NVL(COUNT(*),0)FROM GOODS
 	</select>
 
 	<!-- 메소드 이름 가지고 와서 작성 -->
 	<!-- 점포 리스트 출력 db -->
-	<select id="getStore" resultType="com.common.www.dto.commonDTO">
+	<select id="getStore" resultType="com.common.www.dto.storeDTO">
 		SELECT STORECODE , TEL ,
 		LOCATION , INCOME
-		FROM COOSTORE
+		FROM STORE
 	</select>
 
 	<!-- 상품 리스트 출력 db -->
-	<select id="getItem" resultType="com.common.www.dto.commonDTO2">
+	<select id="getItem" resultType="com.common.www.dto.goodsDTO">
 		SELECT GOODSNUMBER,
 		GOODSNAME,
 		PRICE,
 		NOWSTOCK,
 		TO_CHAR( INPUTGOODS , 'MM/DD/YYYY') AS INPUTGOODS ,
-		TO_CHAR( EXPIRATIONDATE , 'MM/DD/YYYY') AS EXPIRATIONDATE,
+		TO_CHAR( OUTPUTGOODS , 'MM/DD/YYYY') AS OUTPUTGOODS,
 		SOLDNUM,
 		NEWITEM
-		FROM COOGOODS
+		FROM GOODS
 	</select>
 
 	<!-- select one goods -->
-	<select id="getItemOne"
-		resultType="com.common.www.dto.commonDTO2"
+	<select id="getItemOne" resultType="com.common.www.dto.goodsDTO"
 		parameterType="java.lang.Integer">
 		SELECT
 		GOODSNUMBER,
 		GOODSNAME,
 		PRICE,
 		NOWSTOCK,
-		TO_CHAR( INPUTGOODS , 'MM/DD/YYYY') AS INPUTGOODS ,
-		TO_CHAR( EXPIRATIONDATE ,'MM/DD/YYYY') AS EXPIRATIONDATE,
+		TO_CHAR(
+		INPUTGOODS , 'MM/DD/YYYY') AS INPUTGOODS ,
+		TO_CHAR( OUTPUTGOODS
+		,'MM/DD/YYYY') AS OUTPUTGOODS,
 		SOLDNUM,
 		NEWITEM,
 		CALORIE,
 		RANKGOODS,
 		GOODSINFO
 		FROM
-		COOGOODS
+		GOODS
 		WHERE
 		GOODSNUMBER
 		=#{goodsnumber}
@@ -57,15 +58,15 @@
 
 	<!-- 상점 하나 조회 -->
 	<select id="getStoreOne"
-		resultType="com.common.www.dto.commonDTO" parameterType="String">
+		resultType="com.common.www.dto.storeDTO" parameterType="String">
 		SELECT
 		STORECODE ,
 		LOCATION ,
 		TEL ,
 		INCOME
-		FROM COOSTORE
-		WHERE STORECODE =
-		#{storecode}
+		FROM STORE
+		WHERE storeCode =
+		#{storeCode}
 	</select>
 
 	<!-- 사원 상점별 조회 -->
@@ -73,59 +74,58 @@
 		resultType="com.common.www.dto.commonDTO3" parameterType="String">
 		SELECT
 		STORECODE , MANAGER , PHONE , SEQTIME
-		FROM COOEMPLOYEE
+		FROM EMPLOYEE
 		WHERE STORECODE =
-		#{storecode}
+		#{storeCode}
 	</select>
 
 	<!-- 상점 추가 -->
 	<insert id="insertStore"
-		parameterType="com.common.www.dto.commonDTO">
-		INSERT INTO COOSTORE
+		parameterType="com.common.www.dto.storeDTO">
+		INSERT INTO STORE
 		VALUE(STORECODE,TEL,LOCATION)
-		VALUES(#{storecode} , #{tel} ,#{location})
+		VALUES(#{storeCode} , #{tel} ,#{location})
 	</insert>
 
 
 	<!-- 상품 추가 db 식품() -->
 	<insert id="insertGoodsFood"
-		parameterType="com.common.www.dto.commonDTO2">
-		INSERT INTO COOGOODS
-		VALUE(GOODSNUMBER,GOODSNAME,PRICE,EXPIRATIONDATE)
+		parameterType="com.common.www.dto.goodsDTO">
+		INSERT INTO GOODS
+		VALUE(GOODSNUMBER,GOODSNAME,PRICE,OUTPUTGOODS)
 		VALUES(#{goodsnumber},#{goodsname},#{price},SYSDATE + 5 )
 	</insert>
 
 	<!-- 상품 추가 db 통조림() -->
 	<insert id="insertGoodsCan"
-		parameterType="com.common.www.dto.commonDTO2">
-		INSERT INTO COOGOODS
-		VALUE(GOODSNUMBER,GOODSNAME,PRICE,EXPIRATIONDATE)
+		parameterType="com.common.www.dto.goodsDTO">
+		INSERT INTO GOODS
+		VALUE(GOODSNUMBER,GOODSNAME,PRICE,OUTPUTGOODS)
 		VALUES(#{goodsnumber},#{goodsname},#{price},SYSDATE + 1000 )
 	</insert>
 
 	<!-- 상품 삭제 -->
 	<delete id="deleteGoods" parameterType="java.lang.Integer">
-		DELETE COOGOODS WHERE
+		DELETE GOODS WHERE
 		GOODSNUMBER =#{goodsnumber}
 	</delete>
 
 	<!-- 상점 삭제 -->
 	<delete id="deleteStore" parameterType="String">
-		DELETE COOSTORE WHERE
-		STORECODE =#{storecode}
+		DELETE STORE WHERE
+		STORECODE =#{storeCode}
 	</delete>
 
 
 	<!-- 상품 수정 x -->
-	<!-- TO_CHAR(TO_DATE(expirationdate,'yyyy-mm-dd hh24:mi:ss'),'yyyy-mm-dd 
-		hh24:mi:ss') -->
+	<!-- TO_CHAR(TO_DATE(OUTPUTGOODS,'yyyy-mm-dd hh24:mi:ss'),'yyyy-mm-dd hh24:mi:ss') -->
 	<update id="updateGoods"
-		parameterType="com.common.www.dto.commonDTO2">
-		UPDATE COOGOODS SET
+		parameterType="com.common.www.dto.goodsDTO">
+		UPDATE GOODS SET
 		GOODSNAME = #{goodsname} , PRICE =
 		#{price} ,NOWSTOCK = #{nowstock}, INPUTGOODS =TO_DATE( #{inputgoods},
 		'MM/DD/YYYY')
-		,EXPIRATIONDATE =TO_DATE( #{expirationdate},
+		,OUTPUTGOODS =TO_DATE( #{outputgoods},
 		'MM/DD/YYYY')
 		,SOLDNUM =#{soldnum} , CALORIE
 		=#{calorie} , GOODSINFO
@@ -135,11 +135,11 @@
 	</update>
 
 	<update id="updateStore"
-		parameterType="com.common.www.dto.commonDTO">
-		UPDATE COOSTORE SET LOCATION = #{location} ,TEL
+		parameterType="com.common.www.dto.storeDTO">
+		UPDATE STORE SET LOCATION = #{location} ,TEL
 		= #{tel}
 		WHERE
-		STORECODE =#{storecode}
+		STORECODE =#{storeCode}
 	</update>
 
 

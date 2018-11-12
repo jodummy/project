@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.common.www.dto.PagingDto;
 //////
-import com.common.www.dto.commonDTO;
-import com.common.www.dto.commonDTO2;
+import com.common.www.dto.storeDTO;
+import com.common.www.dto.goodsDTO;
 import com.common.www.dto.commonDTO3;
 import com.common.www.service.commonService;
 
@@ -30,7 +30,7 @@ public class commonCotroller {
 
 	@RequestMapping(value = "/store.do", method = RequestMethod.GET)
 	public String homeMain(Model model) {
-		List<commonDTO> list = service.getStore();
+		List<storeDTO> list = service.getStore();
 		model.addAttribute("list", list);
 		return "store";
 	}
@@ -41,13 +41,13 @@ public class commonCotroller {
 	}
 
 	@RequestMapping(value = "/insertStorePage.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody boolean insertStorePage(commonDTO storeDto, HttpServletRequest req) {
+	public @ResponseBody boolean insertStorePage(storeDTO storeDto, HttpServletRequest req) {
 
-		String storecode = req.getParameter("storecode");
+		String storeCode = req.getParameter("storeCode");
 		String location = req.getParameter("location");
 		String tel = req.getParameter("tel");
 		try {
-			storeDto.setStorecode(storecode);
+			storeDto.setstoreCode(storeCode);
 			storeDto.setLocation(location);
 			storeDto.setTel(tel);
 			service.insertStore(storeDto);
@@ -62,7 +62,7 @@ public class commonCotroller {
 	@RequestMapping(value = "/goods.do", method = RequestMethod.GET)
 	public String homeSimple(Model model, PagingDto pagintDto) {
 //		pagintDto.setTotal(service.selectTotalPaging());
-		List<commonDTO2> list = service.getItem();
+		List<goodsDTO> list = service.getItem();
 		model.addAttribute("list", list);
 
 		return "goods";
@@ -74,7 +74,7 @@ public class commonCotroller {
 	}
 
 	@RequestMapping(value = "/insertGoodsPage.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody boolean insertUserPage(commonDTO2 goodsDto, HttpServletRequest req) {
+	public @ResponseBody boolean insertUserPage(goodsDTO goodsDto, HttpServletRequest req) {
 
 		String goodsnumber = req.getParameter("goodsnumber");
 		String goodsname = req.getParameter("goodsname");
@@ -119,16 +119,16 @@ public class commonCotroller {
 
 	@RequestMapping(value = "/deleteStorePage.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody boolean deleteStorePage(@RequestParam(value = "checkArray[]") List<String> arrayParams,
-			@RequestParam(value = "storecode") String value) {
-		String storecode = value;
+			@RequestParam(value = "storeCode") String value) {
+		String storeCode = value;
 		List<String> arr = arrayParams;
 
-		System.out.println(storecode);
+		System.out.println(storeCode);
 		System.out.println(arr.toString());
 
 		try {
-			if (storecode != null && arr.size() < 2) {
-				service.deleteStore(storecode);
+			if (storeCode != null && arr.size() < 2) {
+				service.deleteStore(storeCode);
 			} else {
 				for (int i = 0; i < arr.size(); i++) {
 					service.deleteStore(arr.get(i));
@@ -143,17 +143,17 @@ public class commonCotroller {
 
 	@RequestMapping(value = "/detailGoods.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String detailGoods(Model model, String goodsnumber) {
-		commonDTO2 goodsDto = service.getItemOne(Integer.parseInt(goodsnumber));
+		goodsDTO goodsDto = service.getItemOne(Integer.parseInt(goodsnumber));
 		model.addAttribute("dto", goodsDto);
 		return "detailGoods";
 	}
 
 	@RequestMapping(value = "/detailStore.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String detailStore(Model model, String storecode) {
-		commonDTO StoreDto = service.getStoreOne(storecode);
+	public String detailStore(Model model, String storeCode) {
+		storeDTO StoreDto = service.getStoreOne(storeCode);
 		model.addAttribute("dto", StoreDto);
 
-		List<commonDTO3> employeeDto = service.getEmployee(storecode);
+		List<commonDTO3> employeeDto = service.getEmployee(storeCode);
 		model.addAttribute("dto2", employeeDto);
 
 		return "detailStore";
@@ -161,32 +161,29 @@ public class commonCotroller {
 
 	@RequestMapping(value = "/modifyGoods.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String modifyGoods(Model model, String goodsnumber) {
-		commonDTO2 goodsDto = service.getItemOne(Integer.parseInt(goodsnumber));
+		goodsDTO goodsDto = service.getItemOne(Integer.parseInt(goodsnumber));
 		model.addAttribute("dto", goodsDto);
 		return "modifyGoods";
 	}
 
 	@RequestMapping(value = "/modifyStore.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String modifyStore(Model model, String storecode) {
-		commonDTO storeDto = service.getStoreOne(storecode);
+	public String modifyStore(Model model, String storeCode) {
+		storeDTO storeDto = service.getStoreOne(storeCode);
 		model.addAttribute("dto", storeDto);
 		return "modifyStore";
 	}
 
 	// modifyGoodspage
 	@RequestMapping(value = "/modifyGoodspage.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody boolean modifyGoodspage(commonDTO2 goodsDto, HttpServletRequest req) {
+	public @ResponseBody boolean modifyGoodspage(goodsDTO goodsDto, HttpServletRequest req) {
 		String goodsname = req.getParameter("goodsname");
 		String price = req.getParameter("price");
 		String nowstock = req.getParameter("nowstock");
 		String soldnum = req.getParameter("soldnum");
 		String calorie = req.getParameter("calorie");
 		String goodsinfo = req.getParameter("goodsinfo");
-
-		// 날짜 오류 잡아야지
 		String inputgoods = req.getParameter("inputgoods");
-		String expirationdate = req.getParameter("expirationdate");
-
+		String outputgoods = req.getParameter("outputgoods");
 		try {
 			goodsDto.setGoodsname(goodsname);
 			goodsDto.setPrice(Integer.parseInt(price));
@@ -195,10 +192,8 @@ public class commonCotroller {
 			goodsDto.setCalorie(Integer.parseInt(calorie));
 			goodsDto.setGoodsinfo(goodsinfo);
 			goodsDto.setInputgoods(inputgoods);
-			goodsDto.setExpirationdate(expirationdate);
-
+			goodsDto.setOutputgoods(outputgoods);
 			service.updateGoods(goodsDto);
-
 			return true;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -208,16 +203,16 @@ public class commonCotroller {
 
 	// 여기 하던주 수정해줘
 	@RequestMapping(value = "/modyStorePage.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody boolean modyStorePage(commonDTO storeDto, HttpServletRequest req) {
+	public @ResponseBody boolean modyStorePage(storeDTO storeDto, HttpServletRequest req) {
 		String location = req.getParameter("location");
 		String tel = req.getParameter("tel");
 		String income = req.getParameter("income");
-		String storecode = req.getParameter("storecode");
+		String storeCode = req.getParameter("storeCode");
 
 		try {
-			storeDto.setIncome(Integer.parseInt(income));
+			storeDto.setinCome(Integer.parseInt(income));
 			storeDto.setLocation(location);
-			storeDto.setStorecode(storecode);
+			storeDto.setstoreCode(storeCode);
 			storeDto.setTel(tel);
 			service.updateStore(storeDto);
 			return true;
