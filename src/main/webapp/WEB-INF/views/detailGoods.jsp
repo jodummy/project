@@ -13,8 +13,11 @@
 <title>Insert title here</title>
 </head>
 <script type="text/javascript">
-	function modifyGoods(goodsnumber) {
-		window.open("./modifyGoods.do?&goodsnumber=" + goodsnumber, "선택",
+	function modifyGoods(goodsNumber) {
+		window
+				.open(
+						"./modifyGoods.do?&goodsNumber=" + goodsNumber,
+						"선택",
 						"scrollbars=yes,toolbar=yes,resizable=yes,width=1000,height=600,right=700,top=0");
 	}
 </script>
@@ -22,7 +25,7 @@
 	<table>
 		<tr>
 			<td>상품 이름</td>
-			<td>${dto.goodsname}</td>
+			<td>${dto.goodsName}</td>
 		</tr>
 		<tr>
 			<td>상품 가격</td>
@@ -30,23 +33,23 @@
 		</tr>
 		<tr>
 			<td>현재 재고</td>
-			<td>${dto.nowstock}</td>
+			<td>${dto.nowStock}</td>
 		</tr>
 		<tr>
 			<td>출입 날짜</td>
-			<td>${dto.inputgoods}</td>
+			<td>${dto.inputGoods}</td>
 		</tr>
 		<tr>
 			<td>유통 기한</td>
-			<td>${dto.outputgoods}</td>
+			<td>${dto.outputGoods}</td>
 		</tr>
 		<tr>
 			<td>팔린 현황</td>
-			<td>${dto.soldnum}</td>
+			<td>${dto.soldNum}</td>
 		</tr>
 		<tr>
 			<td>신상</td>
-			<td>${dto.newitem}</td>
+			<td>${dto.newItem}</td>
 		</tr>
 		<tr>
 			<td>칼로리</td>
@@ -54,18 +57,18 @@
 		</tr>
 		<tr>
 			<td>인기 순위</td>
-			<td>${dto.rankgoods}</td>
+			<td>${dto.rankGoods}</td>
 		</tr>
 		<tr>
 			<td>상품 정보</td>
-			<td>${dto.goodsinfo}</td>
+			<td>${dto.goodsInfo}</td>
 		</tr>
 	</table>
 	<form action="./goods.do" method="post" id="ff">
-		<input type="hidden" value="${dto.goodsnumber}" name='goodsnumber'>
+		<input type="hidden" value="${dto.goodsNumber}" name='goodsNumber'>
 		<div colspan="3">
 			<input type="button" value="수정"
-				onclick="modifyGoods('${dto.goodsnumber}')" class="btn btn-default">
+				onclick="modifyGoods('${dto.goodsNumber}')" class="btn btn-default">
 		</div>
 	</form>
 

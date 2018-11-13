@@ -49,11 +49,11 @@
 </script>
 <body>
 	<form action="modifyGoodspage.do" method="post" id="ff">
-		<input type="hidden" name="goodsnumber" value="${dto.goodsnumber}">
+		<input type="hidden" name="goodsNumber" value="${dto.goodsNumber}">
 		<table class="table table-bordered table-hover">
 			<tr>
 				<td>상품 이름</td>
-				<td><input type="text" value="${dto.goodsname}"
+				<td><input type="text" value="${dto.goodsName}"
 					name="goodsname"></td>
 			</tr>
 			<tr>
@@ -62,22 +62,22 @@
 			</tr>
 			<tr>
 				<td>현재 재고</td>
-				<td><input type="text" value="${dto.nowstock}" name="nowstock"></td>
+				<td><input type="text" value="${dto.nowStock}" name="nowStock"></td>
 			</tr>
 
 			<tr>
 				<td>팔린 갯수</td>
-				<td><input type="text" value="${dto.soldnum}" name="soldnum"></td>
+				<td><input type="text" value="${dto.soldNum}" name="soldNum"></td>
 			</tr>
 			<tr>
 				<td>출입 날짜</td>
-				<td><input type="text" id="inputgoods" name="inputgoods"
-					value="${dto.inputgoods}"></td>
+				<td><input type="text" id="inputGoods" name="inputGoods"
+					value="${dto.inputGoods}"></td>
 			</tr>
 			<tr>
 				<td>유통기한</td>
-				<td><input type="text" id="outputgoods" name="outputgoods"
-					value="${dto.outputgoods}"></td>
+				<td><input type="text" id="outputGoods" name="outputGoods"
+					value="${dto.outputGoods}"></td>
 			</tr>
 			<tr>
 				<td>칼로리</td>
@@ -86,8 +86,8 @@
 			</tr>
 			<tr>
 				<td>상품 정보</td>
-				<td><textarea name="goodsinfo" rows="10" cols="100"
-						value="${dto.goodsinfo}"></textarea></td>
+				<td><textarea name="goodsInfo" rows="10" cols="100"
+						value="${dto.goodsInfo}"></textarea></td>
 			</tr>
 			<tr>
 

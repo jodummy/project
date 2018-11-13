@@ -66,8 +66,8 @@
 						"scrollbars=yes,toolbar=yes,resizable=yes,width=450,height=500,right=150,top=0");
 	}
 	
-	function detailGoods(goodsnumber) {
-		window.open("./detailGoods.do?&goodsnumber=" + goodsnumber, "선택",
+	function detailGoods(goodsNumber) {
+		window.open("./detailGoods.do?&goodsNumber=" + goodsNumber, "선택",
 				"scrollbars=yes,toolbar=yes,resizable=yes,width=800,height=500,right=600,top=0");
 	}
 </script>
@@ -96,17 +96,17 @@
 						<c:forEach items="${list }" var="list">
 							<tr>
 								<th><input name="chkbox" type="checkbox" id="chkList"
-									value="${list.goodsnumber }" required="required" /></th>
-								<th>${list.goodsnumber }</th>
-								<th>${list.goodsname }</th>
+									value="${list.goodsNumber }" required="required" /></th>
+								<th>${list.goodsNumber }</th>
+								<th>${list.goodsName }</th>
 								<th>${list.price }</th>
-								<th>${list.nowstock }</th>
-								<th>${list.inputgoods }</th>
-								<th>${list.outputgoods }</th>
-								<th>${list.soldnum }</th>
-								<th>${list.newitem }</th>
+								<th>${list.nowStock }</th>
+								<th>${list.inputGoods }</th>
+								<th>${list.outputGoods }</th>
+								<th>${list.soldNum }</th>
+								<th>${list.newItem }</th>
 								<th><input type="button" value="상품 상세"
-									onclick="detailGoods(${list.goodsnumber })"></th>
+									onclick="detailGoods(${list.goodsNumber })"></th>
 							</tr>
 						</c:forEach>
 					</table>

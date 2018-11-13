@@ -51,9 +51,9 @@ public class commonDaoImp implements commonDao {
 
 	// 상품 삭제
 	@Override
-	public int deleteGoods(int goodsnumber) {
+	public int deleteGoods(int goodsSumber) {
 
-		return session.delete("com.common.www.deleteGoods", goodsnumber);
+		return session.delete("com.common.www.deleteGoods", goodsSumber);
 	}
 
 	// 상점 삭제
@@ -71,8 +71,8 @@ public class commonDaoImp implements commonDao {
 
 	// 상품 하나 조회
 	@Override
-	public goodsDTO getItemOne(int goodsnumber) {
-		return session.selectOne("com.common.www.getItemOne", goodsnumber);
+	public goodsDTO getItemOne(int goodsSumber) {
+		return session.selectOne("com.common.www.getItemOne", goodsSumber);
 	}
 
 	// 상점 추가

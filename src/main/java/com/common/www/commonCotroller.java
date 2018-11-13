@@ -76,13 +76,13 @@ public class commonCotroller {
 	@RequestMapping(value = "/insertGoodsPage.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody boolean insertUserPage(goodsDTO goodsDto, HttpServletRequest req) {
 
-		String goodsnumber = req.getParameter("goodsnumber");
-		String goodsname = req.getParameter("goodsname");
+		String goodsNumber = req.getParameter("goodsNumber");
+		String goodsName = req.getParameter("goodsName");
 		String price = req.getParameter("price");
 
 		try {
-			goodsDto.setGoodsnumber(Integer.parseInt(goodsnumber));
-			goodsDto.setGoodsname(goodsname);
+			goodsDto.setGoodsNumber(Integer.parseInt(goodsNumber));
+			goodsDto.setGoodsName(goodsName);
 			goodsDto.setPrice(Integer.parseInt(price));
 			service.insertGoodsFood(goodsDto);
 			return true;
@@ -96,16 +96,16 @@ public class commonCotroller {
 
 	@RequestMapping(value = "/deleteGoodsPage.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody boolean deleteGoodsPage(@RequestParam(value = "checkArray[]") List<String> arrayParams,
-			@RequestParam(value = "goodsnumber") String value) {
-		String goodsnumber = value;
+			@RequestParam(value = "goodsNumber") String value) {
+		String goodsNumber = value;
 		List<String> arr = arrayParams;
 
-		System.out.println(goodsnumber);
+		System.out.println(goodsNumber);
 		System.out.println(arr.toString());
 
 		try {
-			if (goodsnumber != null && arr.size() < 2)
-				service.deleteGoods(Integer.parseInt(goodsnumber));
+			if (goodsNumber != null && arr.size() < 2)
+				service.deleteGoods(Integer.parseInt(goodsNumber));
 			else
 				for (int i = 0; i < arr.size(); i++)
 					service.deleteGoods(Integer.parseInt(arr.get(i)));
@@ -142,8 +142,8 @@ public class commonCotroller {
 	}
 
 	@RequestMapping(value = "/detailGoods.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String detailGoods(Model model, String goodsnumber) {
-		goodsDTO goodsDto = service.getItemOne(Integer.parseInt(goodsnumber));
+	public String detailGoods(Model model, String goodsNumber) {
+		goodsDTO goodsDto = service.getItemOne(Integer.parseInt(goodsNumber));
 		model.addAttribute("dto", goodsDto);
 		return "detailGoods";
 	}
@@ -160,8 +160,8 @@ public class commonCotroller {
 	}
 
 	@RequestMapping(value = "/modifyGoods.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String modifyGoods(Model model, String goodsnumber) {
-		goodsDTO goodsDto = service.getItemOne(Integer.parseInt(goodsnumber));
+	public String modifyGoods(Model model, String goodsNumber) {
+		goodsDTO goodsDto = service.getItemOne(Integer.parseInt(goodsNumber));
 		model.addAttribute("dto", goodsDto);
 		return "modifyGoods";
 	}
@@ -176,23 +176,23 @@ public class commonCotroller {
 	// modifyGoodspage
 	@RequestMapping(value = "/modifyGoodspage.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody boolean modifyGoodspage(goodsDTO goodsDto, HttpServletRequest req) {
-		String goodsname = req.getParameter("goodsname");
+		String goodsName = req.getParameter("goodsName");
 		String price = req.getParameter("price");
-		String nowstock = req.getParameter("nowstock");
-		String soldnum = req.getParameter("soldnum");
+		String nowStock = req.getParameter("nowStock");
+		String soldNum = req.getParameter("soldNum");
 		String calorie = req.getParameter("calorie");
-		String goodsinfo = req.getParameter("goodsinfo");
-		String inputgoods = req.getParameter("inputgoods");
-		String outputgoods = req.getParameter("outputgoods");
+		String goodsInfo = req.getParameter("goodsInfo");
+		String inputGoods = req.getParameter("inputGoods");
+		String outputGoods = req.getParameter("outputGoods");
 		try {
-			goodsDto.setGoodsname(goodsname);
+			goodsDto.setGoodsName(goodsName);
 			goodsDto.setPrice(Integer.parseInt(price));
-			goodsDto.setNowstock(Integer.parseInt(nowstock));
-			goodsDto.setSoldnum(Integer.parseInt(soldnum));
+			goodsDto.setNowStock(Integer.parseInt(nowStock));
+			goodsDto.setSoldNum(Integer.parseInt(soldNum));
 			goodsDto.setCalorie(Integer.parseInt(calorie));
-			goodsDto.setGoodsinfo(goodsinfo);
-			goodsDto.setInputgoods(inputgoods);
-			goodsDto.setOutputgoods(outputgoods);
+			goodsDto.setGoodsInfo(goodsInfo);
+			goodsDto.setInputGoods(inputGoods);
+			goodsDto.setOutputGoods(outputGoods);
 			service.updateGoods(goodsDto);
 			return true;
 		} catch (Exception e) {

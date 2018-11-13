@@ -1,35 +1,33 @@
 package com.common.www.dto;
 
-import java.sql.Date;
-
 public class goodsDTO {
 
-	private int goodsnumber;
-	private String goodsname;
+	private int goodsNumber;
+	private String goodsName;
 	private int price;
-	private int nowstock;
-	private String inputgoods;
-	private String outputgoods;
-	private int soldnum;
-	private int newitem;
+	private int nowStock;
+	private String inputGoods;
+	private String outputGoods;
+	private int soldNum;
+	private int newItem;
 	private int calorie;
-	private int rankgoods;
-	private String goodsinfo;
+	private int rankGoods;
+	private String goodsInfo;
 
-	public int getGoodsnumber() {
-		return goodsnumber;
+	public int getGoodsNumber() {
+		return goodsNumber;
 	}
 
-	public void setGoodsnumber(int goodsnumber) {
-		this.goodsnumber = goodsnumber;
+	public void setGoodsNumber(int goodsNumber) {
+		this.goodsNumber = goodsNumber;
 	}
 
-	public String getGoodsname() {
-		return goodsname;
+	public String getGoodsName() {
+		return goodsName;
 	}
 
-	public void setGoodsname(String goodsname) {
-		this.goodsname = goodsname;
+	public void setGoodsName(String goodsName) {
+		this.goodsName = goodsName;
 	}
 
 	public int getPrice() {
@@ -40,44 +38,44 @@ public class goodsDTO {
 		this.price = price;
 	}
 
-	public int getNowstock() {
-		return nowstock;
+	public int getNowStock() {
+		return nowStock;
 	}
 
-	public void setNowstock(int nowstock) {
-		this.nowstock = nowstock;
+	public void setNowStock(int nowStock) {
+		this.nowStock = nowStock;
 	}
 
-	public String getInputgoods() {
-		return inputgoods;
+	public String getInputGoods() {
+		return inputGoods;
 	}
 
-	public void setInputgoods(String inputgoods) {
-		this.inputgoods = inputgoods;
+	public void setInputGoods(String inputGoods) {
+		this.inputGoods = inputGoods;
 	}
 
-	public String getOutputgoods() {
-		return outputgoods;
+	public String getOutputGoods() {
+		return outputGoods;
 	}
 
-	public void setOutputgoods(String outputgoods) {
-		this.outputgoods = outputgoods;
+	public void setOutputGoods(String outputGoods) {
+		this.outputGoods = outputGoods;
 	}
 
-	public int getSoldnum() {
-		return soldnum;
+	public int getSoldNum() {
+		return soldNum;
 	}
 
-	public void setSoldnum(int soldnum) {
-		this.soldnum = soldnum;
+	public void setSoldNum(int soldNum) {
+		this.soldNum = soldNum;
 	}
 
-	public int getNewitem() {
-		return newitem;
+	public int getNewItem() {
+		return newItem;
 	}
 
-	public void setNewitem(int newitem) {
-		this.newitem = newitem;
+	public void setNewItem(int newItem) {
+		this.newItem = newItem;
 	}
 
 	public int getCalorie() {
@@ -88,28 +86,28 @@ public class goodsDTO {
 		this.calorie = calorie;
 	}
 
-	public int getRankgoods() {
-		return rankgoods;
+	public int getRankGoods() {
+		return rankGoods;
 	}
 
-	public void setRankgoods(int rankgoods) {
-		this.rankgoods = rankgoods;
+	public void setRankGoods(int rankGoods) {
+		this.rankGoods = rankGoods;
 	}
 
-	public String getGoodsinfo() {
-		return goodsinfo;
+	public String getGoodsInfo() {
+		return goodsInfo;
 	}
 
-	public void setGoodsinfo(String goodsinfo) {
-		this.goodsinfo = goodsinfo;
+	public void setGoodsInfo(String goodsInfo) {
+		this.goodsInfo = goodsInfo;
 	}
 
 	@Override
 	public String toString() {
-		return "commonDTO2 [goodsnumber=" + goodsnumber + ", goodsname=" + goodsname + ", price=" + price
-				+ ", nowstock=" + nowstock + ", inputgoods=" + inputgoods + ", outputgoods=" + outputgoods
-				+ ", soldnum=" + soldnum + ", newitem=" + newitem + ", calorie=" + calorie + ", rankgoods=" + rankgoods
-				+ ", goodsinfo=" + goodsinfo + "]";
+		return "goodsDTO [goodsNumber=" + goodsNumber + ", goodsName=" + goodsName + ", price=" + price + ", nowStock="
+				+ nowStock + ", inputGoods=" + inputGoods + ", outputGoods=" + outputGoods + ", soldNum=" + soldNum
+				+ ", newItem=" + newItem + ", calorie=" + calorie + ", rankGoods=" + rankGoods + ", goodsInfo="
+				+ goodsInfo + "]";
 	}
 
 }

@@ -24,13 +24,13 @@ public interface commonDao {
 	public int selectTotalPaging();
 
 	// 상품 삭제
-	public int deleteGoods(int goodsnumber);
+	public int deleteGoods(int goodsSumber);
 
 	// 상품 수정 처리
 	public int updateGoods(goodsDTO goodsDto);
 
 	// 상품 하나 조회
-	public goodsDTO getItemOne(int goodsnumber);
+	public goodsDTO getItemOne(int goodsSumber);
 
 	// 상점 추가
 	public storeDTO insertStore(storeDTO storeDto);

@@ -54,9 +54,9 @@ public class commonServiceImp implements commonService {
 
 	// 상품 삭제 처리
 	@Override
-	public int deleteGoods(int goodsnumber) {
+	public int deleteGoods(int goodsSumber) {
 
-		return dao.deleteGoods(goodsnumber);
+		return dao.deleteGoods(goodsSumber);
 	}
 
 	// 상점 삭제
@@ -74,8 +74,8 @@ public class commonServiceImp implements commonService {
 
 	// 상품 하나 조회
 	@Override
-	public goodsDTO getItemOne(int goodsnumber) {
-		return dao.getItemOne(goodsnumber);
+	public goodsDTO getItemOne(int goodsSumber) {
+		return dao.getItemOne(goodsSumber);
 	}
 
 	// 상점 추가

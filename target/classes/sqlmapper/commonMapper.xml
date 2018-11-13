@@ -53,7 +53,7 @@
 		GOODS
 		WHERE
 		GOODSNUMBER
-		=#{goodsnumber}
+		=#{goodsNumber}
 	</select>
 
 	<!-- 상점 하나 조회 -->
@@ -93,7 +93,7 @@
 		parameterType="com.common.www.dto.goodsDTO">
 		INSERT INTO GOODS
 		VALUE(GOODSNUMBER,GOODSNAME,PRICE,OUTPUTGOODS)
-		VALUES(#{goodsnumber},#{goodsname},#{price},SYSDATE + 5 )
+		VALUES(#{goodsNumber},#{goodsName},#{price},SYSDATE + 5 )
 	</insert>
 
 	<!-- 상품 추가 db 통조림() -->
@@ -101,13 +101,13 @@
 		parameterType="com.common.www.dto.goodsDTO">
 		INSERT INTO GOODS
 		VALUE(GOODSNUMBER,GOODSNAME,PRICE,OUTPUTGOODS)
-		VALUES(#{goodsnumber},#{goodsname},#{price},SYSDATE + 1000 )
+		VALUES(#{goodsNumber},#{goodsName},#{price},SYSDATE + 1000 )
 	</insert>
 
 	<!-- 상품 삭제 -->
 	<delete id="deleteGoods" parameterType="java.lang.Integer">
 		DELETE GOODS WHERE
-		GOODSNUMBER =#{goodsnumber}
+		GOODSNUMBER =#{goodsNumber}
 	</delete>
 
 	<!-- 상점 삭제 -->
@@ -122,16 +122,16 @@
 	<update id="updateGoods"
 		parameterType="com.common.www.dto.goodsDTO">
 		UPDATE GOODS SET
-		GOODSNAME = #{goodsname} , PRICE =
-		#{price} ,NOWSTOCK = #{nowstock}, INPUTGOODS =TO_DATE( #{inputgoods},
+		GOODSNAME = #{goodsName} , PRICE =
+		#{price} ,NOWSTOCK = #{nowStock}, INPUTGOODS =TO_DATE( #{inputGoods},
 		'MM/DD/YYYY')
-		,OUTPUTGOODS =TO_DATE( #{outputgoods},
+		,OUTPUTGOODS =TO_DATE( #{outputGoods},
 		'MM/DD/YYYY')
-		,SOLDNUM =#{soldnum} , CALORIE
+		,SOLDNUM =#{soldNum} , CALORIE
 		=#{calorie} , GOODSINFO
-		=#{goodsinfo}
+		=#{goodsInfo}
 		WHERE
-		GOODSNUMBER =#{goodsnumber}
+		GOODSNUMBER =#{goodsNumber}
 	</update>
 
 	<update id="updateStore"

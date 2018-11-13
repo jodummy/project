@@ -36,13 +36,13 @@
 	<form id="ff" action="insertGoodsPage.do" method="post">
 		<table class="table table-bordered table-hover">
 			<tr>
-				<td>goodsnumber</td>
-				<td><input type="text" name="goodsnumber" id="goodsnumber"
+				<td>goodsNumber</td>
+				<td><input type="text" name="goodsNumber" id="goodsNumber"
 					required="required"></td>
 			</tr>
 			<tr>
-				<td>goodsname</td>
-				<td><input type="text" name="goodsname" id="goodsname"
+				<td>goodsName</td>
+				<td><input type="text" name="goodsName" id="goodsName"
 					required="required"> <input type="button"
 					onclick="validityCheck()" value="중복체크"></td>
 			</tr>
