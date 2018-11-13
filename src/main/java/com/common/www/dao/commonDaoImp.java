@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.common.www.dto.storeDTO;
 import com.common.www.dto.goodsDTO;
-import com.common.www.dto.commonDTO3;
+import com.common.www.dto.employeeDTO;
 
 @Repository
 public class commonDaoImp implements commonDao {
@@ -90,15 +90,29 @@ public class commonDaoImp implements commonDao {
 
 	// 사원 출력
 	@Override
-	public List<commonDTO3> getEmployee(String storeCode) {
+	public List<employeeDTO> getEmployee(String storeCode) {
 
 		return session.selectList("com.common.www.getEmployee", storeCode);
 	}
 
+	// 상점 수정
 	@Override
 	public int updateStore(storeDTO storeDto) {
 
 		return session.update("com.common.www.updateStore", storeDto);
+	}
+
+	// 사원 추가
+	@Override
+	public int insertEmployee(employeeDTO employeeDto) {
+		int result = session.insert("insertEmployee", employeeDto);
+		return result;
+	}
+
+	// 사원 삭제
+	@Override
+	public int deleteEmployee(String phone) {
+		return session.delete("com.common.www.deleteEmployee", phone);
 	}
 
 }

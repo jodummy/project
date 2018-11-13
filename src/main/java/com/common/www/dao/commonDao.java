@@ -5,7 +5,7 @@ import java.util.Map;
 
 import com.common.www.dto.storeDTO;
 import com.common.www.dto.goodsDTO;
-import com.common.www.dto.commonDTO3;
+import com.common.www.dto.employeeDTO;
 
 public interface commonDao {
 	// 점포 리스트
@@ -42,9 +42,15 @@ public interface commonDao {
 	public storeDTO getStoreOne(String storeCode);
 
 	// 사원 출력
-	public List<commonDTO3> getEmployee(String storeCode);
+	public List<employeeDTO> getEmployee(String storeCode);
 
 	// 상점 수정
 	public int updateStore(storeDTO storeDto);
+
+	// 사원 추가
+	public int insertEmployee(employeeDTO employeeDto);
+
+	//사원 삭제
+	public int deleteEmployee(String phone);
 
 }

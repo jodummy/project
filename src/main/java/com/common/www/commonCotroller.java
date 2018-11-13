@@ -19,7 +19,7 @@ import com.common.www.dto.PagingDto;
 //////
 import com.common.www.dto.storeDTO;
 import com.common.www.dto.goodsDTO;
-import com.common.www.dto.commonDTO3;
+import com.common.www.dto.employeeDTO;
 import com.common.www.service.commonService;
 
 @Controller
@@ -117,30 +117,6 @@ public class commonCotroller {
 		return false;
 	}
 
-	@RequestMapping(value = "/deleteStorePage.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody boolean deleteStorePage(@RequestParam(value = "checkArray[]") List<String> arrayParams,
-			@RequestParam(value = "storeCode") String value) {
-		String storeCode = value;
-		List<String> arr = arrayParams;
-
-		System.out.println(storeCode);
-		System.out.println(arr.toString());
-
-		try {
-			if (storeCode != null && arr.size() < 2) {
-				service.deleteStore(storeCode);
-			} else {
-				for (int i = 0; i < arr.size(); i++) {
-					service.deleteStore(arr.get(i));
-				}
-			}
-			return true;
-		} catch (Exception e) {
-			e.getMessage();
-		}
-		return false;
-	}
-
 	@RequestMapping(value = "/detailGoods.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String detailGoods(Model model, String goodsNumber) {
 		goodsDTO goodsDto = service.getItemOne(Integer.parseInt(goodsNumber));
@@ -153,7 +129,7 @@ public class commonCotroller {
 		storeDTO StoreDto = service.getStoreOne(storeCode);
 		model.addAttribute("dto", StoreDto);
 
-		List<commonDTO3> employeeDto = service.getEmployee(storeCode);
+		List<employeeDTO> employeeDto = service.getEmployee(storeCode);
 		model.addAttribute("dto2", employeeDto);
 
 		return "detailStore";
@@ -201,7 +177,6 @@ public class commonCotroller {
 		return false;
 	}
 
-	// 여기 하던주 수정해줘
 	@RequestMapping(value = "/modyStorePage.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody boolean modyStorePage(storeDTO storeDto, HttpServletRequest req) {
 		String location = req.getParameter("location");
@@ -223,4 +198,82 @@ public class commonCotroller {
 		return false;
 	}
 
+	// insertEmployee
+	@RequestMapping(value = "/insertEmployee.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String insertEmployee(Model model, HttpServletRequest req) {
+		String storeCode = req.getParameter("storeCode");
+		model.addAttribute("storeCode", storeCode);
+		return "insertEmployee";
+	}
+
+	@RequestMapping(value = "/insertEmployeePage.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody boolean insertEmployeePage(employeeDTO employeeDTO, HttpServletRequest req) {
+
+		String storeCode = req.getParameter("storeCode");
+		String manager = req.getParameter("manager");
+		String phone = req.getParameter("phone");
+		String seqTime = req.getParameter("seqTime");
+
+//		System.out.println(storeCode + manager + phone + seqTime);
+
+		try {
+			employeeDTO.setStoreCode(storeCode);
+			employeeDTO.setManager(manager);
+			employeeDTO.setPhone(phone);
+			employeeDTO.setSeqTime(Integer.parseInt(seqTime));
+			service.insertEmployee(employeeDTO);
+			return true;
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return false;
+	}
+
+	@RequestMapping(value = "/deleteEmployeePage.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody boolean deleteEmployeePage(@RequestParam(value = "checkArray[]") List<String> arrayParams,
+			@RequestParam(value = "phone") String value) {
+		String phone = value;
+		List<String> arr = arrayParams;
+
+		System.out.println(phone);
+		System.out.println(arr.toString());
+
+		try {
+			if (phone != null && arr.size() < 2) {	
+				service.deleteEmployee(phone);
+			} else {
+				for (int i = 0; i < arr.size(); i++) {
+					service.deleteEmployee(arr.get(i));
+				}
+			}
+			return true;
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return false;
+	}
+
+	@RequestMapping(value = "/deleteStorePage.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody boolean deleteStorePage(@RequestParam(value = "checkArray[]") List<String> arrayParams,
+			@RequestParam(value = "storeCode") String value) {
+		String storeCode = value;
+		List<String> arr = arrayParams;
+
+		System.out.println(storeCode);
+		System.out.println(arr.toString());
+
+		try {
+			if (storeCode != null && arr.size() < 2) {
+				service.deleteStore(storeCode);
+			} else {
+				for (int i = 0; i < arr.size(); i++) {
+					service.deleteStore(arr.get(i));
+				}
+			}
+			return true;
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return false;
+	}
 }

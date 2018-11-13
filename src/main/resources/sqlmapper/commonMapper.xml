@@ -71,13 +71,21 @@
 
 	<!-- 사원 상점별 조회 -->
 	<select id="getEmployee"
-		resultType="com.common.www.dto.commonDTO3" parameterType="String">
+		resultType="com.common.www.dto.employeeDTO" parameterType="String">
 		SELECT
 		STORECODE , MANAGER , PHONE , SEQTIME
 		FROM EMPLOYEE
 		WHERE STORECODE =
 		#{storeCode}
 	</select>
+
+	<!-- 사원 입력 -->
+	<insert id="insertEmployee"
+		parameterType="com.common.www.dto.employeeDTO">
+		INSERT INTO EMPLOYEE
+		VALUE(STORECODE,MANAGER,PHONE,SEQTIME)
+		VALUES(#{storeCode},#{manager},#{phone},#{seqTime})
+	</insert>
 
 	<!-- 상점 추가 -->
 	<insert id="insertStore"
@@ -103,6 +111,8 @@
 		VALUE(GOODSNUMBER,GOODSNAME,PRICE,OUTPUTGOODS)
 		VALUES(#{goodsNumber},#{goodsName},#{price},SYSDATE + 1000 )
 	</insert>
+
+
 
 	<!-- 상품 삭제 -->
 	<delete id="deleteGoods" parameterType="java.lang.Integer">
@@ -141,6 +151,11 @@
 		WHERE
 		STORECODE =#{storeCode}
 	</update>
+
+	<delete id="deleteEmployee" parameterType="String">
+		DELETE EMPLOYEE WHERE
+		PHONE =#{phone}
+	</delete>
 
 
 

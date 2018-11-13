@@ -13,14 +13,6 @@
 <title>Insert title here</title>
 </head>
 <script type="text/javascript">
-	function modifyStore(storeCode) {
-		window
-				.open(
-						"./modifyStore.do?&storeCode=" + storeCode,
-						"선택",
-						"scrollbars=yes,toolbar=yes,resizable=yes,width=1000,height=600,right=700,top=0");
-	}
-
 	function allChk(obj) {
 		var chkObj = document.getElementsByName("chkbox");
 		var rowCnt = chkObj.length - 1;
@@ -47,7 +39,7 @@
 		});
 
 		var allData = {
-			"manager" : $(":checkbox[name='chkbox']:checked").val(),
+			"phone" : $(":checkbox[name='chkbox']:checked").val(),
 			"checkArray" : checkboxValues
 		};
 
@@ -63,6 +55,22 @@
 			}
 		});
 
+	}
+	
+	function modifyStore(storeCode) {
+		window
+				.open(
+						"./modifyStore.do?&storeCode=" + storeCode,
+						"선택",
+						"scrollbars=yes,toolbar=yes,resizable=yes,width=1000,height=600,right=700,top=0");
+	}
+	
+	function insertEmployee(storeCode) {
+		window
+				.open(
+						"./insertEmployee.do?&storeCode=" + storeCode,
+						"선택",
+						"scrollbars=yes,toolbar=yes,resizable=yes,width=1000,height=600,right=700,top=0");
 	}
 </script>
 <body>
@@ -84,8 +92,7 @@
 	<form action="./store.do" method="post" id="ff">
 		<input type="hidden" value="${dto.storeCode}" name='storeCode'>
 		<div colspan="3">
-			<input type="button" value="수정"
-				onclick="modifyStore('${dto.storeCode}')" class="btn btn-default">
+			<input type="button" value="수정" onclick="modifyStore('${dto.storeCode}')">
 		</div>
 	</form>
 
@@ -98,8 +105,7 @@
 		<table>
 			<thead>
 				<tr>
-					<th><input id="allCheck" type="checkbox"
-						onclick="allChk(this);" /></th>
+					<th><input id="allCheck" type="checkbox" onclick="allChk(this);" /></th>
 					<th>이름</th>
 					<th>번호</th>
 					<th>순서</th>
@@ -107,23 +113,15 @@
 			</thead>
 			<c:forEach items="${dto2 }" var="dto2">
 				<tr>
-					<th><input name="chkbox" type="checkbox" id="chkList"
-						value="${dto2.manager }" required="required" /></th>
+					<th><input name="chkbox" type="checkbox" id="chkList" value="${dto2.phone }" required="required" /></th>
 					<th>${dto2.manager }</th>
 					<th>${dto2.phone }</th>
-					<th>${dto2.seqtime }</th>
+					<th>${dto2.seqTime }</th>
 				</tr>
 			</c:forEach>
 		</table>
-		<input type="button" value="사람 추가" onclick="inserteEmployee()">
+		<input type="button" value="사람 추가" onclick="insertEmployee('${dto.storeCode}')">
 		<input type="button" value="사람 제거" onclick="deleteEmployee()">
 	</form>
-
-
-
-
-
-
-
 </body>
 </html>
