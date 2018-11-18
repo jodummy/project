@@ -68,8 +68,8 @@
 						"scrollbars=yes,toolbar=yes,resizable=yes,width=450,height=500,right=150,top=0");
 	}
 	
-	function detailGoods(goodsNumber) {
-		window.open("./detailGoods.do?&goodsNumber=" + goodsNumber, "선택",
+	function detailGoods(goodsNumber , storeCode) {
+		window.open("./detailGoods.do?&goodsNumber=" + goodsNumber + "&storeCode=" + storeCode, "선택",
 				"scrollbars=yes,toolbar=yes,resizable=yes,width=800,height=500,right=600,top=0");
 	}
 </script>
@@ -109,7 +109,7 @@
 								<th>${list.soldNum }</th>
 								<th>${list.newItem }</th>
 								<th><input type="button" value="상품 상세"
-									onclick="detailGoods(${list.goodsNumber })"></th>
+									onclick="detailGoods(${list.goodsNumber },'${storeCode}')"></th>
 							</tr>
 						</c:forEach>
 					</table>

@@ -13,12 +13,8 @@
 <title>Insert title here</title>
 </head>
 <script type="text/javascript">
-	function modifyGoods(goodsNumber) {
-		window
-				.open(
-						"./modifyGoods.do?&goodsNumber=" + goodsNumber,
-						"선택",
-						"scrollbars=yes,toolbar=yes,resizable=yes,width=1000,height=600,right=700,top=0");
+	function modifyGoods(goodsNumber ,storeCode ) {
+		window.open("./modifyGoods.do?&goodsNumber=" + goodsNumber + '&storeCode=' + storeCode,"선택","scrollbars=yes,toolbar=yes,resizable=yes,width=1000,height=600,right=700,top=0");
 	}
 </script>
 <body>
@@ -66,9 +62,10 @@
 	</table>
 	<form action="./goods.do" method="post" id="ff">
 		<input type="hidden" value="${dto.goodsNumber}" name='goodsNumber'>
+		<input type="hidden" value="${storeCode}" name='storeCode'>
 		<div colspan="3">
 			<input type="button" value="수정"
-				onclick="modifyGoods('${dto.goodsNumber}')" class="btn btn-default">
+				onclick="modifyGoods('${dto.goodsNumber}' , '${storeCode}')" class="btn btn-default">
 		</div>
 	</form>
 

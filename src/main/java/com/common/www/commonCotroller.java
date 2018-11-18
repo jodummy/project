@@ -107,6 +107,7 @@ public class commonCotroller {
 	public String detailGoods(Model model, HttpServletRequest req, goodsDTO goodsdto) {
 		String goodsNumber = req.getParameter("goodsNumber");
 		String storeCode = req.getParameter("storeCode");
+		model.addAttribute("storeCode", storeCode);
 		goodsdto.setGoodsNumber(Integer.parseInt(goodsNumber));
 		goodsdto.setStoreCode(storeCode);
 		goodsDTO goodsDto = service.getItemOne(goodsdto);
@@ -133,7 +134,31 @@ public class commonCotroller {
 		goodsdto.setStoreCode(storeCode);
 		goodsDTO goodsDto = service.getItemOne(goodsdto);
 		model.addAttribute("dto", goodsDto);
+		model.addAttribute("storeCode", storeCode);
 		return "modifyGoods";
+	}
+
+	// modifyGoodspage
+	@RequestMapping(value = "/modifyGoodspage.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody boolean modifyGoodspage(goodsDTO goodsDto, HttpServletRequest req) {
+
+		try {
+			goodsDto.setGoodsName(req.getParameter("goodsName"));
+			goodsDto.setPrice(Integer.parseInt(req.getParameter("price")));
+			goodsDto.setNowStock(Integer.parseInt(req.getParameter("nowStock")));
+			goodsDto.setSoldNum(Integer.parseInt(req.getParameter("soldNum")));
+			goodsDto.setCalorie(Integer.parseInt(req.getParameter("calorie")));
+			goodsDto.setGoodsInfo(req.getParameter("goodsInfo"));
+			goodsDto.setInputGoods(req.getParameter("inputGoods"));
+			goodsDto.setOutputGoods(req.getParameter("outputGoods"));
+			goodsDto.setStoreCode(req.getParameter("storeCode"));
+			goodsDto.setGoodsNumber(Integer.parseInt(req.getParameter("goodsNumber")));
+			service.updateGoods(goodsDto);
+			return true;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return false;
 	}
 
 	@RequestMapping(value = "/modifyStore.do", method = { RequestMethod.GET, RequestMethod.POST })
@@ -143,46 +168,18 @@ public class commonCotroller {
 		return "modifyStore";
 	}
 
-	// modifyGoodspage
-	@RequestMapping(value = "/modifyGoodspage.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody boolean modifyGoodspage(goodsDTO goodsDto, HttpServletRequest req) {
-		String goodsName = req.getParameter("goodsName");
-		String price = req.getParameter("price");
-		String nowStock = req.getParameter("nowStock");
-		String soldNum = req.getParameter("soldNum");
-		String calorie = req.getParameter("calorie");
-		String goodsInfo = req.getParameter("goodsInfo");
-		String inputGoods = req.getParameter("inputGoods");
-		String outputGoods = req.getParameter("outputGoods");
-		try {
-			goodsDto.setGoodsName(goodsName);
-			goodsDto.setPrice(Integer.parseInt(price));
-			goodsDto.setNowStock(Integer.parseInt(nowStock));
-			goodsDto.setSoldNum(Integer.parseInt(soldNum));
-			goodsDto.setCalorie(Integer.parseInt(calorie));
-			goodsDto.setGoodsInfo(goodsInfo);
-			goodsDto.setInputGoods(inputGoods);
-			goodsDto.setOutputGoods(outputGoods);
-			service.updateGoods(goodsDto);
-			return true;
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		return false;
-	}
-
 	@RequestMapping(value = "/modyStorePage.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody boolean modyStorePage(storeDTO storeDto, HttpServletRequest req) {
-		String location = req.getParameter("location");
-		String tel = req.getParameter("tel");
-		String income = req.getParameter("income");
-		String storeCode = req.getParameter("storeCode");
+//		String location = req.getParameter("location");
+//		String tel = req.getParameter("tel");
+//		String income = req.getParameter("income");
+//		String storeCode = req.getParameter("storeCode");
 
 		try {
-			storeDto.setinCome(Integer.parseInt(income));
-			storeDto.setLocation(location);
-			storeDto.setstoreCode(storeCode);
-			storeDto.setTel(tel);
+			storeDto.setinCome(Integer.parseInt(req.getParameter("income")));
+			storeDto.setLocation(req.getParameter("location"));
+			storeDto.setstoreCode(req.getParameter("storeCode"));
+			storeDto.setTel(req.getParameter("tel"));
 			service.updateStore(storeDto);
 			return true;
 		} catch (Exception e) {

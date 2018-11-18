@@ -6,14 +6,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<!-- 이건 스타일이야 건들지말고 -->
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
-
-<!-- jquery -->
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- jQuery UI CSS파일  --> 
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
+<!-- jQuery 기본 js파일 -->  
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
+<!-- jQuery UI 라이브러리 js파일 --> 
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>  
 
 <!DOCTYPE html>
 
@@ -41,21 +39,21 @@
 	}
 
 	$(function() {
-		$("#inputgoods").datepicker();
+	    $( "#inputGoods" ).datepicker({
+	    });
 	});
 	$(function() {
-		$("#outputgoods").datepicker();
+		$("#outputGoods").datepicker();
 	});
 </script>
 <body>
 	<form action="modifyGoodspage.do" method="post" id="ff">
-		<input type="hidden" name="storeCode" value="${dto.storeCode}">
+		<input type="hidden" name="storeCode" value="${storeCode}">
 		<input type="hidden" name="goodsNumber" value="${dto.goodsNumber}">
 		<table class="table table-bordered table-hover">
 			<tr>
 				<td>상품 이름</td>
-				<td><input type="text" value="${dto.goodsName}"
-					name="goodsname"></td>
+				<td><input type="text" value="${dto.goodsName}"  name="goodsName"></td>
 			</tr>
 			<tr>
 				<td>가격</td>
@@ -72,13 +70,11 @@
 			</tr>
 			<tr>
 				<td>출입 날짜</td>
-				<td><input type="text" id="inputGoods" name="inputGoods"
-					value="${dto.inputGoods}"></td>
+				<td><input type="text" id="inputGoods" name="inputGoods" value="${dto.inputGoods}"></td>
 			</tr>
 			<tr>
 				<td>유통기한</td>
-				<td><input type="text" id="outputGoods" name="outputGoods"
-					value="${dto.outputGoods}"></td>
+				<td><input type="text" id="outputGoods" name="outputGoods" value="${dto.outputGoods}"></td>
 			</tr>
 			<tr>
 				<td>칼로리</td>
@@ -87,16 +83,15 @@
 			</tr>
 			<tr>
 				<td>상품 정보</td>
-				<td><textarea name="goodsInfo" rows="10" cols="100"
-						value="${dto.goodsInfo}"></textarea></td>
+				<td><textarea name="goodsInfo" rows="10" cols="100" value="${dto.goodsInfo}"></textarea></td>
 			</tr>
 			<tr>
 
-				<td align="center" colspan="3"><input type="button"
-					value="수정이 완료" onclick="succesUpdate()" class="btn btn-default">
-					<input type="reset" value="다시쓰기" class="btn btn-default"></td>
+				<td align="center" colspan="3">
+				<input type="button"value="수정이 완료" onclick="succesUpdate()" class="btn btn-default">
+				<input type="reset" value="다시쓰기" class="btn btn-default">
+				</td>
 			</tr>
-
 		</table>
 	</form>
 
