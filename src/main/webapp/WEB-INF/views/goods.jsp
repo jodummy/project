@@ -34,15 +34,15 @@
 	
 
 	function deleteGoods() {
-
 		var checkboxValues = [];
 		$("input[name='chkbox']:checked").each(function(i) {
 			checkboxValues.push($(this).val());
 		});
 
 		var allData = {
-			"goodsnumber" : $(":checkbox[name='chkbox']:checked").val(),
-			"checkArray" : checkboxValues
+			"goodsnumber" :$(":checkbox[name='chkbox']:checked").val(),
+			"checkArray" : checkboxValues,
+			"storeCode" : $('input[name=storeCode]').val()
 		};
 
 		$.ajax({
@@ -53,16 +53,18 @@
 				location.reload();
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
-				alert("에러 발생~~ \n" + textStatus + " : " + errorThrown);
+				if(errorThrown == 'Bad Request')
+					alert('번호를 눌러주세요');
+				else
+					alert("에러 발생~~ \n" + textStatus + " : " + errorThrown);
 			}
 		});
 
 	}
 
 	//insert
-	function insertGoods() {
-		window
-				.open("./insertGoods.do", "선택",
+	function insertGoods(storeCode) {
+		window.open("./insertGoods.do?&storeCode=" + storeCode, "선택",
 						"scrollbars=yes,toolbar=yes,resizable=yes,width=450,height=500,right=150,top=0");
 	}
 	
@@ -78,6 +80,7 @@
 			<div style="padding-left: 50px;">
 				<h2 id="txttitle">현재 상품</h2>
 				<form action="deleteGoodsPage.do" method="post" id="ff">
+					<input type="hidden" name="storeCode" value="${storeCode}">
 					<table>
 						<thead>
 							<tr>
@@ -110,7 +113,7 @@
 							</tr>
 						</c:forEach>
 					</table>
-					<input type="button" value="상품 추가" onclick="insertGoods()">
+					<input type="button" value="상품 추가" onclick="insertGoods('${storeCode}')">
 					<input type="button" value="상품 제거" onclick="deleteGoods()">
 				</form>
 

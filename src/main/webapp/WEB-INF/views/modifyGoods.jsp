@@ -49,6 +49,7 @@
 </script>
 <body>
 	<form action="modifyGoodspage.do" method="post" id="ff">
+		<input type="hidden" name="storeCode" value="${dto.storeCode}">
 		<input type="hidden" name="goodsNumber" value="${dto.goodsNumber}">
 		<table class="table table-bordered table-hover">
 			<tr>

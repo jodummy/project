@@ -12,10 +12,10 @@ public interface commonService {
 	public List<storeDTO> getStore();
 
 	// 상품 하나 조회
-	public goodsDTO getItemOne(int goodsNumber);
+	public goodsDTO getItemOne(goodsDTO goodsDto);
 
 	// 상품 리스트
-	public List<goodsDTO> getItem();
+	public List<goodsDTO> getItem(String store);
 
 	// 상품 추가
 	public goodsDTO insertGoodsFood(goodsDTO goodsDto);
@@ -27,7 +27,7 @@ public interface commonService {
 	public int selectTotalPaging();
 
 	// 상품 삭제 처리
-	public int deleteGoods(int goodsNumber);
+	public int deleteGoods(goodsDTO goodsDto);
 
 	// 상점 삭제
 	public int deleteStore(String storeCode);

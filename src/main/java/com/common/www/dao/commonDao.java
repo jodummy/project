@@ -12,7 +12,7 @@ public interface commonDao {
 	public List<storeDTO> getStore();
 
 	// 상품 리스트
-	public List<goodsDTO> getItem();
+	public List<goodsDTO> getItem(String storeCode);
 
 	// 상품 넣기
 	public goodsDTO insertGoodsFood(goodsDTO goodsDto);
@@ -24,13 +24,13 @@ public interface commonDao {
 	public int selectTotalPaging();
 
 	// 상품 삭제
-	public int deleteGoods(int goodsSumber);
+	public int deleteGoods(goodsDTO goodsDto);
 
 	// 상품 수정 처리
 	public int updateGoods(goodsDTO goodsDto);
 
 	// 상품 하나 조회
-	public goodsDTO getItemOne(int goodsSumber);
+	public goodsDTO getItemOne(goodsDTO goodsDto);
 
 	// 상점 추가
 	public storeDTO insertStore(storeDTO storeDto);
@@ -50,7 +50,7 @@ public interface commonDao {
 	// 사원 추가
 	public int insertEmployee(employeeDTO employeeDto);
 
-	//사원 삭제
+	// 사원 삭제
 	public int deleteEmployee(String phone);
 
 }

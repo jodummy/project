@@ -14,7 +14,7 @@
 <title>상품 추가</title>
 </head>
 <script type="text/javascript">
-	function succesInsert() {
+	function succesInsert(storeCode) {
 		var goodsForm = $("#ff").serialize();
 		$.ajax({
 			type : "post",
@@ -22,7 +22,7 @@
 			data : goodsForm,
 			success : function(msg) {
 				alert(opener.location.href);
-				opener.location.href = "goods.do";
+				opener.location.href = "goods.do?&storeCode=" + storeCode;
 				window.close();
 			},
 			error : function(textStatus, errorThrown) {
@@ -35,6 +35,7 @@
 <body>
 	<form id="ff" action="insertGoodsPage.do" method="post">
 		<table class="table table-bordered table-hover">
+		<input type="hidden" value="${storeCode}" name='storeCode'>
 			<tr>
 				<td>goodsNumber</td>
 				<td><input type="text" name="goodsNumber" id="goodsNumber" required="required"></td>
@@ -50,8 +51,8 @@
 			</tr>
 			<tr>
 				<td align="center" colspan="3"><input type="button"
-					value="상품 추가" onclick="succesInsert()"> <input type="reset"
-					value="다시쓰기"></td>
+					value="상품 추가" onclick="succesInsert('${storeCode}')"> 
+					<input type="reset" value="다시쓰기"></td>
 			</tr>
 		</table>
 	</form>

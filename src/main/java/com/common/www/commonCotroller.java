@@ -60,66 +60,56 @@ public class commonCotroller {
 	}
 
 	@RequestMapping(value = "/goods.do", method = RequestMethod.GET)
-	public String homeSimple(Model model, PagingDto pagintDto) {
+	public String homeSimple(Model model, PagingDto pagintDto, String storeCode) {
 //		pagintDto.setTotal(service.selectTotalPaging());
-		List<goodsDTO> list = service.getItem();
+		List<goodsDTO> list = service.getItem(storeCode);
 		model.addAttribute("list", list);
+		model.addAttribute("storeCode", storeCode);
 
 		return "goods";
 	}
 
 	@RequestMapping(value = "/insertGoods.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String insertGoods() {
+	public String insertGoods(Model model, HttpServletRequest req) {
+		String storeCode = req.getParameter("storeCode");
+		model.addAttribute("storeCode", storeCode);
 		return "insertGoods";
 	}
 
 	@RequestMapping(value = "/insertGoodsPage.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody boolean insertUserPage(goodsDTO goodsDto, HttpServletRequest req) {
-
+	public @ResponseBody String insertUserPage(goodsDTO goodsDto, HttpServletRequest req) {
+		String storeCode = req.getParameter("storeCode");
 		String goodsNumber = req.getParameter("goodsNumber");
 		String goodsName = req.getParameter("goodsName");
 		String price = req.getParameter("price");
 
+		System.out.println(storeCode);
+		System.out.println(goodsNumber);
+		System.out.println(goodsName);
+		System.out.println(price);
+
 		try {
+			goodsDto.setGoodsName(storeCode);
 			goodsDto.setGoodsNumber(Integer.parseInt(goodsNumber));
 			goodsDto.setGoodsName(goodsName);
 			goodsDto.setPrice(Integer.parseInt(price));
 			service.insertGoodsFood(goodsDto);
-			return true;
+			return "goods?&storeCode" + storeCode;
 		} catch (Exception e) {
 			e.getMessage();
 		}
 
-		return false;
+		return "goods?&storeCode" + storeCode;
 
-	}
-
-	@RequestMapping(value = "/deleteGoodsPage.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody boolean deleteGoodsPage(@RequestParam(value = "checkArray[]") List<String> arrayParams,
-			@RequestParam(value = "goodsNumber") String value) {
-		String goodsNumber = value;
-		List<String> arr = arrayParams;
-
-		System.out.println(goodsNumber);
-		System.out.println(arr.toString());
-
-		try {
-			if (goodsNumber != null && arr.size() < 2)
-				service.deleteGoods(Integer.parseInt(goodsNumber));
-			else
-				for (int i = 0; i < arr.size(); i++)
-					service.deleteGoods(Integer.parseInt(arr.get(i)));
-
-			return true;
-		} catch (Exception e) {
-			e.getMessage();
-		}
-		return false;
 	}
 
 	@RequestMapping(value = "/detailGoods.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String detailGoods(Model model, String goodsNumber) {
-		goodsDTO goodsDto = service.getItemOne(Integer.parseInt(goodsNumber));
+	public String detailGoods(Model model, HttpServletRequest req, goodsDTO goodsdto) {
+		String goodsNumber = req.getParameter("goodsNumber");
+		String storeCode = req.getParameter("storeCode");
+		goodsdto.setGoodsNumber(Integer.parseInt(goodsNumber));
+		goodsdto.setStoreCode(storeCode);
+		goodsDTO goodsDto = service.getItemOne(goodsdto);
 		model.addAttribute("dto", goodsDto);
 		return "detailGoods";
 	}
@@ -136,8 +126,12 @@ public class commonCotroller {
 	}
 
 	@RequestMapping(value = "/modifyGoods.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String modifyGoods(Model model, String goodsNumber) {
-		goodsDTO goodsDto = service.getItemOne(Integer.parseInt(goodsNumber));
+	public String modifyGoods(Model model, HttpServletRequest req, goodsDTO goodsdto) {
+		String goodsNumber = req.getParameter("goodsNumber");
+		String storeCode = req.getParameter("storeCode");
+		goodsdto.setGoodsNumber(Integer.parseInt(goodsNumber));
+		goodsdto.setStoreCode(storeCode);
+		goodsDTO goodsDto = service.getItemOne(goodsdto);
 		model.addAttribute("dto", goodsDto);
 		return "modifyGoods";
 	}
@@ -239,13 +233,44 @@ public class commonCotroller {
 		System.out.println(arr.toString());
 
 		try {
-			if (phone != null && arr.size() < 2) {	
+			if (phone != null && arr.size() < 2) {
 				service.deleteEmployee(phone);
 			} else {
 				for (int i = 0; i < arr.size(); i++) {
 					service.deleteEmployee(arr.get(i));
 				}
 			}
+			return true;
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return false;
+	}
+
+	@RequestMapping(value = "/deleteGoodsPage", method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody boolean deleteGoodsPage(@RequestParam(value = "checkArray[]") List<String> arrayParams,
+			@RequestParam(value = "goodsnumber") String value, @RequestParam(value = "storeCode") String value2,
+			goodsDTO goodsDto) {
+		String storeCode = value2;
+		String goodsNumber = value;
+		List<String> arr = arrayParams;
+
+		System.out.println(storeCode);
+		System.out.println(goodsNumber);
+
+		goodsDto.setStoreCode(storeCode);
+
+		try {
+			if (goodsNumber != null && arr.size() < 2) {
+
+				goodsDto.setGoodsNumber(Integer.parseInt(goodsNumber));
+				service.deleteGoods(goodsDto);
+			} else
+				for (int i = 0; i < arr.size(); i++) {
+					goodsDto.setGoodsNumber(Integer.parseInt(arr.get(i)));
+					service.deleteGoods(goodsDto);
+				}
+
 			return true;
 		} catch (Exception e) {
 			e.getMessage();

@@ -61,17 +61,13 @@
 
 		}
 
-		//insert
 		function insertStore() {
-			window
-					.open("./insertStore.do", "선택",
-							"scrollbars=yes,toolbar=yes,resizable=yes,width=450,height=500,right=150,top=0");
+			window.open("./insertStore.do", "선택","scrollbars=yes,toolbar=yes,resizable=yes,width=450,height=500,right=150,top=0");
 		}
-
 		function detailStore(storeCode) {
-			window.open("./detailStore.do?&storeCode=" + storeCode, "선택",
-							"scrollbars=yes,toolbar=yes,resizable=yes,width=800,height=500,right=600,top=0");
+			window.open("./detailStore.do?&storeCode=" + storeCode, "선택","scrollbars=yes,toolbar=yes,resizable=yes,width=800,height=500,right=600,top=0");
 		}
+		
 </script>
 <body>
 	<div class="col-sm-10 text-left">
@@ -100,6 +96,8 @@
 								<th>${list.inCome }</th>
 								<th><input type="button" value="상점 상세"
 									onclick="detailStore('${list.storeCode }')"></th>
+								<th><input type="button" value="상품 list"
+									onclick="location.href='./goods.do?&storeCode=${list.storeCode }'"></th>
 							</tr>
 						</c:forEach>
 					</table>

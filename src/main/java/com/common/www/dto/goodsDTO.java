@@ -1,6 +1,7 @@
 package com.common.www.dto;
 
 public class goodsDTO {
+	// storeCode Ãß°¡ string
 
 	private int goodsNumber;
 	private String goodsName;
@@ -13,6 +14,15 @@ public class goodsDTO {
 	private int calorie;
 	private int rankGoods;
 	private String goodsInfo;
+	private String storeCode;
+
+	public String getStoreCode() {
+		return storeCode;
+	}
+
+	public void setStoreCode(String storeCode) {
+		this.storeCode = storeCode;
+	}
 
 	public int getGoodsNumber() {
 		return goodsNumber;

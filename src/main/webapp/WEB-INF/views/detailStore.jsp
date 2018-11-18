@@ -58,16 +58,14 @@
 	}
 	
 	function modifyStore(storeCode) {
-		window
-				.open(
+		window.open(
 						"./modifyStore.do?&storeCode=" + storeCode,
 						"선택",
 						"scrollbars=yes,toolbar=yes,resizable=yes,width=1000,height=600,right=700,top=0");
 	}
 	
 	function insertEmployee(storeCode) {
-		window
-				.open(
+		window.open(
 						"./insertEmployee.do?&storeCode=" + storeCode,
 						"선택",
 						"scrollbars=yes,toolbar=yes,resizable=yes,width=1000,height=600,right=700,top=0");
