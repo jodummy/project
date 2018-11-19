@@ -1,5 +1,7 @@
 package com.common.www.dao;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -113,6 +115,15 @@ public class commonDaoImp implements commonDao {
 	@Override
 	public int deleteEmployee(String phone) {
 		return session.delete("com.common.www.deleteEmployee", phone);
+	}
+
+	@Override
+	public List<goodsDTO> firstSearchGoods(goodsDTO goodsDto) {
+		return session.selectList("com.common.www.firstSearchGoods", goodsDto);
+	}
+	@Override
+	public List<goodsDTO> secondSearchGoods(goodsDTO goodsDto) {
+		return session.selectList("com.common.www.secondSearchGoods", goodsDto);
 	}
 
 }

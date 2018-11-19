@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.common.www.dto.PagingDto;
 //////
@@ -59,10 +60,26 @@ public class commonCotroller {
 
 	}
 
-	@RequestMapping(value = "/goods.do", method = RequestMethod.GET)
-	public String homeSimple(Model model, PagingDto pagintDto, String storeCode) {
-//		pagintDto.setTotal(service.selectTotalPaging());
-		List<goodsDTO> list = service.getItem(storeCode);
+	@RequestMapping(value = "/goods.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String goods(Model model, goodsDTO goodsDto, String storeCode, HttpServletRequest req) {
+//		System.out.println("시작");
+//		System.out.println(req.getParameter("storeCode"));
+		System.out.println(req.getParameter("search"));
+//		List<goodsDTO> list2 = service.firstSearchGoods(goodsDto);
+//		List<goodsDTO> list3 = service.secondSearchGoods(goodsDto);
+//		System.out.println(list2.size());
+//		System.out.println(list3.size());
+		List<goodsDTO> list;
+		if (req.getParameter("search") == null)
+			list = service.getItem(storeCode);
+		else {
+			goodsDto.setStoreCode(req.getParameter("storeCode"));
+			goodsDto.setKeyWord(req.getParameter("search").trim());
+			if (service.firstSearchGoods(goodsDto).size() == 0)
+				list = service.secondSearchGoods(goodsDto);
+			else
+				list = service.firstSearchGoods(goodsDto);
+		}
 		model.addAttribute("list", list);
 		model.addAttribute("storeCode", storeCode);
 
@@ -298,4 +315,5 @@ public class commonCotroller {
 		}
 		return false;
 	}
+
 }

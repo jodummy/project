@@ -25,7 +25,7 @@ public class commonServiceImp implements commonService {
 
 	// 상품 리스트
 	@Override
-	public List<goodsDTO> getItem(String storeCode){
+	public List<goodsDTO> getItem(String storeCode) {
 
 		return dao.getItem(storeCode);
 	}
@@ -114,6 +114,17 @@ public class commonServiceImp implements commonService {
 	@Override
 	public int deleteEmployee(String phone) {
 		return dao.deleteEmployee(phone);
+	}
+
+	// 검색 기능
+	@Override
+	public List<goodsDTO> firstSearchGoods(goodsDTO goodsDto) {
+		return dao.firstSearchGoods(goodsDto);
+	}
+
+	@Override
+	public List<goodsDTO> secondSearchGoods(goodsDTO goodsDto) {
+		return dao.secondSearchGoods(goodsDto);
 	}
 
 }

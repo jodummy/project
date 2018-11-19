@@ -1,7 +1,6 @@
 package com.common.www.dto;
 
 public class goodsDTO {
-	// storeCode Ãß°¡ string
 
 	private int goodsNumber;
 	private String goodsName;
@@ -15,6 +14,15 @@ public class goodsDTO {
 	private int rankGoods;
 	private String goodsInfo;
 	private String storeCode;
+	private String keyWord;
+
+	public String getKeyWord() {
+		return keyWord;
+	}
+
+	public void setKeyWord(String keyWord) {
+		this.keyWord = keyWord;
+	}
 
 	public String getStoreCode() {
 		return storeCode;
@@ -110,14 +118,6 @@ public class goodsDTO {
 
 	public void setGoodsInfo(String goodsInfo) {
 		this.goodsInfo = goodsInfo;
-	}
-
-	@Override
-	public String toString() {
-		return "goodsDTO [goodsNumber=" + goodsNumber + ", goodsName=" + goodsName + ", price=" + price + ", nowStock="
-				+ nowStock + ", inputGoods=" + inputGoods + ", outputGoods=" + outputGoods + ", soldNum=" + soldNum
-				+ ", newItem=" + newItem + ", calorie=" + calorie + ", rankGoods=" + rankGoods + ", goodsInfo="
-				+ goodsInfo + "]";
 	}
 
 }

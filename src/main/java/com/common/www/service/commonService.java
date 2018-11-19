@@ -53,4 +53,8 @@ public interface commonService {
 	// 사원 삭제
 	public int deleteEmployee(String phone);
 
+	// 검색 기능
+	public List<goodsDTO> firstSearchGoods(goodsDTO goodsDto);
+	public List<goodsDTO> secondSearchGoods(goodsDTO goodsDto);
+
 }
