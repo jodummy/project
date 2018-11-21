@@ -15,7 +15,7 @@ public interface commonService {
 	public goodsDTO getItemOne(goodsDTO goodsDto);
 
 	// 상품 리스트
-	public List<goodsDTO> getItem(String store);
+	public List<goodsDTO> getItem(goodsDTO goodsDto);
 
 	// 상품 추가
 	public goodsDTO insertGoodsFood(goodsDTO goodsDto);
@@ -54,7 +54,7 @@ public interface commonService {
 	public int deleteEmployee(String phone);
 
 	// 검색 기능
-	public List<goodsDTO> firstSearchGoods(goodsDTO goodsDto);
-	public List<goodsDTO> secondSearchGoods(goodsDTO goodsDto);
+//	public List<goodsDTO> firstSearchGoods(goodsDTO goodsDto);
+//	public List<goodsDTO> secondSearchGoods(goodsDTO goodsDto);
 
 }

@@ -15,21 +15,17 @@
 
 	<!-- 상품 리스트 출력 db -->
 	<select id="getItem" resultType="com.common.www.dto.goodsDTO"
-		parameterType="java.lang.String">
-		SELECT GOODSNUMBER,
-		GOODSNAME,
-		PRICE,
-		NOWSTOCK,
-		TO_CHAR(
-		INPUTGOODS , 'MM/DD/YYYY') AS INPUTGOODS ,
-		TO_CHAR(
-		OUTPUTGOODS ,
-		'MM/DD/YYYY') AS OUTPUTGOODS,
-		SOLDNUM,
-		NEWITEM
+		parameterType="com.common.www.dto.goodsDTO">
+		SELECT GOODSNUMBER,GOODSNAME,PRICE,NOWSTOCK,
+		TO_CHAR(INPUTGOODS , 'MM/DD/YYYY') AS INPUTGOODS ,
+		TO_CHAR(OUTPUTGOODS ,'MM/DD/YYYY') AS OUTPUTGOODS,
+		SOLDNUM,NEWITEM
 		FROM GOODS
 		WHERE STORECODE
 		= #{storeCode}
+		<if test="@Ognl@isNotEmpty(name)"> 
+		AND GOODSNAME LIKE #{keyWord}||'%'
+		</if>
 	</select>
 
 	<!-- select one goods -->
@@ -42,8 +38,7 @@
 		NOWSTOCK,
 		TO_CHAR(
 		INPUTGOODS , 'MM/DD/YYYY') AS INPUTGOODS ,
-		TO_CHAR( OUTPUTGOODS
-		,'MM/DD/YYYY') AS OUTPUTGOODS,
+		TO_CHAR( OUTPUTGOODS,'MM/DD/YYYY') AS OUTPUTGOODS,
 		SOLDNUM,
 		NEWITEM,
 		CALORIE,
@@ -106,33 +101,29 @@
 
 
 	<!-- 검색 기능 -->
-	<select  id="firstSearchGoods" resultType="com.common.www.dto.goodsDTO" parameterType="com.common.www.dto.goodsDTO">
-	SELECT GOODSNUMBER,
-		GOODSNAME,
-		PRICE,
-		NOWSTOCK,
-		TO_CHAR(INPUTGOODS,'MM/DD/YYYY') AS INPUTGOODS,
-		TO_CHAR(OUTPUTGOODS,'MM/DD/YYYY') AS OUTPUTGOODS,
-		SOLDNUM,
-		NEWITEM
-		FROM GOODS
-		WHERE STORECODE = #{storeCode}
-		AND GOODSNAME LIKE #{keyWord}||'%'
-		</select>
+<!-- 	<select  id="firstSearchGoods" resultType="com.common.www.dto.goodsDTO" parameterType="com.common.www.dto.goodsDTO"> -->
+<!-- 	SELECT GOODSNUMBER,GOODSNAME,PRICE,NOWSTOCK, -->
+<!-- 		TO_CHAR(INPUTGOODS,'MM/DD/YYYY') AS INPUTGOODS, -->
+<!-- 		TO_CHAR(OUTPUTGOODS,'MM/DD/YYYY') AS OUTPUTGOODS, -->
+<!-- 		SOLDNUM,NEWITEM -->
+<!-- 		FROM GOODS -->
+<!-- 		WHERE STORECODE = #{storeCode} -->
+<!-- 		AND GOODSNAME LIKE #{keyWord}||'%' -->
+<!-- 		</select> -->
 	
-	<select  id="secondSearchGoods" resultType="com.common.www.dto.goodsDTO" parameterType="com.common.www.dto.goodsDTO">
-		SELECT GOODSNUMBER,
-		GOODSNAME,
-		PRICE,
-		NOWSTOCK,
-		TO_CHAR(INPUTGOODS,'MM/DD/YYYY') AS INPUTGOODS,
-		TO_CHAR(OUTPUTGOODS,'MM/DD/YYYY') AS OUTPUTGOODS,
-		SOLDNUM,
-		NEWITEM
-		FROM GOODS
-		WHERE STORECODE = #{storeCode}
-		AND GOODSNAME LIKE '%'||#{keyWord}||'%'
-	</select>
+<!-- 	<select  id="secondSearchGoods" resultType="com.common.www.dto.goodsDTO" parameterType="com.common.www.dto.goodsDTO"> -->
+<!-- 		SELECT GOODSNUMBER, -->
+<!-- 		GOODSNAME, -->
+<!-- 		PRICE, -->
+<!-- 		NOWSTOCK, -->
+<!-- 		TO_CHAR(INPUTGOODS,'MM/DD/YYYY') AS INPUTGOODS, -->
+<!-- 		TO_CHAR(OUTPUTGOODS,'MM/DD/YYYY') AS OUTPUTGOODS, -->
+<!-- 		SOLDNUM, -->
+<!-- 		NEWITEM -->
+<!-- 		FROM GOODS -->
+<!-- 		WHERE STORECODE = #{storeCode} -->
+<!-- 		AND GOODSNAME LIKE '%'||#{keyWord}||'%' -->
+<!-- 	</select> -->
 	<!-- -->
 
 

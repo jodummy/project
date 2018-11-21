@@ -14,7 +14,7 @@ public class goodsDTO {
 	private int rankGoods;
 	private String goodsInfo;
 	private String storeCode;
-	private String keyWord;
+	private String keyWord = "";
 
 	public String getKeyWord() {
 		return keyWord;
@@ -118,6 +118,14 @@ public class goodsDTO {
 
 	public void setGoodsInfo(String goodsInfo) {
 		this.goodsInfo = goodsInfo;
+	}
+
+	@Override
+	public String toString() {
+		return "goodsDTO [goodsNumber=" + goodsNumber + ", goodsName=" + goodsName + ", price=" + price + ", nowStock="
+				+ nowStock + ", inputGoods=" + inputGoods + ", outputGoods=" + outputGoods + ", soldNum=" + soldNum
+				+ ", newItem=" + newItem + ", calorie=" + calorie + ", rankGoods=" + rankGoods + ", goodsInfo="
+				+ goodsInfo + ", storeCode=" + storeCode + ", keyWord=" + keyWord + "]";
 	}
 
 }

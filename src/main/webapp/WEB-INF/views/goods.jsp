@@ -62,9 +62,7 @@
 
 	}
 
-	function goods(storeCode) {
-		alert(storeCode);
-		alert($("input[name=searchTps]").val());
+	function goodsSearch(storeCode) {
 		var allData = {
 				"storeCode" : storeCode,
 				"search" : $("input[id=searchTps]").val()
@@ -100,7 +98,7 @@
 
 	<form name="search" method="post" action="goods.do">
 		<input type="text" name=searchTps id="searchTps"> 
-		<input type="button" value="상품 검색" onclick="goods('${storeCode}')">
+		<input type="button" value="상품 검색" onclick="goodsSearch('${storeCode}')">
 	</form>
 
 	<div class="col-sm-10 text-left">

@@ -27,8 +27,8 @@ public class commonDaoImp implements commonDao {
 
 	// 상품 리스트
 	@Override
-	public List<goodsDTO> getItem(String storeCode) {
-		return session.selectList("com.common.www.getItem", storeCode);
+	public List<goodsDTO> getItem(goodsDTO goodsDto) {
+		return session.selectList("com.common.www.getItem", goodsDto);
 	}
 
 	// 상품 넣기
@@ -117,13 +117,13 @@ public class commonDaoImp implements commonDao {
 		return session.delete("com.common.www.deleteEmployee", phone);
 	}
 
-	@Override
-	public List<goodsDTO> firstSearchGoods(goodsDTO goodsDto) {
-		return session.selectList("com.common.www.firstSearchGoods", goodsDto);
-	}
-	@Override
-	public List<goodsDTO> secondSearchGoods(goodsDTO goodsDto) {
-		return session.selectList("com.common.www.secondSearchGoods", goodsDto);
-	}
+//	@Override
+//	public List<goodsDTO> firstSearchGoods(goodsDTO goodsDto) {
+//		return session.selectList("com.common.www.firstSearchGoods", goodsDto);
+//	}
+//	@Override
+//	public List<goodsDTO> secondSearchGoods(goodsDTO goodsDto) {
+//		return session.selectList("com.common.www.secondSearchGoods", goodsDto);
+//	}
 
 }
