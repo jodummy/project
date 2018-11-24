@@ -5,13 +5,13 @@ import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-//////
 import com.common.www.dto.storeDTO;
 import com.common.www.dto.goodsDTO;
 import com.common.www.dto.employeeDTO;
@@ -22,6 +22,14 @@ public class commonCotroller {
 
 	@Autowired
 	private commonService service;
+
+	@RequestMapping(value = "/goods.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String goods(Model model, String storeCode, HttpServletRequest req, goodsDTO goodsDto) {
+		List<goodsDTO> list = service.getListGoods(goodsDto);
+		model.addAttribute("list", list);
+		model.addAttribute("storeCode", storeCode);
+		return "goods";
+	}
 
 	@RequestMapping(value = "/store.do", method = RequestMethod.GET)
 	public String homeMain(Model model) {
@@ -53,43 +61,6 @@ public class commonCotroller {
 		return false;
 
 	}
-
-	@RequestMapping(value = "/goods.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String goods(Model model, goodsDTO goodsDto, String storeCode, HttpServletRequest req) {
-//		System.out.println("시작");
-//		System.out.println(req.getParameter("storeCode"));
-		if (req.getParameter("search") == null)
-			System.out.println("null값이 안에 있어요");
-//		List<goodsDTO> list2 = service.firstSearchGoods(goodsDto);
-//		List<goodsDTO> list3 = service.secondSearchGoods(goodsDto);
-//		System.out.println(list2.size());
-//		System.out.println(list3.size());
-		goodsDto.setStoreCode(storeCode);
-		goodsDto.setKeyWord(req.getParameter("search"));
-		
-		List<goodsDTO> list = service.getItem(goodsDto);
-
-		model.addAttribute("list", list);
-		model.addAttribute("storeCode", storeCode);
-
-		return "goods";
-	}
-
-//	@RequestMapping(value = "/goodsSearch.do", method = { RequestMethod.GET, RequestMethod.POST })
-//	public @ResponseBody void goodsSearch(goodsDTO goodsDto, HttpServletRequest req, Model model) throws Exception {
-////		System.out.println(req.getParameter("search"));
-////		System.out.println(req.getParameter("storeCode"));
-//		goodsDto.setStoreCode(req.getParameter("storeCode"));
-//		goodsDto.setKeyWord(req.getParameter("search"));
-//
-//		List<goodsDTO> list = service.firstSearchGoods(goodsDto);
-//		if (list.size() == 0)
-//			list = service.secondSearchGoods(goodsDto);
-//
-//		model.addAttribute("list", list);
-//		model.addAttribute("storeCode", req.getParameter("storeCode"));
-//
-//	}
 
 	@RequestMapping(value = "/insertGoods.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String insertGoods(Model model, HttpServletRequest req) {
@@ -320,5 +291,4 @@ public class commonCotroller {
 		}
 		return false;
 	}
-
 }

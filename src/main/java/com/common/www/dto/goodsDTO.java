@@ -14,23 +14,6 @@ public class goodsDTO {
 	private int rankGoods;
 	private String goodsInfo;
 	private String storeCode;
-	private String keyWord = "";
-
-	public String getKeyWord() {
-		return keyWord;
-	}
-
-	public void setKeyWord(String keyWord) {
-		this.keyWord = keyWord;
-	}
-
-	public String getStoreCode() {
-		return storeCode;
-	}
-
-	public void setStoreCode(String storeCode) {
-		this.storeCode = storeCode;
-	}
 
 	public int getGoodsNumber() {
 		return goodsNumber;
@@ -120,12 +103,11 @@ public class goodsDTO {
 		this.goodsInfo = goodsInfo;
 	}
 
-	@Override
-	public String toString() {
-		return "goodsDTO [goodsNumber=" + goodsNumber + ", goodsName=" + goodsName + ", price=" + price + ", nowStock="
-				+ nowStock + ", inputGoods=" + inputGoods + ", outputGoods=" + outputGoods + ", soldNum=" + soldNum
-				+ ", newItem=" + newItem + ", calorie=" + calorie + ", rankGoods=" + rankGoods + ", goodsInfo="
-				+ goodsInfo + ", storeCode=" + storeCode + ", keyWord=" + keyWord + "]";
+	public String getStoreCode() {
+		return storeCode;
 	}
 
+	public void setStoreCode(String storeCode) {
+		this.storeCode = storeCode;
+	}
 }

@@ -25,12 +25,6 @@ public class commonDaoImp implements commonDao {
 		return session.selectList("com.common.www.getStore");
 	}
 
-	// 상품 리스트
-	@Override
-	public List<goodsDTO> getItem(goodsDTO goodsDto) {
-		return session.selectList("com.common.www.getItem", goodsDto);
-	}
-
 	// 상품 넣기
 	@Override
 	public goodsDTO insertGoodsFood(goodsDTO goodsDto) {
@@ -115,6 +109,11 @@ public class commonDaoImp implements commonDao {
 	@Override
 	public int deleteEmployee(String phone) {
 		return session.delete("com.common.www.deleteEmployee", phone);
+	}
+
+	@Override
+	public List<goodsDTO> getListGoods(goodsDTO goodsDto) {
+		return session.selectList("com.common.www.getListGoods", goodsDto);
 	}
 
 //	@Override

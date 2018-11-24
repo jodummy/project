@@ -12,58 +12,41 @@
 		SELECT
 		NVL(COUNT(*),0)FROM GOODS
 	</select>
-
-	<!-- 상품 리스트 출력 db -->
-	<select id="getItem" resultType="com.common.www.dto.goodsDTO" parameterType="com.common.www.dto.goodsDTO">
-		SELECT GOODSNUMBER,GOODSNAME,PRICE,NOWSTOCK,
-		TO_CHAR(INPUTGOODS , 'MM/DD/YYYY') AS INPUTGOODS ,
-		TO_CHAR(OUTPUTGOODS ,'MM/DD/YYYY') AS OUTPUTGOODS,
-		SOLDNUM,NEWITEM
+	<!-- 상품 라스트 -->
+	<select id="getListGoods" resultType="com.common.www.dto.goodsDTO" parameterType ="com.common.www.dto.goodsDTO">
+		SELECT
+		GOODSNUMBER,GOODSNAME,PRICE,NOWSTOCK,
+		TO_CHAR(INPUTGOODS,'MM/DD/YYYY') AS INPUTGOODS ,
+		TO_CHAR(OUTPUTGOODS,'MM/DD/YYYY') AS OUTPUTGOODS,
+		SOLDNUM,NEWITEM,CALORIE,RANKGOODS,GOODSINFO
 		FROM GOODS
-		WHERE STORECODE
-		= #{storeCode}
-		<if test="@Ognl@isNotEmpty(name)"> 
-		AND GOODSNAME LIKE #{keyWord}||'%'
-		</if>
+		WHERE STORECODE=#{storeCode}
 	</select>
 
 	<!-- select one goods -->
 	<select id="getItemOne" resultType="com.common.www.dto.goodsDTO" parameterType="com.common.www.dto.goodsDTO">
 		SELECT
-		GOODSNUMBER,
-		GOODSNAME,
-		PRICE,
-		NOWSTOCK,
+		GOODSNUMBER,GOODSNAME,PRICE,NOWSTOCK,
 		TO_CHAR(INPUTGOODS,'MM/DD/YYYY') AS INPUTGOODS ,
 		TO_CHAR(OUTPUTGOODS,'MM/DD/YYYY') AS OUTPUTGOODS,
-		SOLDNUM,
-		NEWITEM,
-		CALORIE,
-		RANKGOODS,
-		GOODSINFO
-		FROM
-		GOODS
-		WHERE
-		GOODSNUMBER=#{goodsNumber}
-		AND
-		STORECODE=#{storeCode}
+		SOLDNUM,NEWITEM,CALORIE,RANKGOODS,GOODSINFO
+		FROM GOODS
+		WHERE GOODSNUMBER=#{goodsNumber}
+		AND STORECODE=#{storeCode}
 	</select>
 
 	<!-- 상품 추가 db 식품() -->
 	<insert id="insertGoodsFood" parameterType="com.common.www.dto.goodsDTO">
 		INSERT INTO GOODS
 		VALUE(GOODSNUMBER,GOODSNAME,PRICE,OUTPUTGOODS , STORECODE)
-		VALUES((goods_seq.NEXTVAL+(#{goodsNumber}*10000)),#{goodsName},#{price},SYSDATE
-		+ 5 ,#{storeCode})
+		VALUES((goods_seq.NEXTVAL+(#{goodsNumber}*10000)),#{goodsName},#{price},SYSDATE+ 5 ,#{storeCode})
 	</insert>
 
 	<!-- 상품 추가 db 통조림() -->
 	<insert id="insertGoodsCan" parameterType="com.common.www.dto.goodsDTO">
 		INSERT INTO GOODS
 		VALUE(GOODSNUMBER,GOODSNAME,PRICE,OUTPUTGOODS , STORECODE)
-		VALUES((goods_seq.NEXTVAL+(#{goodsNumber}*10000)),#{goodsName},#{price},SYSDATE
-		+
-		1000,#{storeCode} )
+		VALUES((goods_seq.NEXTVAL+(#{goodsNumber}*10000)),#{goodsName},#{price},SYSDATE+1000,#{storeCode} )
 	</insert>
 
 
@@ -71,8 +54,7 @@
 	<delete id="deleteGoods" parameterType="com.common.www.dto.goodsDTO">
 		DELETE GOODS WHERE
 		GOODSNUMBER =#{goodsNumber}
-		AND
-		STORECODE = #{storeCode}
+		AND STORECODE = #{storeCode}
 	</delete>
 
 	<!-- 상품 수정 -->
@@ -91,38 +73,9 @@
 		AND STORECODE = #{storeCode}
 	</update>
 
-
-	<!-- 검색 기능 -->
-<!-- 	<select  id="firstSearchGoods" resultType="com.common.www.dto.goodsDTO" parameterType="com.common.www.dto.goodsDTO"> -->
-<!-- 	SELECT GOODSNUMBER,GOODSNAME,PRICE,NOWSTOCK, -->
-<!-- 		TO_CHAR(INPUTGOODS,'MM/DD/YYYY') AS INPUTGOODS, -->
-<!-- 		TO_CHAR(OUTPUTGOODS,'MM/DD/YYYY') AS OUTPUTGOODS, -->
-<!-- 		SOLDNUM,NEWITEM -->
-<!-- 		FROM GOODS -->
-<!-- 		WHERE STORECODE = #{storeCode} -->
-<!-- 		AND GOODSNAME LIKE #{keyWord}||'%' -->
-<!-- 		</select> -->
-	
-<!-- 	<select  id="secondSearchGoods" resultType="com.common.www.dto.goodsDTO" parameterType="com.common.www.dto.goodsDTO"> -->
-<!-- 		SELECT GOODSNUMBER, -->
-<!-- 		GOODSNAME, -->
-<!-- 		PRICE, -->
-<!-- 		NOWSTOCK, -->
-<!-- 		TO_CHAR(INPUTGOODS,'MM/DD/YYYY') AS INPUTGOODS, -->
-<!-- 		TO_CHAR(OUTPUTGOODS,'MM/DD/YYYY') AS OUTPUTGOODS, -->
-<!-- 		SOLDNUM, -->
-<!-- 		NEWITEM -->
-<!-- 		FROM GOODS -->
-<!-- 		WHERE STORECODE = #{storeCode} -->
-<!-- 		AND GOODSNAME LIKE '%'||#{keyWord}||'%' -->
-<!-- 	</select> -->
-	<!-- -->
-
-
-
 	<!-- store -->
 
-	<!-- 점포 리스트 출력 db -->
+	<!-- 점포 리스트 출력 -->
 	<select id="getStore" resultType="com.common.www.dto.storeDTO">
 		SELECT STORECODE , TEL ,
 		LOCATION , INCOME

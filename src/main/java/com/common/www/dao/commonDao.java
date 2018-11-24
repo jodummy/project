@@ -11,8 +11,7 @@ public interface commonDao {
 	// 점포 리스트
 	public List<storeDTO> getStore();
 
-	// 상품 리스트
-	public List<goodsDTO> getItem(goodsDTO goodsDto);
+	
 
 	// 상품 넣기
 	public goodsDTO insertGoodsFood(goodsDTO goodsDto);
@@ -53,9 +52,8 @@ public interface commonDao {
 	// 사원 삭제
 	public int deleteEmployee(String phone);
 
-	// 검색 기능
-//	public List<goodsDTO> firstSearchGoods(goodsDTO goodsDto);
-//
-//	public List<goodsDTO> secondSearchGoods(goodsDTO goodsDto);
+
+
+	public List<goodsDTO> getListGoods(goodsDTO goodsDto);
 
 }

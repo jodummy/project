@@ -30,21 +30,17 @@
 			}
 		}
 	}
-
 	
-
 	function deleteGoods() {
 		var checkboxValues = [];
 		$("input[name='chkbox']:checked").each(function(i) {
 			checkboxValues.push($(this).val());
 		});
-
 		var allData = {
 			"goodsnumber" :$(":checkbox[name='chkbox']:checked").val(),
 			"checkArray" : checkboxValues,
 			"storeCode" : $('input[name=storeCode]').val()
 		};
-
 		$.ajax({
 			url : "deleteGoodsPage.do",
 			type : 'GET',
@@ -59,28 +55,7 @@
 					alert("에러 발생~~ \n" + textStatus + " : " + errorThrown);
 			}
 		});
-
 	}
-
-	function goodsSearch(storeCode) {
-		var allData = {
-				"storeCode" : storeCode,
-				"search" : $("input[id=searchTps]").val()
-		}
-		$.ajax({
-		 	url : "goods.do",
-			type : 'GET',
-			data : allData,
-			success : function(data) {
-// 				location.reload();
-				alert("검색 완료 ");
-			},
-			error : function(jqXHR, textStatus, errorThrown) {
-					alert("에러 발생~~ \n" + textStatus + " : " + errorThrown);
-			}
-		});
-	}
-	
 	//insert
 	function insertGoods(storeCode) {
 		window.open("./insertGoods.do?&storeCode=" + storeCode, "선택",
@@ -94,16 +69,10 @@
 </script>
 
 <body>
-	<h2 id="txttitle">현재 상품</h2>
-
-	<form name="search" method="post" action="goods.do">
-		<input type="text" name=searchTps id="searchTps"> 
-		<input type="button" value="상품 검색" onclick="goodsSearch('${storeCode}')">
-	</form>
-
 	<div class="col-sm-10 text-left">
 		<div class="col-sm-12">
 			<div style="padding-left: 50px;">
+				<h2 id="txttitle">현재 상품</h2>
 				<form action="deleteGoodsPage.do" method="post" id="ff">
 					<input type="hidden" name="storeCode" value="${storeCode}">
 					<table>
@@ -138,9 +107,8 @@
 							</tr>
 						</c:forEach>
 					</table>
-					<input type="button" value="상품 추가"
-						onclick="insertGoods('${storeCode}')"> <input
-						type="button" value="상품 제거" onclick="deleteGoods()">
+					<input type="button" value="상품 추가" onclick="insertGoods('${storeCode}')">
+					<input type="button" value="상품 제거" onclick="deleteGoods()">
 				</form>
 
 			</div>
