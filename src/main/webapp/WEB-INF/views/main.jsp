@@ -8,14 +8,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <title>main</title>
 </head>
-<script type="text/javascript">
-
-
-</script>
 <body>
-
+	<table width="400" boder="1" cellpadding="0" cellspacing="0">
+		<tr>
+			<td colspan="2">
+				<jsp:include page="./top.jsp" flush="false" />
+			</td>
+		</tr>
+		<tr>
+			<td width="700">
+			<jsp:include page="./side.jsp" flush="false" /> 
+			</td>
+			<td width="300">
+				여기 화면 하는 곳 
+				<br><br><br>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+			<jsp:include page="./bottom.jsp" flush="false" />
+			</td>
+		</tr>
+	</table>
 </body>
 </html>

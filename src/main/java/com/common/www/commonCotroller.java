@@ -22,8 +22,15 @@ public class commonCotroller {
 	@Autowired
 	private commonService service;
 
+	@RequestMapping(value = "/main.do", method = RequestMethod.GET)
+	public String main(Model model, storeDTO storeDto, String storeCode) {
+	
+		return "main";
+	}
+
 	@RequestMapping(value = "/store.do", method = RequestMethod.GET)
 	public String homeMain(Model model) {
+		System.out.println("11111111111111111111111111111111111111");
 		List<storeDTO> list = service.getStore();
 		model.addAttribute("list", list);
 		return "store";
@@ -54,8 +61,8 @@ public class commonCotroller {
 	}
 
 	@RequestMapping(value = "/goods.do", method = RequestMethod.GET)
-	public String homeSimple(Model model, PagingDto pagintDto, String storeCode, goodsDTO goodsDto) {
-//		pagintDto.setTotal(service.selectTotalPaging());
+	public String homeSimple(Model model, String storeCode, goodsDTO goodsDto) {
+		System.out.println("11111111111111111111111111111111111111");
 		goodsDto.setStoreCode(storeCode);
 		List<goodsDTO> list = service.getListGoods(goodsDto);
 		model.addAttribute("list", list);
@@ -293,4 +300,5 @@ public class commonCotroller {
 		}
 		return false;
 	}
+
 }

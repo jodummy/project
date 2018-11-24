@@ -13,8 +13,11 @@
 <title>사원 추가</title>
 </head>
 <script type="text/javascript">
+	var ischeck = false;
+
 	function succesInsert() {
 		var goodsForm = $("#ff").serialize();
+		
 		$.ajax({
 			type : "post",
 			url : "insertEmployeePage.do",
@@ -29,12 +32,29 @@
 			}
 		});
 	}
+	
+	
+	function isCellPhone() {
+		var value = $('#phone').val();
+		alert(value);
+		var regExp = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
+		if(regExp.test(value)){
+			alert("good");
+			ischeck = true;
+			return ischeck;
+		}else{
+			alert("bad");
+			ischeck = false;
+			return ischeck;
+		}
+		
+		}
 </script>
 
 <body>
 	<form id="ff" action="insertEmployeePage.do" method="post">
 		<table class="table table-bordered table-hover">
-		<input type="hidden" value="${storeCode}" name='storeCode'>
+			<input type="hidden" value="${storeCode}" name='storeCode'>
 			<tr>
 				<td>사원 이름</td>
 				<td><input type="text" name="manager" id="manager" required="required"></td>
@@ -42,15 +62,17 @@
 			<tr>
 				<td>번호</td>
 				<td><input type="text" name="phone" id="phone" required="required"></td>
+				<td><input type="button" value="번호 체크" onclick="isCellPhone()"></td>
 			</tr>
 			<tr>
 				<td>파트 타임</td>
-				<td><input type="text" name="seqTime" id = "seqTime" required="required"></td>
+				<td><input type="text" name="seqTime" id="seqTime" required="required"></td>
 			</tr>
 			<tr>
 				<td align="center" colspan="3">
 				<input type="button" value="사원 추가" onclick="succesInsert()"> 
-				<input type="reset" value="다시쓰기"></td>
+				<input type="reset" value="다시쓰기">
+				</td>	
 			</tr>
 		</table>
 	</form>

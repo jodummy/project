@@ -13,6 +13,7 @@
 <title>Insert title here</title>
 </head>
 <script type="text/javascript">
+
 	function allChk(obj) {
 		var chkObj = document.getElementsByName("chkbox");
 		var rowCnt = chkObj.length - 1;
@@ -70,6 +71,9 @@
 						"선택",
 						"scrollbars=yes,toolbar=yes,resizable=yes,width=1000,height=600,right=700,top=0");
 	}
+	
+
+	
 </script>
 <body>
 	<h1>상점</h1>
@@ -93,8 +97,6 @@
 			<input type="button" value="수정" onclick="modifyStore('${dto.storeCode}')">
 		</div>
 	</form>
-
-
 
 
 
