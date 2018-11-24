@@ -5,7 +5,6 @@ import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,14 +21,6 @@ public class commonCotroller {
 
 	@Autowired
 	private commonService service;
-
-	@RequestMapping(value = "/goods.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String goods(Model model, String storeCode, HttpServletRequest req, goodsDTO goodsDto) {
-		List<goodsDTO> list = service.getListGoods(goodsDto);
-		model.addAttribute("list", list);
-		model.addAttribute("storeCode", storeCode);
-		return "goods";
-	}
 
 	@RequestMapping(value = "/store.do", method = RequestMethod.GET)
 	public String homeMain(Model model) {
@@ -60,6 +51,17 @@ public class commonCotroller {
 		}
 		return false;
 
+	}
+
+	@RequestMapping(value = "/goods.do", method = RequestMethod.GET)
+	public String homeSimple(Model model, PagingDto pagintDto, String storeCode, goodsDTO goodsDto) {
+//		pagintDto.setTotal(service.selectTotalPaging());
+		goodsDto.setStoreCode(storeCode);
+		List<goodsDTO> list = service.getListGoods(goodsDto);
+		model.addAttribute("list", list);
+		model.addAttribute("storeCode", storeCode);
+
+		return "goods";
 	}
 
 	@RequestMapping(value = "/insertGoods.do", method = { RequestMethod.GET, RequestMethod.POST })

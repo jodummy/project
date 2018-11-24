@@ -12,86 +12,60 @@
 		SELECT
 		NVL(COUNT(*),0)FROM GOODS
 	</select>
-
-	<!-- 상품 리스트 출력 db -->
-	<select id="getItem" resultType="com.common.www.dto.goodsDTO"
-		parameterType="com.common.www.dto.goodsDTO">
-		SELECT GOODSNUMBER,GOODSNAME,PRICE,NOWSTOCK,
-		TO_CHAR(INPUTGOODS , 'MM/DD/YYYY') AS INPUTGOODS ,
-		TO_CHAR(OUTPUTGOODS ,'MM/DD/YYYY') AS OUTPUTGOODS,
-		SOLDNUM,NEWITEM
+	<!-- 상품 라스트 -->
+	<select id="getListGoods" resultType="com.common.www.dto.goodsDTO" parameterType ="com.common.www.dto.goodsDTO">
+		SELECT
+		GOODSNUMBER,GOODSNAME,PRICE,NOWSTOCK,
+		TO_CHAR(INPUTGOODS,'MM/DD/YYYY') AS INPUTGOODS ,
+		TO_CHAR(OUTPUTGOODS,'MM/DD/YYYY') AS OUTPUTGOODS,
+		SOLDNUM,NEWITEM,CALORIE,RANKGOODS,GOODSINFO
 		FROM GOODS
-		WHERE STORECODE
-		= #{storeCode}
-		<if test="@Ognl@isNotEmpty(name)"> 
-		AND GOODSNAME LIKE #{keyWord}||'%'
-		</if>
+		WHERE STORECODE=#{storeCode}
 	</select>
 
 	<!-- select one goods -->
-	<select id="getItemOne" resultType="com.common.www.dto.goodsDTO"
-		parameterType="com.common.www.dto.goodsDTO">
+	<select id="getItemOne" resultType="com.common.www.dto.goodsDTO" parameterType="com.common.www.dto.goodsDTO">
 		SELECT
-		GOODSNUMBER,
-		GOODSNAME,
-		PRICE,
-		NOWSTOCK,
-		TO_CHAR(
-		INPUTGOODS , 'MM/DD/YYYY') AS INPUTGOODS ,
-		TO_CHAR( OUTPUTGOODS,'MM/DD/YYYY') AS OUTPUTGOODS,
-		SOLDNUM,
-		NEWITEM,
-		CALORIE,
-		RANKGOODS,
-		GOODSINFO
-		FROM
-		GOODS
-		WHERE
-		GOODSNUMBER=#{goodsNumber}
-		AND
-		STORECODE=#{storeCode}
+		GOODSNUMBER,GOODSNAME,PRICE,NOWSTOCK,
+		TO_CHAR(INPUTGOODS,'MM/DD/YYYY') AS INPUTGOODS ,
+		TO_CHAR(OUTPUTGOODS,'MM/DD/YYYY') AS OUTPUTGOODS,
+		SOLDNUM,NEWITEM,CALORIE,RANKGOODS,GOODSINFO
+		FROM GOODS
+		WHERE GOODSNUMBER=#{goodsNumber}
+		AND STORECODE=#{storeCode}
 	</select>
 
 	<!-- 상품 추가 db 식품() -->
-	<insert id="insertGoodsFood"
-		parameterType="com.common.www.dto.goodsDTO">
+	<insert id="insertGoodsFood" parameterType="com.common.www.dto.goodsDTO">
 		INSERT INTO GOODS
 		VALUE(GOODSNUMBER,GOODSNAME,PRICE,OUTPUTGOODS , STORECODE)
-		VALUES((goods_seq.NEXTVAL+(#{goodsNumber}*10000)),#{goodsName},#{price},SYSDATE
-		+ 5 ,#{storeCode})
+		VALUES((goods_seq.NEXTVAL+(#{goodsNumber}*10000)),#{goodsName},#{price},SYSDATE+ 5 ,#{storeCode})
 	</insert>
 
 	<!-- 상품 추가 db 통조림() -->
-	<insert id="insertGoodsCan"
-		parameterType="com.common.www.dto.goodsDTO">
+	<insert id="insertGoodsCan" parameterType="com.common.www.dto.goodsDTO">
 		INSERT INTO GOODS
 		VALUE(GOODSNUMBER,GOODSNAME,PRICE,OUTPUTGOODS , STORECODE)
-		VALUES((goods_seq.NEXTVAL+(#{goodsNumber}*10000)),#{goodsName},#{price},SYSDATE
-		+
-		1000,#{storeCode} )
+		VALUES((goods_seq.NEXTVAL+(#{goodsNumber}*10000)),#{goodsName},#{price},SYSDATE+1000,#{storeCode} )
 	</insert>
 
 
 	<!-- 상품 삭제 -->
-	<delete id="deleteGoods"
-		parameterType="com.common.www.dto.goodsDTO">
+	<delete id="deleteGoods" parameterType="com.common.www.dto.goodsDTO">
 		DELETE GOODS WHERE
 		GOODSNUMBER =#{goodsNumber}
-		AND
-		STORECODE = #{storeCode}
+		AND STORECODE = #{storeCode}
 	</delete>
 
 	<!-- 상품 수정 -->
 	<!-- TO_CHAR(TO_DATE(OUTPUTGOODS,'yyyy-mm-dd hh24:mi:ss'),'yyyy-mm-dd hh24:mi:ss') -->
-	<update id="updateGoods"
-		parameterType="com.common.www.dto.goodsDTO">
+	<update id="updateGoods" parameterType="com.common.www.dto.goodsDTO">
 		UPDATE GOODS SET
 		GOODSNAME = #{goodsName} , PRICE =
-		#{price} ,NOWSTOCK = #{nowStock}, INPUTGOODS =TO_DATE( #{inputGoods},
-		'MM/DD/YYYY')
-		,OUTPUTGOODS =TO_DATE( #{outputGoods},
-		'MM/DD/YYYY')
-		,SOLDNUM =#{soldNum} , CALORIE
+		#{price} ,NOWSTOCK = #{nowStock}, 
+		INPUTGOODS =TO_DATE( #{inputGoods},MM/DD/YYYY'),
+		OUTPUTGOODS =TO_DATE( #{outputGoods},'MM/DD/YYYY'),
+		SOLDNUM =#{soldNum} , CALORIE
 		=#{calorie} , GOODSINFO
 		=#{goodsInfo}
 		WHERE
@@ -99,38 +73,9 @@
 		AND STORECODE = #{storeCode}
 	</update>
 
-
-	<!-- 검색 기능 -->
-<!-- 	<select  id="firstSearchGoods" resultType="com.common.www.dto.goodsDTO" parameterType="com.common.www.dto.goodsDTO"> -->
-<!-- 	SELECT GOODSNUMBER,GOODSNAME,PRICE,NOWSTOCK, -->
-<!-- 		TO_CHAR(INPUTGOODS,'MM/DD/YYYY') AS INPUTGOODS, -->
-<!-- 		TO_CHAR(OUTPUTGOODS,'MM/DD/YYYY') AS OUTPUTGOODS, -->
-<!-- 		SOLDNUM,NEWITEM -->
-<!-- 		FROM GOODS -->
-<!-- 		WHERE STORECODE = #{storeCode} -->
-<!-- 		AND GOODSNAME LIKE #{keyWord}||'%' -->
-<!-- 		</select> -->
-	
-<!-- 	<select  id="secondSearchGoods" resultType="com.common.www.dto.goodsDTO" parameterType="com.common.www.dto.goodsDTO"> -->
-<!-- 		SELECT GOODSNUMBER, -->
-<!-- 		GOODSNAME, -->
-<!-- 		PRICE, -->
-<!-- 		NOWSTOCK, -->
-<!-- 		TO_CHAR(INPUTGOODS,'MM/DD/YYYY') AS INPUTGOODS, -->
-<!-- 		TO_CHAR(OUTPUTGOODS,'MM/DD/YYYY') AS OUTPUTGOODS, -->
-<!-- 		SOLDNUM, -->
-<!-- 		NEWITEM -->
-<!-- 		FROM GOODS -->
-<!-- 		WHERE STORECODE = #{storeCode} -->
-<!-- 		AND GOODSNAME LIKE '%'||#{keyWord}||'%' -->
-<!-- 	</select> -->
-	<!-- -->
-
-
-
 	<!-- store -->
 
-	<!-- 점포 리스트 출력 db -->
+	<!-- 점포 리스트 출력 -->
 	<select id="getStore" resultType="com.common.www.dto.storeDTO">
 		SELECT STORECODE , TEL ,
 		LOCATION , INCOME
@@ -138,9 +83,7 @@
 	</select>
 
 	<!-- 상점 하나 조회 -->
-	<select id="getStoreOne"
-		resultType="com.common.www.dto.storeDTO"
-		parameterType="java.lang.String">
+	<select id="getStoreOne" resultType="com.common.www.dto.storeDTO" parameterType="java.lang.String">
 		SELECT
 		STORECODE ,
 		LOCATION ,
@@ -153,17 +96,15 @@
 	</select>
 
 	<!-- 상점 추가 -->
-	<insert id="insertStore"
-		parameterType="com.common.www.dto.storeDTO">
+	<insert id="insertStore" parameterType="com.common.www.dto.storeDTO">
 		INSERT INTO STORE
 		VALUE(STORECODE,TEL,LOCATION)
 		VALUES(#{storeCode} , #{tel} ,#{location})
 	</insert>
 
-	<update id="updateStore"
-		parameterType="com.common.www.dto.storeDTO">
-		UPDATE STORE SET LOCATION = #{location} ,TEL
-		= #{tel}
+	<update id="updateStore" parameterType="com.common.www.dto.storeDTO">
+		UPDATE STORE SET LOCATION = #{location} ,
+		TEL= #{tel}
 		WHERE
 		STORECODE =#{storeCode}
 	</update>
@@ -179,9 +120,7 @@
 	<!-- Employee -->
 
 	<!-- 사원 상점별 조회 -->
-	<select id="getEmployee"
-		resultType="com.common.www.dto.employeeDTO"
-		parameterType="java.lang.String">
+	<select id="getEmployee" resultType="com.common.www.dto.employeeDTO" parameterType="java.lang.String">
 		SELECT
 		STORECODE , MANAGER , PHONE , SEQTIME
 		FROM EMPLOYEE
@@ -190,8 +129,7 @@
 	</select>
 
 	<!-- 사원 입력 -->
-	<insert id="insertEmployee"
-		parameterType="com.common.www.dto.employeeDTO">
+	<insert id="insertEmployee" parameterType="com.common.www.dto.employeeDTO">
 		INSERT INTO EMPLOYEE
 		VALUE(STORECODE,MANAGER,PHONE,SEQTIME)
 		VALUES(#{storeCode},#{manager},#{phone},#{seqTime})
