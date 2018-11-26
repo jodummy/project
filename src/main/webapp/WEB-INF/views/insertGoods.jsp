@@ -21,12 +21,11 @@
 			url : "insertGoodsPage.do",
 			data : goodsForm,
 			success : function(msg) {
-				alert(opener.location.href);
 				opener.location.href = "goods.do?&storeCode=" + storeCode;
 				window.close();
 			},
 			error : function(textStatus, errorThrown) {
-				alert("중복 문제");
+				alert("오류임다");
 			}
 		});
 	}
@@ -50,9 +49,8 @@
 				<td><input type="text" name="price" required="required"></td>
 			</tr>
 			<tr>
-				<td align="center" colspan="3"><input type="button"
-					value="상품 추가" onclick="succesInsert('${storeCode}')"> 
-					<input type="reset" value="다시쓰기"></td>
+				<td align="center" colspan="3"><input type="button" value="상품 추가" onclick="succesInsert('${storeCode}')"> 
+				<input type="reset" value="다시쓰기"></td>
 			</tr>
 		</table>
 	</form>

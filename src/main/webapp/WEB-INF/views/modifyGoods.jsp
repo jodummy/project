@@ -21,15 +21,14 @@
 <title>modifyGoods</title>
 </head>
 <script type="text/javascript">
-	function succesUpdate() {
+	function succesUpdate(goodsNumber,storeCode) {
 		var goodsForm = $("#ff").serialize();
 		$.ajax({
 			type : "post",
 			url : "modifyGoodspage.do",
 			data : goodsForm,
 			success : function(msg) {
-				alert(opener.location.href);
-				opener.location.href = "goods.do";
+				opener.location.href = "./detailGoods.do?&goodsNumber=" + goodsNumber + "&storeCode=" + storeCode;
 				window.close();
 			},
 			error : function(textStatus, errorThrown) {
@@ -88,7 +87,7 @@
 			<tr>
 
 				<td align="center" colspan="3">
-				<input type="button"value="수정이 완료" onclick="succesUpdate()" class="btn btn-default">
+				<input type="button"value="수정이 완료" onclick="succesUpdate('${dto.goodsNumber}','${storeCode}')">
 				<input type="reset" value="다시쓰기" class="btn btn-default">
 				</td>
 			</tr>

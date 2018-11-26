@@ -22,15 +22,8 @@ public class commonCotroller {
 	@Autowired
 	private commonService service;
 
-	@RequestMapping(value = "/main.do", method = RequestMethod.GET)
-	public String main(Model model, storeDTO storeDto, String storeCode) {
-	
-		return "main";
-	}
-
 	@RequestMapping(value = "/store.do", method = RequestMethod.GET)
 	public String homeMain(Model model) {
-		System.out.println("11111111111111111111111111111111111111");
 		List<storeDTO> list = service.getStore();
 		model.addAttribute("list", list);
 		return "store";
@@ -62,7 +55,6 @@ public class commonCotroller {
 
 	@RequestMapping(value = "/goods.do", method = RequestMethod.GET)
 	public String homeSimple(Model model, String storeCode, goodsDTO goodsDto) {
-		System.out.println("11111111111111111111111111111111111111");
 		goodsDto.setStoreCode(storeCode);
 		List<goodsDTO> list = service.getListGoods(goodsDto);
 		model.addAttribute("list", list);
@@ -143,7 +135,8 @@ public class commonCotroller {
 	// modifyGoodspage
 	@RequestMapping(value = "/modifyGoodspage.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody boolean modifyGoodspage(goodsDTO goodsDto, HttpServletRequest req) {
-
+		String outputGoods = req.getParameter("outputGoods");
+		System.out.println(outputGoods);
 		try {
 			goodsDto.setGoodsName(req.getParameter("goodsName"));
 			goodsDto.setPrice(Integer.parseInt(req.getParameter("price")));
@@ -158,7 +151,7 @@ public class commonCotroller {
 			service.updateGoods(goodsDto);
 			return true;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.out.println("실패야 뭘 물어: " + e.getMessage());
 		}
 		return false;
 	}
@@ -298,6 +291,22 @@ public class commonCotroller {
 		} catch (Exception e) {
 			e.getMessage();
 		}
+		return false;
+	}
+
+	// basketMovePage
+	@RequestMapping(value = "/basketMovePage.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody boolean basketMovePage(@RequestParam(value = "goodsnumber") String value,
+			@RequestParam(value = "nowStock") String value2, @RequestParam(value = "storeCode") String value3,
+			goodsDTO goodsDto) {
+		int goodsnumber = Integer.parseInt(value);
+		int nowStock = Integer.parseInt(value2);
+		String storeCode = value3;
+		
+//		System.out.println(goodsnumber);
+//		System.out.println(nowStock);
+//		System.out.println(storeCode);
+
 		return false;
 	}
 

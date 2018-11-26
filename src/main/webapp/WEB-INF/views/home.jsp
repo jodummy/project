@@ -18,7 +18,6 @@
 	<h1>편의점 물류관리 시스템입니디.</h1>
 	<h2>
 		<a href="store.do">상점 리스트 </a><br>
-		<a href="main.do">test</a>
 	</h2>
 </body>
 </html>

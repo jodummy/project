@@ -56,7 +56,6 @@
 			}
 		});
 	}
-	//insert
 	function insertGoods(storeCode) {
 		window.open("./insertGoods.do?&storeCode=" + storeCode, "선택",
 						"scrollbars=yes,toolbar=yes,resizable=yes,width=450,height=500,right=150,top=0");
@@ -65,6 +64,32 @@
 	function detailGoods(goodsNumber , storeCode) {
 		window.open("./detailGoods.do?&goodsNumber=" + goodsNumber + "&storeCode=" + storeCode, "선택",
 				"scrollbars=yes,toolbar=yes,resizable=yes,width=800,height=500,right=600,top=0");
+	}
+	function basket(storeCode) {
+		window.open("./basket.do?", "선택",
+				"scrollbars=yes,toolbar=yes,resizable=yes,width=800,height=500,right=600,top=0");
+	}
+	function buy(nowStock,goodsNumber,storeCode,price) {
+		var sum = 0;
+			if(nowStock == 0){
+				alert("물품이 떨어짐");
+			}else{
+				var allData = {
+					"goodsnumber" :goodsNumber,
+					"nowStock" :nowStock,
+					"storeCode" :storeCode
+				};
+				$.ajax({
+					url : "basketMovePage.do",
+					type : 'GET',
+					data : allData,
+					success : function(data) {
+					},
+					error : function(jqXHR, textStatus, errorThrown) {
+							alert("에러 발생~~ \n" + textStatus + " : " + errorThrown);
+					}
+				});
+			}
 	}
 </script>
 
@@ -87,7 +112,6 @@
 								<th>들어온 날짜</th>
 								<th>유통기간</th>
 								<th>팔린 갯수</th>
-								<th>신상</th>
 							</tr>
 						</thead>
 						<c:forEach items="${list }" var="list">
@@ -101,16 +125,15 @@
 								<th>${list.inputGoods }</th>
 								<th>${list.outputGoods }</th>
 								<th>${list.soldNum }</th>
-								<th>${list.newItem }</th>
-								<th><input type="button" value="상품 상세"
-									onclick="detailGoods(${list.goodsNumber },'${storeCode}')"></th>
+								<th><input type="button" value="상품 상세" onclick="detailGoods(${list.goodsNumber },'${storeCode}')"></th>
+								<th><input type="button" value="구매" onclick="buy(${list.nowStock } ,${list.goodsNumber },'${storeCode}' ,${list.price })"></th>
 							</tr>
 						</c:forEach>
 					</table>
 					<input type="button" value="상품 추가" onclick="insertGoods('${storeCode}')">
 					<input type="button" value="상품 제거" onclick="deleteGoods()">
 				</form>
-
+	<h2 id= "sum">누적 판매 금액 :  </h2>
 			</div>
 		</div>
 	</div>

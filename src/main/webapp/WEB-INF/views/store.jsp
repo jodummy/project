@@ -94,7 +94,6 @@
 								<th>${list.inCome }</th>
 								<th><input type="button" value="상점 상세" onclick="detailStore('${list.storeCode }')"></th>
 								<th><input type="button" value="상품 list" onclick="location.href='./goods.do?&storeCode=${list.storeCode }'"></th>
-								<th><input type="button" value="판매개시" onclick="location.href='./main.do?&storeCode=${list.storeCode }'"></th>
 							</tr>
 						</c:forEach>
 					</table>

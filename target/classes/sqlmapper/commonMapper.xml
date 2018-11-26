@@ -63,14 +63,25 @@
 		UPDATE GOODS SET
 		GOODSNAME = #{goodsName} , PRICE =
 		#{price} ,NOWSTOCK = #{nowStock}, 
-		INPUTGOODS =TO_DATE( #{inputGoods},MM/DD/YYYY'),
-		OUTPUTGOODS =TO_DATE( #{outputGoods},'MM/DD/YYYY'),
+		INPUTGOODS =TO_DATE(#{inputGoods},'MM/DD/YYYY'),
+		OUTPUTGOODS =TO_DATE(#{outputGoods},'MM/DD/YYYY'),
 		SOLDNUM =#{soldNum} , CALORIE
 		=#{calorie} , GOODSINFO
 		=#{goodsInfo}
 		WHERE
 		GOODSNUMBER =#{goodsNumber}
 		AND STORECODE = #{storeCode}
+	</update>
+	
+	<update id="updateBuy" parameterType="com.common.www.dto.goodsDTO">
+	 UPDATE GOODS SET
+		NOWSTOCK=
+		(SELECT NOWSTOCK FROM GOODS WHERE STORECODE=#{storeCode}  and GOODSNUMBER=#{goodsNumber} )-1, 
+		SOLDNUM=
+		(SELECT SOLDNUM FROM GOODS WHERE STORECODE=#{storeCode} and GOODSNUMBER=#{goodsNumber} )+1
+		WHERE
+		GOODSNUMBER =#{goodsNumber}
+		AND STORECODE =#{storeCode} 
 	</update>
 
 	<!-- store -->
