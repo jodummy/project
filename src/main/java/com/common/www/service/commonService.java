@@ -52,5 +52,8 @@ public interface commonService {
 
 	// 사원 삭제
 	public int deleteEmployee(String phone);
+	
+	// 상품 판매 트랜젝션 처리
+	public boolean updateIncomeTotal(goodsDTO goodsDto);
 
 }

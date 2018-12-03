@@ -47,6 +47,6 @@ xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.spring
 	
 	<!-- 아노테이션 기반의 트랜잭션을 사용합니다. --> 
 	<tx:annotation-driven transaction-manager="transactionManager"/>
-
+	
 		
 </beans>

@@ -69,7 +69,7 @@
 		window.open("./basket.do?", "선택",
 				"scrollbars=yes,toolbar=yes,resizable=yes,width=800,height=500,right=600,top=0");
 	}
-	function buy(nowStock,goodsNumber,storeCode,price) {
+	function buy(nowStock,goodsNumber,storeCode) {
 		var sum = 0;
 			if(nowStock == 0){
 				alert("물품이 떨어짐");
@@ -84,6 +84,7 @@
 					type : 'GET',
 					data : allData,
 					success : function(data) {
+						location.reload();
 					},
 					error : function(jqXHR, textStatus, errorThrown) {
 							alert("에러 발생~~ \n" + textStatus + " : " + errorThrown);
@@ -116,8 +117,7 @@
 						</thead>
 						<c:forEach items="${list }" var="list">
 							<tr>
-								<th><input name="chkbox" type="checkbox" id="chkList"
-									value="${list.goodsNumber }" required="required" /></th>
+								<th><input name="chkbox" type="checkbox" id="chkList" value="${list.goodsNumber }" required="required" /></th>
 								<th>${list.goodsNumber }</th>
 								<th>${list.goodsName }</th>
 								<th>${list.price }</th>
@@ -126,16 +126,16 @@
 								<th>${list.outputGoods }</th>
 								<th>${list.soldNum }</th>
 								<th><input type="button" value="상품 상세" onclick="detailGoods(${list.goodsNumber },'${storeCode}')"></th>
-								<th><input type="button" value="구매" onclick="buy(${list.nowStock } ,${list.goodsNumber },'${storeCode}' ,${list.price })"></th>
+								<th><input type="button" value="구매" onclick="buy(${list.nowStock } ,${list.goodsNumber },'${storeCode}')"></th>
 							</tr>
 						</c:forEach>
 					</table>
 					<input type="button" value="상품 추가" onclick="insertGoods('${storeCode}')">
 					<input type="button" value="상품 제거" onclick="deleteGoods()">
 				</form>
-	<h2 id= "sum">누적 판매 금액 :  </h2>
 			</div>
 		</div>
 	</div>
+	<h2>누적 합계: ${inCome}</h2>
 </body>
 </html>

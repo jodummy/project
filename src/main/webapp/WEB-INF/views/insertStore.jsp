@@ -26,7 +26,8 @@
 				window.close();
 			},
 			error : function(textStatus, errorThrown) {
-				alert("중복 문제");
+				alert(textStatus);
+				alert(errorThrown);
 			}
 		});
 	}

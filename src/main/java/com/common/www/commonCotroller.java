@@ -55,11 +55,12 @@ public class commonCotroller {
 
 	@RequestMapping(value = "/goods.do", method = RequestMethod.GET)
 	public String homeSimple(Model model, String storeCode, goodsDTO goodsDto) {
+		storeDTO StoreDto = service.getStoreOne(storeCode);
 		goodsDto.setStoreCode(storeCode);
 		List<goodsDTO> list = service.getListGoods(goodsDto);
 		model.addAttribute("list", list);
 		model.addAttribute("storeCode", storeCode);
-
+		model.addAttribute("inCome", StoreDto.getinCome());
 		return "goods";
 	}
 
@@ -297,15 +298,27 @@ public class commonCotroller {
 	// basketMovePage
 	@RequestMapping(value = "/basketMovePage.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody boolean basketMovePage(@RequestParam(value = "goodsnumber") String value,
-			@RequestParam(value = "nowStock") String value2, @RequestParam(value = "storeCode") String value3,
-			goodsDTO goodsDto) {
+		   @RequestParam(value = "nowStock") String value2, @RequestParam(value = "storeCode") String value3,
+		   goodsDTO goodsDto) {
 		int goodsnumber = Integer.parseInt(value);
 		int nowStock = Integer.parseInt(value2);
 		String storeCode = value3;
+
+		System.out.println(goodsnumber);
+		System.out.println(nowStock);
+		System.out.println(storeCode);
 		
-//		System.out.println(goodsnumber);
-//		System.out.println(nowStock);
-//		System.out.println(storeCode);
+		goodsDto.setGoodsNumber(Integer.parseInt(value));
+		goodsDto.setNowStock(Integer.parseInt(value2));
+		goodsDto.setStoreCode(value3);
+		
+		try {
+			//飘罚璃记 贸府 何盒
+			service.updateIncomeTotal(goodsDto);
+			return true;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 
 		return false;
 	}

@@ -116,13 +116,14 @@ public class commonDaoImp implements commonDao {
 		return session.selectList("com.common.www.getListGoods", goodsDto);
 	}
 
-//	@Override
-//	public List<goodsDTO> firstSearchGoods(goodsDTO goodsDto) {
-//		return session.selectList("com.common.www.firstSearchGoods", goodsDto);
-//	}
-//	@Override
-//	public List<goodsDTO> secondSearchGoods(goodsDTO goodsDto) {
-//		return session.selectList("com.common.www.secondSearchGoods", goodsDto);
-//	}
+	@Override
+	public boolean updateBuy(goodsDTO goodsDto) {
+		return session.update("com.common.www.updateBuy",goodsDto) > 0 ? true :false;
+	}
+
+	@Override
+	public boolean updateStoreIncome(goodsDTO goodsDto) {
+		return session.update("com.common.www.updateStoreIncome",goodsDto) > 0 ? true :false;
+	}
 
 }

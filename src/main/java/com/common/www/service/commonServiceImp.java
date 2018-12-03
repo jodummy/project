@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.common.www.dao.commonDao;
 import com.common.www.dao.commonDaoImp;
@@ -111,19 +113,18 @@ public class commonServiceImp implements commonService {
 
 	@Override
 	public List<goodsDTO> getListGoods(goodsDTO goodsDto) {
-		
+
 		return dao.getListGoods(goodsDto);
 	}
 
-	// 검색 기능
-//	@Override
-//	public List<goodsDTO> firstSearchGoods(goodsDTO goodsDto) {
-//		return dao.firstSearchGoods(goodsDto);
-//	}
-//
-//	@Override
-//	public List<goodsDTO> secondSearchGoods(goodsDTO goodsDto) {
-//		return dao.secondSearchGoods(goodsDto);
-//	}
-
+	//트랜젝션 부분
+	@Override
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	public boolean updateIncomeTotal(goodsDTO goodsDto) {
+		boolean isc = false;
+		if (dao.updateBuy(goodsDto) && dao.updateStoreIncome(goodsDto)) {
+			isc = true;
+		}
+		return false;
+	}
 }

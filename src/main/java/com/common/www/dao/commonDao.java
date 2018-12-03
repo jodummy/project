@@ -56,4 +56,10 @@ public interface commonDao {
 
 	public List<goodsDTO> getListGoods(goodsDTO goodsDto);
 
+
+	//물품 구매 트랜젝션을 처리하기 위한 작업
+	public boolean updateBuy(goodsDTO goodsDto);
+
+	public boolean updateStoreIncome(goodsDTO goodsDto);
+
 }
