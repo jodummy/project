@@ -22,6 +22,11 @@ public class commonCotroller {
 	@Autowired
 	private commonService service;
 
+	@RequestMapping("/NewFile.do")
+	public String dashBaord() {
+		return "NewFile";
+	}
+
 	@RequestMapping(value = "/store.do", method = RequestMethod.GET)
 	public String homeMain(Model model) {
 		List<storeDTO> list = service.getStore();
@@ -298,8 +303,8 @@ public class commonCotroller {
 	// basketMovePage
 	@RequestMapping(value = "/basketMovePage.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody boolean basketMovePage(@RequestParam(value = "goodsnumber") String value,
-		   @RequestParam(value = "nowStock") String value2, @RequestParam(value = "storeCode") String value3,
-		   goodsDTO goodsDto) {
+			@RequestParam(value = "nowStock") String value2, @RequestParam(value = "storeCode") String value3,
+			goodsDTO goodsDto) {
 		int goodsnumber = Integer.parseInt(value);
 		int nowStock = Integer.parseInt(value2);
 		String storeCode = value3;
@@ -307,13 +312,13 @@ public class commonCotroller {
 		System.out.println(goodsnumber);
 		System.out.println(nowStock);
 		System.out.println(storeCode);
-		
+
 		goodsDto.setGoodsNumber(Integer.parseInt(value));
 		goodsDto.setNowStock(Integer.parseInt(value2));
 		goodsDto.setStoreCode(value3);
-		
+
 		try {
-			//飘罚璃记 贸府 何盒
+			// 飘罚璃记 贸府 何盒
 			service.updateIncomeTotal(goodsDto);
 			return true;
 		} catch (Exception e) {
